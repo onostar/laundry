@@ -133,6 +133,16 @@
                 return "0";
             }
         }
+        //fetch details count with condition and curdate
+        public function fetch_count_curDateGreat($table, $column){
+            $get_user = $this->connectdb()->prepare("SELECT * FROM $table WHERE date($column) <= CURDATE()");
+            $get_user->execute();
+            if($get_user->rowCount() > 0){
+                return $get_user->rowCount();
+            }else{
+                return "0";
+            }
+        }
         // select count with date and negative condition
         public function fetch_count_curDateCon($table, $column, $condition, $value){
             $get_user = $this->connectdb()->prepare("SELECT * FROM $table WHERE date($column) = CURDATE() AND $condition != :$condition");
@@ -399,6 +409,19 @@
         //fetch with current date and a condition grouped by condition
         public function fetch_details_curdateGro1con($table, $column, $condition, $value, $group){
             $get_user = $this->connectdb()->prepare("SELECT * FROM $table WHERE date($column) = CURDATE() AND $condition = :$condition GROUP BY $group");
+            $get_user->bindValue("$condition", $value);
+            $get_user->execute();
+            if($get_user->rowCount() > 0){
+                $rows = $get_user->fetchAll();
+                return $rows;
+            }else{
+                $rows = "No records found";
+                return $rows;
+            }
+        }
+        //fetch with date greater or equal to current date and a condition grouped by condition
+        public function fetch_details_curdateGreat($table, $column, $condition, $value, $group){
+            $get_user = $this->connectdb()->prepare("SELECT * FROM $table WHERE date($column) <= CURDATE() AND $condition = :$condition GROUP BY $group");
             $get_user->bindValue("$condition", $value);
             $get_user->execute();
             if($get_user->rowCount() > 0){
@@ -1081,6 +1104,18 @@
                 return $rows;
             }
         }
+        //fetch all item grouped by a column
+        public function fetch_single_grouped($table, $group){
+            $get_details = $this->connectdb()->prepare("SELECT * FROM $table GROUP BY $group");
+            $get_details->execute();
+            if($get_details->rowCount() > 0){
+                $row = $get_details->fetchAll();
+                return $row;
+            }else{
+                $row = "No record found";
+                return $row;
+            }
+        }
         //fetch all details with 1 condition grouped
         public function fetch_details_Allgroup($table, $condition, $value, $group){
             $get_user = $this->connectdb()->prepare("SELECT * FROM $table WHERE $condition = :$condition GROUP BY $group");
@@ -1090,8 +1125,8 @@
                 $row = $get_user->fetch();
                 return $row;
             }else{
-                $rows = "No records found";
-                return $rows;
+                $row = "No records found";
+                return $row;
             }
         }
         

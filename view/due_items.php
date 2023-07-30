@@ -87,7 +87,7 @@
                             <?php }else{
                                 echo "<p style='color:red'>Not washed</p>";
                             ?>
-                                <a style="color:#fff; background:var(--otherColor); padding:5px; border-radius:5px; font-size:.9rem" href="javascript:void(0) "title="Wash item" onclick="changeStatus('<?php echo $detail->sales_id?>', '<?php echo $invoice?>', 'wash_item.php', 'due_items.php')">Issue <i class="fas fa-check-double"></i></a>
+                                <a style="color:#fff; background:var(--otherColor); padding:5px; border-radius:5px; font-size:.9rem" href="javascript:void(0) "title="Wash item" onclick="changeStatus('<?php echo $detail->sales_id?>', '<?php echo $invoice?>', 'wash_item.php', 'due_items.php')">Wash <i class="fas fa-check-double"></i></a>
                             <?php }?>
                         </td>
                         

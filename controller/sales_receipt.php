@@ -125,6 +125,10 @@ include "../classes/select.php";
 
             }
         }
+        //collection date
+        if(gettype($details) == "array"){
+            echo "<div><p style='text-align:right'>Collection date:". date('d-m-Y', strtotime($detail->collection_date))."</p></div>";
+        }
         //sold by
         $get_seller = new selects();
         $row = $get_seller->fetch_details_group('users', 'full_name', 'user_id', $user);

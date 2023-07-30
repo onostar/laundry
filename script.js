@@ -70,7 +70,6 @@ $(document).ready(function(){
      })
 })
 //toggle all submenu
-/* show frequenty asked questions */
 function toggleMenu(subMenu){
      let menus = document.querySelectorAll(".subMenu");
      menu_id = document.getElementById(subMenu);
@@ -182,6 +181,60 @@ function addDepartment(){
      }
      $("#department").val('');
      $("#department").focus();
+     return false;
+}
+//add menu
+function addMenu(){
+     let menu = document.getElementById("menu").value;
+     if(menu.length == 0 || menu.replace(/^\s+|\s+$/g, "").length == 0){
+          alert("Please input menu!");
+          $("#menu").focus();
+          return;
+     }else{
+          $.ajax({
+               type : "POST",
+               url : "../controller/add_menu.php",
+               data : {menu:menu},
+               success : function(response){
+               $(".info").html(response);
+               }
+          })
+     }
+     $("#menu").val('');
+     $("#menu").focus();
+     return false;
+}
+//add sub-menu
+function addSubMenu(){
+     let menus = document.getElementById("menus").value;
+     let sub_menu = document.getElementById("sub_menu").value;
+     let sub_menu_url = document.getElementById("sub_menu_url").value;
+     if(menus.length == 0 || menus.replace(/^\s+|\s+$/g, "").length == 0){
+          alert("Please select menu!");
+          $("#menus").focus();
+          return;
+     }else if(sub_menu.length == 0 || sub_menu.replace(/^\s+|\s+$/g, "").length == 0){
+          alert("Please input sub-menu!");
+          $("#sub_menu").focus();
+          return;
+     }else if(sub_menu_url.length == 0 || sub_menu_url.replace(/^\s+|\s+$/g, "").length == 0){
+          alert("Please input sub-menu url!");
+          $("#sub_menu_url").focus();
+          return;
+     }else{
+          $.ajax({
+               type : "POST",
+               url : "../controller/add_sub_menu.php",
+               data : {menus:menus, sub_menu:sub_menu, sub_menu_url:sub_menu_url},
+               success : function(response){
+               $(".info").html(response);
+               }
+          })
+     }
+     // $("#menus").val('');
+     $("#sub_menu").val('');
+     $("#sub_menu_url").val('');
+     $("#sub_menu").focus();
      return false;
 }
 //add expense head
@@ -1231,6 +1284,39 @@ function roomPriceForm(item_id){
           })
           setTimeout(function(){
                $("#change_category").load("change_category.php #change_category");
+          }, 1500);
+          return false
+     }
+ }
+ //update submenu details
+ function updateSubMenu(){
+     let sub_menu_id = document.getElementById("sub_menu_id").value;
+     let menu = document.getElementById("menu").value;
+     let sub_menu = document.getElementById("sub_menu").value;
+     let url = document.getElementById("url").value;
+     if(menu.length == 0 || menu.replace(/^\s+|\s+$/g, "").length == 0){
+          alert("Please select menuy!");
+          $("#menu").focus();
+          return;
+     }else if(sub_menu.length == 0 || sub_menu.replace(/^\s+|\s+$/g, "").length == 0){
+          alert("Please input sub-menu!");
+          $("#sub_menu").focus();
+          return;
+     }else if(url.length == 0 || url.replace(/^\s+|\s+$/g, "").length == 0){
+          alert("Please input sub-menu url!");
+          $("#url").focus();
+          return;
+     }else{
+          $.ajax({
+               type : "POST",
+               url : "../controller/update_submenu.php",
+               data: {sub_menu_id:sub_menu_id, menu:menu, sub_menu:sub_menu, url:url},
+               success : function(response){
+                    $("#change_sub_menu").html(response);
+               }
+          })
+          setTimeout(function(){
+               $("#change_sub_menu").load("edit_sub_menu.php #change_sub_menu");
           }, 1500);
           return false
      }

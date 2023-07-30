@@ -8,7 +8,7 @@
 ?>
 <div id="washClothes" class="displays management" style="width:90%!important;margin:10px 20px!important">
 <div class="displays allResults new_data" id="revenue_report">
-    <h2>Itesm due for collection</h2>
+    <h2>Items due for collection</h2>
     <hr>
     <div class="search">
         <input type="search" id="searchCheckout" placeholder="Enter keyword" onkeyup="searchData(this.value)">
@@ -31,7 +31,7 @@
             <?php
                 $n = 1;
                 $get_users = new selects();
-                $details = $get_users->fetch_details_curdateGro1con('sales', 'date(collection_date)', 'store', $store, 'invoice');
+                $details = $get_users->fetch_details_curdateGreat('sales', 'date(collection_date)', 'store', $store, 'invoice');
                 if(gettype($details) === 'array'){
                 foreach($details as $detail):
             ?>

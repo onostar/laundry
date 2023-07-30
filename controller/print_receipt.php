@@ -124,10 +124,14 @@ include "../classes/select.php";
 
             }
         }
+        //collection date
+        if(gettype($details) == "array"){
+            echo "<div><p style='text-align:right'>Collection date:". date('d-m-Y', strtotime($detail->collection_date))."</p></div>";
+        }
         //sold by
         $get_seller = new selects();
         $row = $get_seller->fetch_details_group('users', 'full_name', 'user_id', $user);
-        echo ucwords("<p class='sold_by'>Printed by: <strong>$row->full_name</strong></p>");
+        echo ucwords("<div><p class='sold_by'>Printed by: <strong>$row->full_name</strong></p></div>");
     ?>
     
 </div> 

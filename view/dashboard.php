@@ -52,16 +52,14 @@
             </a>
         </div> 
         <div class="cards" id="card3">
-            <a href="javascript:void(0)" class="page_navs">
+            <a href="javascript:void(0)" class="page_navs" onclick="showPage('due_collection.php')">
                 <div class="infos">
-                    <p><i class="fas fa-users"></i> Cost of sales</p>
+                    <p><i class="fas fa-calendar"></i> Due for collection</p>
                     <p>
                     <?php
-                        $get_cost = new selects();
-                        $costs = $get_cost->fetch_sum_curdate2Con('sales', 'cost', 'date(post_date)', 'sales_status', 2, 'store', $store_id);
-                        foreach($costs as $cost){
-                            echo "₦".number_format($cost->total, 2);
-                        }
+                        $due = new selects();
+                        $dues = $due->fetch_count_curDateGreat('sales', 'collection_date');
+                        echo $dues;
                     ?>
                     </p>
                 </div>
@@ -286,8 +284,8 @@
 ?>
 <div class="check_out_due">
     <hr>
-    <div class="displays allResults" id="check_out_guest">
-       
+    <div class="displays allResults" id="user_dashboard">
+        <!-- <div class="user_dash"> -->
         <h3 style="background:var(--otherColor)">My Daily transactions</h3>
         <table id="check_out_table" class="searchTable" style="width:100%;">
             <thead>

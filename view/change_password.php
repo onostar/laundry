@@ -12,10 +12,10 @@
 <head>
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="Inventory system, point of sales, inventory and sales management, retail, supermarket software, sales application">
-    <meta name="description" content="An online/offline inventory and sales management software for retail and wholesale stores and pharmacies, stock register, etc">
+    <meta name="keywords" content="laundry software, laundry application, laundry management, software">
+    <meta name="description" content="A laundry management system developed for managing clients, and clothes brought in and out, as well as revenue">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sales & Inventory Management | Change password</title>
+    <title>Laundry management | Change password</title>
     <link rel="icon" type="image/png" size="32x32" href="../images/logo.png">
     <link rel="stylesheet" href="../fontawesome-free-6.0.0-web/css/all.css">
     <link rel="stylesheet" href="../fontawesome-free-6.0.0-web/css/all.min.css">
@@ -110,7 +110,7 @@
                 
                 ?>
                 <div id="foot">
-                    <p >&copy;<?php echo Date("Y");?> Hotel. All Rights Reserved.</p>
+                    <p >&copy;<?php echo Date("Y");?> Applied macros. All Rights Reserved.</p>
 
                 </div>
 

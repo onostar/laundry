@@ -90,7 +90,12 @@
         <div class="admin_main">
             
             <!-- side menu -->
-            <?php include "side_menu.php"?>
+            
+            <?php 
+                    include "side_menu.php";
+
+            
+            ?>
             <!-- main contents -->
             <section id="contents">
                 
@@ -98,26 +103,12 @@
                 <div id="quickLinks">
                     <div class="quick_links">
                         <!-- check if sales right exist -->
-                        <?php 
-                            $get_rights = new selects();
-                            $row = $get_rights->fetch_count_2cond('rights', 'user', $user_id, 'sub_menu', "12");
-                            if($row > 0 || $role == "Admin"){
-                        ?>
+                        
                         <div class="links page_navs" onclick="showPage('wholesale.php')" title="Collect customer cloth">
                             <i class="fas fa-pen-alt"></i>
                             <!-- <p>Direct sales</p> -->
                         </div>
-                        <?php }?>
-                        <?php 
-                            $get_rights = new selects();
-                            $row = $get_rights->fetch_count_2cond('rights', 'user', $user_id, 'sub_menu', "13");
-                            if($row > 0){
-                        ?>
-                        <div class="links page_navs" onclick="showPage('wholesale.php')" title="Collect customer order">
-                            <i class="fas fa-pen-alt"></i>
-                            <!-- <p>Direct sales</p> -->
-                        </div>
-                        <?php }?>
+                        
                         <div class="links page_navs" onclick="showPage('wash_clothes.php')" title="Yet to be washed">
                             <i class="fas fa-chart-line" style="color:green"></i>
                             <p style="color:green;">
@@ -138,7 +129,7 @@
                                 ?>
                             </p>
                         </div>
-                        <div class="links page_navs" onclick="showPage('completed_job.php')" title="Due for collection">
+                        <div class="links page_navs" onclick="showPage('completed_job.php')" title="Completed jobs">
                             <i class="fas fa-tasks"></i>
                             <p>
                                 <?php
@@ -148,14 +139,14 @@
                                 ?>
                             </p>
                         </div>
-                        <div class="links page_navs" onclick="showPage('out_of_stock.php')" title="Out of stock">
+                        <div class="links page_navs" onclick="showPage('due_collection.php')" title="Out of stock">
                             <i class="fas fa-drum" style="color:red"></i>
                             <p style="color:red">
-                                <?php
-                                    $out_stock = new selects();
-                                    $stock = $out_stock->fetch_count_2cond('inventory', 'quantity', 0, 'store', $store_id);
-                                    echo $stock;
-                                ?>
+                            <?php
+                                $due = new selects();
+                                $dues = $due->fetch_count_curDateGreat('sales', 'collection_date');
+                                echo $dues;
+                            ?>
                             </p>
                         </div>
                     </div>

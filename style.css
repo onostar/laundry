@@ -1449,6 +1449,9 @@ table tr:nth-child(even){
     justify-content: space-between;
     align-items: center;
 }
+.allMenus .second_icon{
+    text-align: right;
+}
 #contents{
     margin-left:18vw;
     width:85vw;
@@ -1621,6 +1624,10 @@ table tr:nth-child(even){
     width:95%;
     margin:40px auto;
 }
+/* #user_dashboard{
+    display:flex;
+    align-items: flex-start;
+} */
 .check_out_due h3{
     width:100%;
     color:#fff;

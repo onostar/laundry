@@ -12,6 +12,8 @@
     --otherColor: rgb(3, 69, 75);
     --moreColor:rgba(11, 99, 134, 0.7);
     --background:linear-gradient(45deg, hsla(202, 81%, 22%, .9), hsl(189, 54%, 59%), rgb(3, 69, 75));
+    --menuColor : #524e4e;
+    --redBackground : linear-gradient(45deg,hsla(0, 100%, 50%, .7), hsla(0, 100%, 40%, .7));
 }
 body{
     position:relative;
@@ -636,11 +638,9 @@ main hr{
     text-transform: capitalize;
 }
 .reg_log{
-    /* position:relative;
+    position:relative;
     top:0;
-    left:0; */
-    width:100%;
-    /* height:85vh; */
+    left:0;
     margin:0;
     /* background:#fff; */
     display:flex;
@@ -649,18 +649,19 @@ main hr{
     align-items: center;
     width:100%;
     height:100%;
+    overflow:hidden;
 }
 
 .login_page{
-   /*  position:absolute;
+    position:absolute;
     top:0;
-    left:8vw; */
+    left:34vw;
     width:32%;
-    height:80%;
+    height:auto;
     background:#fff;
     padding:10px;
-    margin:0 auto;
-    box-shadow: 2px 2px 2px 3px var(--primaryColor);
+    margin: 50px auto;
+    box-shadow: 2px 2px 2px 2px #313030;
     border-radius:10px;
     /* z-index:3; */
 }
@@ -758,7 +759,7 @@ main hr{
 }
 
 .adds{
-    /* position:absolute; */
+    position:absolute;
     /* background:var(--primaryColor); */
     width:100%;
     height:100%;
@@ -1286,7 +1287,7 @@ table tr:nth-child(even){
 /* aside */
 .admin_main aside{
     width:18vw;
-    background:var(--otherColor);
+    background:#fff;
     height:100vh;
     position:fixed;
     color:#fff!;
@@ -1337,7 +1338,7 @@ table tr:nth-child(even){
     padding:5px;
 }
 .admin_main aside nav h3 a{
-    color: #fff;
+    color: var(--menuColor);
 }
 .admin_main aside nav ul{
     width:100%;
@@ -1354,10 +1355,10 @@ table tr:nth-child(even){
     margin-bottom:40px!important;
 }
 .admin_main aside nav ul li a{
-    color:#fff;
-    padding:15px 20px;
+    color:var(--menuColor);
+    padding:10px;
     display:flex;
-    gap:.5rem;
+    gap:.1rem;
     /* justify-content: space-between; */
     align-items:Center;
     width:100%;
@@ -1365,7 +1366,9 @@ table tr:nth-child(even){
 .admin_main aside nav ul li ul li a{
     padding:2px!important;
     gap:.1rem;
+    /* color:#fff; */
 }
+
 .right{
     float:right!important;
     box-shadow:none;
@@ -1373,7 +1376,7 @@ table tr:nth-child(even){
 }
 
 .admin_main aside nav ul li a i{
-    color:#fff!important;
+    color:var(--menuColor)!important;
     font-size:1rem;
     padding:10px;
     /* background:var(--primaryColor); */
@@ -1383,7 +1386,7 @@ table tr:nth-child(even){
 
 }
 .admin_main aside nav ul li a:hover, .admin_main aside nav ul li a:focus{
-    background:var(--primaryColor);
+    background:var(--otherColor);
     color:#fff;
     
 }
@@ -1397,6 +1400,7 @@ table tr:nth-child(even){
     display:none;
     margin-left:15px;
     transform:scale(0);
+    background:transparent;
     /* border-left:1px solid rgba(146, 140, 140, .4); */
     border-color: rgba(202, 198, 198, 0.4)!important;
     overflow-x: hidden!important;
@@ -1421,17 +1425,18 @@ table tr:nth-child(even){
 }
 .admin_main aside nav ul li ul li a{
     padding:10px 15px;
+
 }
 .admin_main aside nav ul li ul li a:hover, .admin_main aside nav ul li ul li a:focus{
     background:none;
-    color:#fff;
+    color:var(--menuColor);
     /* border-bottom: 1px solid var(--secondaryColor); */
 }
 .admin_main aside nav ul li ul li a:hover i, .admin_main aside nav ul li ul li a:focus i{
     color:var(--secondaryColor)!important;
 }
 .admin_main aside nav ul li .more_option{
-    color:#fff!important;
+    color:#695b5b!important;
     background:transparent!important;
     box-shadow:none!important;
     float:right!important;
@@ -1442,7 +1447,7 @@ table tr:nth-child(even){
 .admin_main aside nav ul li ul li i{
     background:none;
     box-shadow: none !important;
-    color:#fff!important;
+    /* color:#fff!important; */
 }
 .allMenus{
     display:flex;
@@ -3114,7 +3119,8 @@ x
         display:none;
     }
    .login_page{
-       width:90%;
+        left:5vw;
+        width:90%;
    }
    /* .login_page h1{
         text-align:center;

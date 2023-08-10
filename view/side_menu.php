@@ -19,7 +19,7 @@
                     $admin_menu_name = $get_admin_name->fetch_details_group('menus', 'menu', 'menu_id', $admin_men->menu);
             ?>
             <li>
-                <a href="javascript:void(0);" onclick="toggleMenu('<?php echo $admin_menu_name->menu?>')" class="allMenus" title="<?php echo $admin_menu_name->menu?>"><span><i class="fas fa-gem"></i> </span><span> <?php echo $admin_menu_name->menu?> </span><span class="second_icon"><i class="fas fa-chevron-down more_option"></i></span></a>
+                <a href="javascript:void(0);" onclick="toggleMenu('<?php echo $admin_menu_name->menu?>')" class="allMenus" title="<?php echo $admin_menu_name->menu?>"><span><i class="fas fa-gem"></i> <?php echo $admin_menu_name->menu?> </span><span class="second_icon"><i class="fas fa-chevron-down more_option"></i></span></a>
                     <!-- get all the sub menus inside each menu -->
                 <ul class="subMenu" id="<?php echo $admin_menu_name->menu?>">
                     <?php

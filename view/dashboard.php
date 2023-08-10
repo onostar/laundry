@@ -51,10 +51,10 @@
                 </div>
             </a>
         </div> 
-        <div class="cards" id="card3">
+        <div class="cards" id="card1">
             <a href="javascript:void(0)" class="page_navs" onclick="showPage('due_collection.php')">
                 <div class="infos">
-                    <p><i class="fas fa-calendar"></i> Due for collection</p>
+                    <p><i class="fas fa-calendar"></i> Pick up requests</p>
                     <p>
                     <?php
                         $due = new selects();
@@ -151,7 +151,7 @@
                 </div>
             </a>
         </div> 
-        <div class="cards" id="card3">
+        <div class="cards" id="card1">
             <a href="javascript:void(0)" class="page_navs">
                 <div class="infos">
                     <p><i class="fas fa-money-check"></i> POS sales</p>
@@ -234,7 +234,7 @@
         </div>
         <!-- monthly revenue summary -->
         <div class="monthly_report allResults">
-            <h3>Monthly Encounters</h3>
+            <h3 style="background:var(--redBackground)">Monthly Encounters</h3>
             <table>
                 <thead>
                     <tr>

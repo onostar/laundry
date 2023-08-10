@@ -37,6 +37,8 @@ include "../classes/inserts.php";
             'total_amount' => $price,
             'quantity' => $quantity,
             'posted_by' => $user_id,
+            'laundry_status' => 'C',
+            'job_type' => 'Wash & Iron',
             'store' => $store,
             'sales_type' => $sales_type,
             'customer' => $customer
@@ -61,12 +63,12 @@ include "../classes/inserts.php";
 
                 //check if already exist in sales order
                 // check if item already exist
-            $check = new selects();
+            /* $check = new selects();
             $sales = $check->fetch_count_2cond('sales', 'invoice', $invoice, 'item', $item);
             if($sales > 0){
                 echo "<div class='notify'><p>Item already exists in sales order</p></div>";
                 include "wholesale_details.php";
-            }else{
+            }else{ */
                 //insert into sales order
                 $sell_item = new add_data('sales', $data);
                 $sell_item->create_data();
@@ -78,7 +80,7 @@ include "../classes/inserts.php";
 <?php
     include "wholesale_details.php";
                 }
-            }
+            // }
         }
 ?>
    

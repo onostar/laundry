@@ -104,7 +104,7 @@
                     <div class="quick_links">
                         <!-- check if sales right exist -->
                         
-                        <div class="links page_navs" onclick="showPage('wholesale.php')" title="Collect customer cloth">
+                        <div class="links page_navs" onclick="showPage('wholesale.php')" title="Create new order">
                             <i class="fas fa-pen-alt"></i>
                             <!-- <p>Direct sales</p> -->
                         </div>
@@ -139,7 +139,7 @@
                                 ?>
                             </p>
                         </div>
-                        <div class="links page_navs" onclick="showPage('due_collection.php')" title="Out of stock">
+                        <div class="links page_navs" onclick="showPage('due_collection.php')" title="Due for collection">
                             <i class="fas fa-drum" style="color:red"></i>
                             <p style="color:red">
                             <?php

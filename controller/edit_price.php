@@ -5,7 +5,7 @@
         // $cost_price = htmlspecialchars(stripslashes($_POST['cost_price']));
         $sales_price = htmlspecialchars(stripslashes($_POST['sales_price']));
         // $pack_price = htmlspecialchars(stripslashes($_POST['pack_price']));
-        // $wholesale = htmlspecialchars(stripslashes($_POST['wholesale_price']));
+        $wholesale = htmlspecialchars(stripslashes($_POST['wholesale_price']));
         // $wholesale_pack = htmlspecialchars(stripslashes($_POST['wholesale_pack']));
         // $pack_size = htmlspecialchars(stripslashes($_POST['pack_size']));
 
@@ -14,7 +14,7 @@
         include "../classes/update.php";
 
         $change_price = new Update_table();
-        $change_price->update('items', 'sales_price', 'item_id', $sales_price, $item);
+        $change_price->update_double('items', 'sales_price', $sales_price, 'wholesale', $wholesale, 'item_id', $item);
         if($change_price){
              echo "<div class='success'><p>Price changed successfully! <i class='fas fa-thumbs-up'></i></p></div>";
         }else{

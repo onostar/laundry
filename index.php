@@ -35,9 +35,9 @@
            
         </div> -->
         <section class="reg_log">
-            <!-- <div class="adds">
-                <img src="images/software.jpg" alt="login banner">
-            </div> -->
+            <div class="adds">
+                <img src="images/laundry4.jpg" alt="login banner">
+            </div>
             <div class="login_page">
                 
                 <h3 class="mobile_company"><?php echo $row->company?></h3>

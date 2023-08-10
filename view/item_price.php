@@ -10,8 +10,8 @@
 
 ?>
 
-    <div class="info" style="width:60%!important; margin:0!important"></div>
-    <div class="displays allResults" style="width:50%!important; margin:10px 50px!important;">
+    <div class="info" style="width:80%!important; margin:0!important"></div>
+    <div class="displays allResults" style="width:80%!important; margin:10px 50px!important;">
         <h2>Manage item prices</h2>
         <hr>
         <div class="search">
@@ -25,10 +25,10 @@
                     <td>item</td>
                     <!-- <td>pack size</td>
                     <td>Cost Price</td> -->
-                    <td>Price</td>
-                    <!-- <td>Retail pack</td>
-                    <td>Wholesale</td>
-                    <td>Wholesale Pack</td> -->
+                    <td>Wash & Iron</td>
+                    <!-- <td>Retail pack</td> -->
+                    <td>Ironing only</td>
+                    <!-- <td>Wholesale Pack</td> -->
                     <td></td>
                 </tr>
             </thead>
@@ -58,15 +58,15 @@
                         <?php echo "₦ ". number_format($row->cost_price);?>
                     </td> -->
                     <td>
-                        <?php echo "₦ ". number_format($row->sales_price);?>
+                        <?php echo "₦". number_format($row->sales_price);?>
                     </td>
                     <!-- <td>
                         <?php echo "₦ ". number_format($row->pack_price);?>
-                    </td>
+                    </td> -->
                     <td>
-                        <?php echo "₦ ". number_format($row->wholesale);?>
+                        <?php echo "₦". number_format($row->wholesale);?>
                     </td>
-                    <td>
+                    <!-- <td>
                         <?php echo "₦ ". number_format($row->wholesale_pack);?>
                     </td> -->
                     <td class="prices">

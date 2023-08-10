@@ -49,6 +49,7 @@
                             <td>S/N</td>
                             <td>Item</td>
                             <td>Quantity</td>
+                            <td>Job type</td>
                             <td>Unit price</td>
                             <td>Amount</td>
                         </tr>
@@ -71,6 +72,7 @@
                                 ?>
                             </td>
                             <td style="text-align:center; color:var(--otherColor)"><?php echo $row->quantity?></td>
+                            <td><?php echo $row->job_type?></td>
                             <td><?php echo number_format($row->price, 2);?></td>
                             <td><?php echo number_format($row->total_amount, 2)?></td>
                             

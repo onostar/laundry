@@ -72,7 +72,7 @@
                                 echo "₦".number_format($sales_price, 2);
                             ?>
                         </td>
-                        <td>
+                        <td style="display:flex;align-items:center; gap:.5rem;">
                             <?php
                                 if($detail->laundry_status == "W"){
                                     echo "<p style='color:var(--moreColor)'>Washed</p>";

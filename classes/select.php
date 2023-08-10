@@ -197,6 +197,21 @@
                 return $rows;
             }
         }
+        //fetch with three condition group by
+        public function fetch_details_3condGroup($table, $condition1, $condition2, $condition3, $value1, $value2, $value3, $group){
+            $get_user = $this->connectdb()->prepare("SELECT * FROM $table WHERE $condition1 = :$condition1 AND $condition2 = :$condition2 AND $condition3 = :$condition3 GROUP BY $group");
+            $get_user->bindValue("$condition1", $value1);
+            $get_user->bindValue("$condition2", $value2);
+            $get_user->bindValue("$condition3", $value3);
+            $get_user->execute();
+            if($get_user->rowCount() > 0){
+                $rows = $get_user->fetchAll();
+                return $rows;
+            }else{
+                $rows = "No records found";
+                return $rows;
+            }
+        }
         //fetch with one condition group by
         public function fetch_details_condGroup($table, $condition1, $value1, $group){
             $get_user = $this->connectdb()->prepare("SELECT * FROM $table WHERE $condition1 = :$condition1 GROUP BY $group");
@@ -491,6 +506,20 @@
         public function fetch_details_curdateCon($table, $column, $condition, $value){
             $get_user = $this->connectdb()->prepare("SELECT * FROM $table WHERE $condition =:$condition AND date($column) = CURDATE()");
             $get_user->bindValue("$condition", $value);
+            $get_user->execute();
+            if($get_user->rowCount() > 0){
+                $rows = $get_user->fetchAll();
+                return $rows;
+            }else{
+                $rows = "No records found";
+                return $rows;
+            }
+        }
+        //fetch with current date and condition
+        public function fetch_details_curdate2Con($table, $column, $condition1, $value1, $condition2, $value2){
+            $get_user = $this->connectdb()->prepare("SELECT * FROM $table WHERE $condition1 =:$condition1 AND $condition2 = :$condition2 AND date($column) = CURDATE()");
+            $get_user->bindValue("$condition1", $value1);
+            $get_user->bindValue("$condition2", $value2);
             $get_user->execute();
             if($get_user->rowCount() > 0){
                 $rows = $get_user->fetchAll();

@@ -1163,11 +1163,11 @@ function roomPriceForm(item_id){
      let item_id = document.getElementById("item_id").value;
      // let cost_price = document.getElementById("cost_price").value;
      let sales_price = document.getElementById("sales_price").value;
- /*     let pack_price = document.getElementById("pack_price").value;
-     let pack_size = document.getElementById("pack_size").value;
+    /*  let pack_price = document.getElementById("pack_price").value;
+     let pack_size = document.getElementById("pack_size").value; */
      let wholesale_price = document.getElementById("wholesale_price").value;
-     let wholesale_pack = document.getElementById("wholesale_pack").value;
-     if(cost_price >= sales_price){
+     // let wholesale_pack = document.getElementById("wholesale_pack").value;
+     /* if(cost_price >= sales_price){
           alert("Selling price can not be lesser than cost price!");
           $("#sales_price").focus();
           return;
@@ -1178,19 +1178,19 @@ function roomPriceForm(item_id){
      }else if(cost_price.length == 0 || cost_price.replace(/^\s+|\s+$/g, "").length == 0){
           alert("Please enter cost price!");
           $("#cost_price").focus();
-          return;
-     }else if(sales_price.length == 0 || sales_price.replace(/^\s+|\s+$/g, "").length == 0){
-          alert("Please enter selling price!");
-          $("#sales_price").focus();
-          return; */
-     /* }else if(wholesale_price.length == 0 || wholesale_price.replace(/^\s+|\s+$/g, "").length == 0){
-          alert("Please enter wholesale price!");
-          $("#wholesale_price").focus();
           return; */
      if(sales_price.length == 0 || sales_price.replace(/^\s+|\s+$/g, "").length == 0){
-          alert("Please enter washing fee!");
+          alert("Please enter laundry price!");
           $("#sales_price").focus();
           return;
+     }else if(wholesale_price.length == 0 || wholesale_price.replace(/^\s+|\s+$/g, "").length == 0){
+          alert("Please enter Ironing price!");
+          $("#wholesale_price").focus();
+          return;
+     // if(sales_price.length == 0 || sales_price.replace(/^\s+|\s+$/g, "").length == 0){
+     //      alert("Please enter washing fee!");
+     //      $("#sales_price").focus();
+     //      return;
      /* }else if(pack_price <= cost_price){
           alert("Error! Pack price cannot be lesser than cost price!");
           $("#pack_price").focus();
@@ -1203,7 +1203,7 @@ function roomPriceForm(item_id){
           $.ajax({
                type : "POST",
                url : "../controller/edit_price.php",
-               data: {item_id:item_id, sales_price:sales_price},
+               data: {item_id:item_id, sales_price:sales_price, wholesale_price:wholesale_price},
                success : function(response){
                     $("#edit_item_price").html(response);
                }
@@ -2981,4 +2981,18 @@ function changeAllStatus(invoice, url, return_url){
                $("#washed").load(return_url+"?invoice="+invoice + "#washed");              
           }, 1000);
      }
+}
+
+//update job type for each item
+function updateJobType(sales, item, type){
+     // alert(sales);
+     $.ajax({
+          type : "GET",
+          url : "../controller/update_job_type.php?sales_id="+sales+"&item_id="+item+"&type="+type,
+          success : function(response){
+               $(".sales_order").html(response);
+          }
+          
+     })
+     return false;
 }

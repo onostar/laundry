@@ -10,6 +10,7 @@
                 <td>S/N</td>
                 <td>Item name</td>
                 <td>Quantity</td>
+                <td>Job type</td>
                 <td>Unit sales</td>
                 <td>Amount</td>
                 <td></td>
@@ -39,6 +40,13 @@
                     <a style="color:#fff; background:var(--primaryColor);border-radius:4px;padding:5px 8px;" href="javascript:void(0)" title="decrease quantity" onclick="reduceQtyWholesale('<?php echo $detail->sales_id?>')"><i class="fas fa-arrow-down"></i></a>
                     <a style="color:#fff; background:var(--otherColor);border-radius:4px;padding:5px 8px;" href="javascript:void(0)" title="show more options" onclick="showMoreWholesale('<?php echo $detail->sales_id?>')"><i class="fas fa-chevron-up"></i></a>
                     <!-- <a style="color:#fff; background:var(--secondaryColor);border-radius:4px;padding:5px 8px;" href="javascript:void(0)" title="sell item in pack" onclick="getWholesalePack('<?php echo $detail->sales_id?>')"><i class="fas fa-box"></i> pack</a> -->
+                </td>
+                <td>
+                    <select name="type" id="type" style="padding:10px;" onchange="updateJobType('<?php echo $detail->sales_id?>', '<?php echo $detail->item?>', this.value)">
+                        <option value="<?php echo $detail->job_type?>" selected><?php echo $detail->job_type?></option>
+                        <option value="wash">Wash & Iron</option>
+                        <option value="iron">Iron only</option>
+                    </select>
                 </td>
                 <td>
                     <?php 

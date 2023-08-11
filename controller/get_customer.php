@@ -9,7 +9,7 @@
     $_SESSION['toDate'] = $toDate;
     $_SESSION['fromDate'] = $fromDate;
     $get_item = new selects();
-    $rows = $get_item->fetch_details_likeCond('customers', 'customer', $customer);
+    $rows = $get_item->fetch_details_like2Cond('customers', 'customer', 'phone_numbers', $customer);
      if(gettype($rows) == 'array'){
         foreach($rows as $row):
         

@@ -23,7 +23,7 @@
                     <input type="date" name="toDate" id="toDate" required>
                 </div>
                 <div class="data" style="width:100%; margin:10px 0">
-                    <input type="text" name="customer" id="customer" required placeholder="Input item name or barcode" onkeyup="getCustomer(this.value)">
+                    <input type="text" name="customer" id="customer" required placeholder="Input customer name or phone number" onkeyup="getCustomer(this.value)">
                         <div id="sales_item">
                             
                         </div>

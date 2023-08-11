@@ -15,7 +15,7 @@
         //get current date
         $todays_date = date("dmyh");
         $random_num = random_int(10000, 99999);
-        $invoice = "WS".$todays_date.$user_id.$random_num.$store;
+        $invoice = "LA".$todays_date.$user_id.$random_num.$store;
         $_SESSION['invoice'] = $invoice;
     ?>
     
@@ -27,22 +27,15 @@
             <section class="addUserForm">
                 <div class="inputs">
                     <!-- bar items form -->
-                    <div class="data" style="width:50%">
-                    <label for="customer">Select a customer</label>
-                        <select name="customer" id="customer">
-                            <option value=""selected>Select Customer</option>
-                            <?php 
-                                //get customers
-                                $get_customers = new selects();
-                                $rows = $get_customers->fetch_details('customers');
-                                foreach($rows as $row){
-                            ?>
-                            <option value="<?php echo $row->customer_id?>"><?php echo $row->customer?></option>
-                            <?php }?>
-                        </select>
+                    <div class="data" style="width:60%">
+                    <label for="customer">customer</label>
+                        <input type="text" name="customer" id="customer" oninput="getCustomers(this.value)" placeholder="Enter customer name or phone number">
+                        <div class="search_results" id="search_results">
+
+                        </div>
                     </div>
-                    <div class="data" style="width:45%">
-                        <button onclick="showPage('add_customer.php')">Create customer <i class="fas fa-user-plus"></i></button>
+                    <div class="data" style="width:35%">
+                        <button onclick="showPage('add_customer.php')">Add customer <i class="fas fa-user-plus"></i></button>
                     </div>
                     <div class="data" id="bar_items" style="width:100%; margin:10px 0">
                         <label for="item"> Search Items</label>

@@ -6,7 +6,7 @@
     <!-- <h2>Items in sales order</h2> -->
     <table id="addsales_table" class="searchTable">
         <thead>
-            <tr style="background:var(--moreColor)">
+            <tr style="background:var(--otherColor)">
                 <td>S/N</td>
                 <td>Item name</td>
                 <td>Quantity</td>

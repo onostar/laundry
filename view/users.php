@@ -114,7 +114,7 @@
                             <p style="color:green;">
                                 <?php
                                     $get_to_wash = new selects();
-                                    $to_wash = $get_to_wash->fetch_count_2cond('sales', 'laundry_status', 'C', 'store', $store_id);
+                                    $to_wash = $get_to_wash->fetch_count_3cond('sales', 'laundry_status', 'C', 'sales_status', 2, 'store', $store_id);
                                     echo $to_wash;
                                 ?>
                             </p>
@@ -124,7 +124,7 @@
                             <p style="color:red">
                                 <?php
                                     $get_to_wash = new selects();
-                                    $to_wash = $get_to_wash->fetch_count_2cond('sales', 'laundry_status', 'W', 'store', $store_id);
+                                    $to_wash = $get_to_wash->fetch_count_3cond('sales', 'laundry_status', 'W', 'sales_status', 2, 'store', $store_id);
                                     echo $to_wash;
                                 ?>
                             </p>

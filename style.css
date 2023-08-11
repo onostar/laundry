@@ -1722,6 +1722,7 @@ table tr:nth-child(even){
     padding:10px;
 }
 .add_user_form form .inputs, .add_user_form section .inputs{
+    position: relative;
     width:100%;
     display:flex;
     flex-wrap: wrap;
@@ -1803,6 +1804,7 @@ table tr:nth-child(even){
     padding:10px 10px;
     border-radius: 10px;
 }
+
 .status_message{
     width:50%;
     margin:auto;
@@ -2819,19 +2821,25 @@ x
 .item_categories .diff_cats{
     display:none;
 }
-#sales_item{
+#sales_item, #search_results{
     background:var(--primaryColor);
     color:#fff;
-
+    max-height: 200px;
+    overflow-y: scroll;
 }
-#sales_item option{
+#sales_item option, #search_results option{
     background:var(--otherColor);
     color:#fff;
     padding:10px 5px;
     /* margin:2px 0; */
     border-bottom: 1px solid #fff;
 }
-#sales_item option:hover{
+#search_results{
+    position:absolute;
+    width:60%;
+    
+}
+#sales_item option:hover, #search_results option:hover{
     background:var(--moreColor);
 
 }

@@ -69,7 +69,7 @@
                         </td> -->
                         <td>
                             <?php 
-                                echo "₦".number_format($sales_price, 2);
+                                echo "₦".number_format($detail->price, 2);
                             ?>
                         </td>
                         <td>
@@ -103,7 +103,8 @@
                     echo "<p class='total_amount' style='color:var(--primaryColor)'>Total Amount: ₦".number_format($total_amount, 2)."</p>";
                 ?>
                 <div class="close_stockin">
-                    <button onclick="changeAllStatus('<?php echo $invoice?>', 'wash_all.php', 'complete_wash.php')" style="background:green; padding:8px; border-radius:5px;">Wash all <i class="fas fa-hands-bubbles"></i></button>
+                    <button onclick="changeAllStatus('<?php echo $invoice?>', 'wash_all.php', 'complete_wash.php')" style="background:green; padding:8px; border-radius:5px;">
+                    Wash all <i class="fas fa-hands-bubbles"></i></button>
 
                     <button class="page_navs" id="back" onclick="showPage('wash_clothes.php')"><i class="fas fa-angle-double-left"></i> Return</button>
                     

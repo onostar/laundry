@@ -1470,23 +1470,32 @@ function getItemsOrder(item_name){
 //get item for wholesale direct sales
 function getWholesaleItems(item_name){
      let item = item_name;
-     // alert(check_room);
-     // return;
-     if(item.length >= 3){
-          if(item){
-               $.ajax({
-                    type : "POST",
-                    url :"../controller/get_wholesale_items.php",
-                    data : {item:item},
-                    success : function(response){
-                         $("#sales_item").html(response);
-                    }
-               })
-               return false;
+     let customer = document.getElementById("customer").value;
+     if(item.length = 1){
+          if(customer == 0 || customer.replace(/^\s+|\s+$/g, "").length == 0){
+               alert("Please select a customer");
+               $("#customer").focus();
+               return;
           }else{
-               $("#sales_item").html("<p>Please enter atleast 3 letters</p>");
+               if(item.length >= 3){
+                    if(item){
+                         $.ajax({
+                              type : "POST",
+                              url :"../controller/get_wholesale_items.php",
+                              data : {item:item},
+                              success : function(response){
+                                   $("#sales_item").html(response);
+                              }
+                         })
+                         return false;
+                    }else{
+                         $("#sales_item").html("<p>Please enter atleast 3 letters</p>");
+                    }
+               }
           }
      }
+     
+     
      
 }
 //get item for stockin
@@ -2995,4 +3004,27 @@ function updateJobType(sales, item, type){
           
      })
      return false;
+}
+
+//get customer on key press
+function getCustomers(input){
+     $("#search_results").show();
+     if(input.length >= 3){
+          $.ajax({
+               type : "POST",
+               url : "../controller/get_customer_name.php?input="+input,
+               success : function(response){
+                    $("#search_results").html(response);
+               }
+          })
+     }
+     
+}
+
+//change customer input field base on customer selected
+function selectCustomer(customer){
+     let customer_field = document.getElementById("customer");
+     customer_field.value = customer;
+     customer_field.setAttribute("readonly", "readonly");
+     $("#search_results").hide();
 }

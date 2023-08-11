@@ -50,7 +50,7 @@
                             $alls = $get_ind->fetch_details_cond('items', 'item_id', $detail->item);
                             foreach($alls as $all){
                                 // $cost_price = $all->cost_price;
-                                $sales_price = $all->sales_price;
+                                // $sales_price = $all->sales_price;
                                 $itemname = $all->item_name;
                             }
                     ?>
@@ -69,7 +69,7 @@
                         </td> -->
                         <td>
                             <?php 
-                                echo "₦".number_format($sales_price, 2);
+                                echo "₦".number_format($detail->price, 2);
                             ?>
                         </td>
                         <td style="display:flex;align-items:center; gap:.5rem;">

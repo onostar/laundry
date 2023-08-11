@@ -69,7 +69,7 @@
                         </td> -->
                         <td>
                             <?php 
-                                echo "₦".number_format($sales_price, 2);
+                                echo "₦".number_format($detail->price, 2);
                             ?>
                         </td>
                         <td>

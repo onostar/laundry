@@ -99,6 +99,19 @@
                 return "0";
             }
         }
+        //fetch details count with 3 condition
+        public function fetch_count_3cond($table, $column1, $condition1, $column2, $condition2, $column3, $condition3){
+            $get_user = $this->connectdb()->prepare("SELECT * FROM $table WHERE $column1 = :$column1 AND $column2 = :$column2 AND $column3 = :$column3");
+            $get_user->bindValue("$column1", $condition1);
+            $get_user->bindValue("$column2", $condition2);
+            $get_user->bindValue("$column3", $condition3);
+            $get_user->execute();
+            if($get_user->rowCount() > 0){
+                return $get_user->rowCount();
+            }else{
+                return "0";
+            }
+        }
         //fetch details count with 2 condition and current date
         public function fetch_count_2condDate($table, $column1, $condition1, $column2, $condition2, $date){
             $get_user = $this->connectdb()->prepare("SELECT * FROM $table WHERE $column1 = :$column1 AND $column2 = :$column2 AND date($date) = CURDATE()");
@@ -133,9 +146,20 @@
                 return "0";
             }
         }
-        //fetch details count with condition and curdate
+        //fetch details count with a date greater or equal to current date
         public function fetch_count_curDateGreat($table, $column){
             $get_user = $this->connectdb()->prepare("SELECT * FROM $table WHERE date($column) <= CURDATE()");
+            $get_user->execute();
+            if($get_user->rowCount() > 0){
+                return $get_user->rowCount();
+            }else{
+                return "0";
+            }
+        }
+        //fetch details count with a date greater or equal to current date and a condition
+        public function fetch_count_curDateGreatCOn($table, $column, $condition, $value){
+            $get_user = $this->connectdb()->prepare("SELECT * FROM $table WHERE date($column) <= CURDATE() AND $condition = :$condition");
+            $get_user->bindValue("$condition", $value);
             $get_user->execute();
             if($get_user->rowCount() > 0){
                 return $get_user->rowCount();

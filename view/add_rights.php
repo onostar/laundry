@@ -14,7 +14,7 @@
                         <option value=""selected required>Select user</option>
                         <?php
                             $get_user = new selects();
-                            $rows = $get_user->fetch_details_negCond1('users', 'user_role', 'admin');
+                            $rows = $get_user->fetch_details_negCond1('users', 'username', 'sysadmin');
                             foreach($rows as $row){
                         ?>
                         <option value="<?php echo $row->user_id?>"><?php echo $row->full_name?></option>

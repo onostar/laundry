@@ -2718,15 +2718,15 @@ function addRights(right){
                data : {user:user, menu:menu, sub_menu:sub_menu},
                success : function(response){
                     $(".info").html(response);
+                    getRights(user);
                }              
           })
-          /* $("#user_rights").load("add_rights.php #user_rights"); */
           return false;
      }
 
 }
 //delete right from user
-function removeRight(right){
+function removeRight(right, user){
      let remove = confirm("Do you want to remove this right from the user?", "");
      if(remove){
           $.ajax({
@@ -2734,6 +2734,8 @@ function removeRight(right){
                url : "../controller/delete_right.php?right="+right,
                success : function(response){
                     $(".info").html(response);
+                    getRights(user);
+
                }
           })
      }else{

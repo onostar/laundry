@@ -4,7 +4,7 @@
         <h3><a href="users.php" title="Home"><i class="fas fa-home"></i> Main menus</a></h3>
         <?php
             //show mall menu fpr admin
-            if($role == 'Admin'){
+            if($username == 'Sysadmin'){
         ?>
         <ul>
             <?php 
@@ -60,7 +60,7 @@
                     $menu_name = $get_menu_name->fetch_details_group('menus', 'menu', 'menu_id', $men->menu);
             ?>
             <li>
-                <a href="javascript:void(0);" onclick="toggleMenu('<?php echo $menu_name->menu?>')" class="allMenus" title="<?php echo $menu_name->menu?>"><span><i class="fas fa-gem"></i> </span><span> <?php echo $menu_name->menu?> </span><span class="second_icon"><i class="fas fa-chevron-down more_option"></i></span></a>
+                <a href="javascript:void(0);" onclick="toggleMenu('<?php echo $menu_name->menu?>')" class="allMenus" title="<?php echo $menu_name->menu?>"><span><i class="fas fa-gem"></i> <?php echo $menu_name->menu?> </span><span class="second_icon"><i class="fas fa-chevron-down more_option"></i></span></a>
                     <!-- get all the sub menus inside each menu -->
                 <ul class="subMenu" id="<?php echo $menu_name->menu?>">
                     <?php

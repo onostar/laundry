@@ -46,7 +46,7 @@
                 </td>
                 <td>
                     <div class="each_right">
-                        <a href="javascript:void(0)" title="Remove right" onclick="removeRight('<?php echo $row->right_id?>')"><i class="fas fa-trash"></i></a>
+                        <a href="javascript:void(0)" title="Remove right" onclick="removeRight('<?php echo $row->right_id?>', '<?php echo $user?>')"><i class="fas fa-trash"></i></a>
                     </div>
                 </td>
             </tr>

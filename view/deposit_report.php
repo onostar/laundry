@@ -6,7 +6,7 @@
 
 
 ?>
-<div id="debt_paymentReport" class="displays management">
+<div id="deposit_report" class="displays management">
     <div class="select_date">
         <!-- <form method="POST"> -->
         <section>    
@@ -18,15 +18,15 @@
                 <label>Select to Date</label><br>
                 <input type="date" name="to_date" id="to_date"><br>
             </div>
-            <button type="submit" name="search_date" id="search_date" onclick="search('search_debt_payment.php')">Search <i class="fas fa-search"></i></button>
+            <button type="submit" name="search_date" id="search_date" onclick="search('search_deposit.php')">Search <i class="fas fa-search"></i></button>
         </section>
     </div>
 <div class="displays allResults new_data" id="revenue_report">
-    <h2>Customer debt payment for today</h2>
+    <h2>Customer deposits for today</h2>
     <hr>
     <div class="search">
-        <input type="search" id="searchCheckout" placeholder="Enter keyword" onkeyup="searchData(this.value)">
-        <a class="download_excel" href="javascript:void(0)" onclick="convertToExcel('data_table', 'Sales report')"title="Download to excel"><i class="fas fa-file-excel"></i></a>
+        <input type="search" id="searchDeposits" placeholder="Enter keyword" onkeyup="searchData(this.value)">
+        <a class="download_excel" href="javascript:void(0)" onclick="convertToExcel('data_table', 'Deposit report')"title="Download to excel"><i class="fas fa-file-excel"></i></a>
     </div>
     <table id="data_table" class="searchTable">
         <thead>
@@ -45,7 +45,7 @@
             <?php
                 $n = 1;
                 $get_users = new selects();
-                $details = $get_users->fetch_details_curdateCon('other_payments', 'date(post_date)', 'store', $store);
+                $details = $get_users->fetch_details_curdateCon('deposits', 'date(post_date)', 'store', $store);
                 if(gettype($details) === 'array'){
                 foreach($details as $detail):
             ?>
@@ -88,7 +88,7 @@
 
         // get sum
         $get_total = new selects();
-        $amounts = $get_total->fetch_sum_curdateCon('other_payments', 'amount', 'post_date', 'store', $store);
+        $amounts = $get_total->fetch_sum_curdateCon('deposits', 'amount', 'post_date', 'store', $store);
         foreach($amounts as $amount){
             echo "<p class='total_amount' style='color:green'>Total: ₦".number_format($amount->total, 2)."</p>";
         }

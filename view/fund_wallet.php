@@ -6,7 +6,7 @@
 
 ?>
     <div class="info"></div>
-<div class="displays allResults" id="staff_list" style="width:80%!important;margin:50px!important">
+<div class="displays allResults" id="staff_list" style="width:70%!important;margin:50px!important">
     <h2>Customer list</h2>
     <hr>
     <div class="search">
@@ -34,19 +34,19 @@
                 <td style="text-align:center; color:red;"><?php echo $n?></td>
                 <td><?php echo $detail->customer?></td>
                 <td><?php echo $detail->phone_numbers?></td>
-                <td>
+                <td style="color:green">
                     <?php
                         //get wallet balance
                         $get_wallet = new selects();
-                        $rows = $get_wallet->fetch_sum_single('wallet', 'amount', 'customer', $detail->customer_id);
+                        $rows = $get_wallet->fetch_sum_single('deposits', 'amount', 'customer', $detail->customer_id);
                         foreach($rows as $row){
-                            echo "₦".number_format($row->total);
+                            echo "₦".number_format($row->total, 2);
                         }
-                        echo $detail->phone_numbers
+                        
                     
                     ?>
                 </td>
-                <td><a style="padding:5px 8px;background:var(--primaryColor); color:#fff;" href="javascript:void(0)" onclick="showPage('fund_account.php?customer=<?php echo $detail->customer_id?>')"><i class="fas fa-pen"></i></a></td>
+                <td><a style="padding:5px 8px;border-radius:5px;background:var(--otherColor); color:#fff;" href="javascript:void(0)" title="fund account" onclick="showPage('fund_account.php?customer=<?php echo $detail->customer_id?>')"><i class="fas fa-pen"></i></a></td>
                 
                 
             </tr>

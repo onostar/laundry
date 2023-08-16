@@ -9,14 +9,14 @@
     include "../classes/select.php";
 
     $get_revenue = new selects();
-    $details = $get_revenue->fetch_details_date2Cond('other_payments', 'date(post_date)', $from, $to, 'store', $store);
+    $details = $get_revenue->fetch_details_date2Con('deposits', 'date(post_date)', $from, $to, 'store', $store);
     $n = 1;
 ?>
-<h2>Debtors payment between '<?php echo date("jS M, Y", strtotime($from)) . "' and '" . date("jS M, Y", strtotime($to))?>'</h2>
+<h2>Deposit report between '<?php echo date("jS M, Y", strtotime($from)) . "' and '" . date("jS M, Y", strtotime($to))?>'</h2>
     <hr>
     <div class="search">
         <input type="search" id="searchRevenue" placeholder="Enter keyword" onkeyup="searchData(this.value)">
-        <a class="download_excel" href="javascript:void(0)" onclick="convertToExcel('data_table', 'Debt payment report')"title="Download to excel"><i class="fas fa-file-excel"></i></a>
+        <a class="download_excel" href="javascript:void(0)" onclick="convertToExcel('data_table', 'Deposit report')"title="Download to excel"><i class="fas fa-file-excel"></i></a>
     </div>
     <table id="data_table" class="searchTable">
         <thead>
@@ -76,7 +76,7 @@
     }
     // get sum
     $get_total = new selects();
-    $amounts = $get_total->fetch_sum_2dateCond('other_payments', 'amount', 'store', 'date(post_date)', $from, $to, $store);
+    $amounts = $get_total->fetch_sum_2dateCond('deposits', 'amount', 'store', 'date(post_date)', $from, $to, $store);
     foreach($amounts as $amount){
         echo "<p class='total_amount' style='color:green'>Total: ₦".number_format($amount->total, 2)."</p>";
     }

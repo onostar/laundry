@@ -3045,3 +3045,55 @@ function selectCustomer(customer){
      customer_field.setAttribute("readonly", "readonly");
      $("#search_results").hide();
 }
+
+// Fund customer wallet via deposit 
+function deposit(){
+     let invoice = document.getElementById("invoice").value;
+     let posted = document.getElementById("posted").value;
+     let customer = document.getElementById("customer").value;
+     let store = document.getElementById("store").value;
+     let amount = document.getElementById("amount").value;
+     let payment_mode = document.getElementById("payment_mode").value;
+     let details = document.getElementById("details").value;
+     if(payment_mode.length == 0 || payment_mode.replace(/^\s+|\s+$/g, "").length == 0){
+          alert("Please select payment_mode!");
+          $("#exp_date").focus();
+          return;
+     }else if(amount.length == 0 || amount.replace(/^\s+|\s+$/g, "").length == 0){
+          alert("Please input transaction amount");
+          $("#amount").focus();
+          return;
+     }else if(details.length == 0 || details.replace(/^\s+|\s+$/g, "").length == 0){
+          alert("Please enter description of transaction");
+          $("#details").focus();
+          return;
+     }else{
+          $.ajax({
+               type : "POST",
+               url : "../controller/deposit.php",
+               data : {posted:posted, customer:customer, payment_mode:payment_mode, amount:amount, details:details, store:store, invoice:invoice},
+               success : function(response){
+               $("#fund_account").html(response);
+               }
+          })
+     }
+     return false;    
+}
+
+// prinit deposit receipt for fund wallet
+function printDepositReceipt(invoice){
+     window.open("../controller/deposit_receipt.php?receipt="+invoice);
+     // alert(item_id);
+     /* $.ajax({
+          type : "GET",
+          url : "../controller/sales_receipt.php?receipt="+invoice,
+          success : function(response){
+               $("#direct_sales").html(response);
+          }
+     }) */
+     /* setTimeout(function(){
+          $("#direct_sales").load("direct_sales.php #direct_sales");
+     }, 100); */
+     return false;
+ 
+ }

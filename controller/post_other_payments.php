@@ -1,7 +1,7 @@
 <?php
     session_start();
     $store = $_SESSION['store_id'];
-    $detail = "Deposit";
+    $detail = "Debt payment";
     
     $posted_by = htmlspecialchars(stripslashes($_POST['posted']));
     $customer = htmlspecialchars(stripslashes($_POST['customer']));
@@ -16,10 +16,21 @@
     include "../classes/inserts.php";
     include "../classes/select.php";
     include "../classes/update.php";
-    $post_payment = new other_payments($posted_by, $mode, $amount, $invoice, $customer);
 
-    $post_payment->other_payment();
-    if($post_payment){
+    $data = array(
+        'amount' => $amount,
+        'payment_mode' => $mode,
+        'posted_by' => $posted_by,
+        'invoice' => $invoice,
+        'customer' => $customer,
+        'store' => $store
+    );
+    /* $post_payment = new other_payments($posted_by, $mode, $amount, $invoice, $customer);
+
+    $post_payment->other_payment(); */
+    $add_data = new add_data('other_payments', $data);
+    $add_data->create_data();
+    if($add_data){
         //insert into customer trails
         $insert_trail = new customer_trail($customer, $store, $detail, $amount, $posted_by);
         $insert_trail->add_trail();

@@ -1205,7 +1205,7 @@ table tr:nth-child(even){
     font-weight: bold; 
     margin:10px 0;
 }
-#selectBank, #multiples, #deposits{
+#selectBank, #multiples{
     display:none;
 }
 .payment_mode h3{
@@ -3021,6 +3021,29 @@ x
     margin:3px;
     border-radius: 5px;
 }
+.details_forms{
+    display:flex;
+    flex-wrap: wrap;
+    margin:0;
+    padding:0;
+    align-items: flex-start!important;
+
+}
+.details_forms .addUserForm{
+    width:50%;
+    height:100%!important;
+}
+.details_forms .customer_details{
+    background: var(--primaryColor);
+    color:#fff;
+    padding:10px;
+    width:50%;
+    height:100%!important;
+}
+.details_forms .customer_details input, .details_forms .customer_details label{
+    font-size:1rem;
+
+}
 @media screen and (max-width: 800px){
     #topHeader{
         justify-content: space-between;
@@ -3666,6 +3689,13 @@ x
         width:95%;
     }
     .change_password section{
+        width:100%;
+    }
+    .details_forms{
+        flex-direction: column!important;
+    }
+    .details_forms .customer_details, .details_forms .addUserForm{
+        padding:5px;
         width:100%;
     }
 }

@@ -15,7 +15,7 @@
         //get current date
         $todays_date = date("dmyh");
         $random_num = random_int(10000, 99999);
-        $invoice = "LA".$todays_date.$user_id.$random_num.$store;
+        $invoice = "KL".$todays_date.$user_id.$random_num.$store;
         $_SESSION['invoice'] = $invoice;
     ?>
     

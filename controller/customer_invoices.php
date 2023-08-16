@@ -30,6 +30,7 @@
                             <td>Quantity</td>
                             <td>Unit price</td>
                             <td>Amount</td>
+                            <td>Status</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,6 +54,20 @@
                             <td style="text-align:center; color:var(--otherColor)"><?php echo $row->quantity?></td>
                             <td><?php echo number_format($row->price, 2);?></td>
                             <td><?php echo number_format($row->total_amount, 2)?></td>
+                            <td>
+                                <?php
+                                    //check item status
+                                    if($row->laundry_status == "D"){
+                                        echo "<p style='color:green'>Delivered</p>";
+                                    }elseif($row->laundry_status == "I"){
+                                        echo "<p style='color:var(--moreColor)'>Completed</p>";
+                                    }elseif($row->laundry_status == "w"){
+                                        echo "<p style='color:var(--otherColor)'>Washed</p>";
+                                    }else{
+                                        echo "<p style='color:red'>Not washed</p>";
+                                    }
+                                ?>
+                            </td>
                             
                         </tr>
                         

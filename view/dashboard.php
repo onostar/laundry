@@ -44,27 +44,14 @@
                         $get_sales = new selects();
                         $rows = $get_sales->fetch_sum_curdatecon('payments', 'amount_due', 'post_date', 'store', $store_id);
                         foreach($rows as $row){
-                            echo "₦".number_format($row->total);
+                            echo "₦".number_format($row->total, 2);
                         }
                     ?>
                     </p>
                 </div>
             </a>
         </div> 
-        <div class="cards" id="card1">
-            <a href="javascript:void(0)" class="page_navs" onclick="showPage('due_collection.php')">
-                <div class="infos">
-                    <p><i class="fas fa-calendar"></i> Pick up requests</p>
-                    <p>
-                    <?php
-                        $due = new selects();
-                        $dues = $due->fetch_count_curDateGreat('sales', 'collection_date');
-                        echo $dues;
-                    ?>
-                    </p>
-                </div>
-            </a>
-        </div> 
+         
         <div class="cards" id="card2" style="background: var(--moreColor)">
             <a href="javascript:void(0)" class="page_navs" onclick="showPage('expense_report.php')">
                 <div class="infos">
@@ -81,7 +68,7 @@
                 </div>
             </a>
         </div> 
-        <div class="cards" id="card0">
+        <div class="cards" id="card1">
             <a href="javascript:void(0)" class="page_navs">
                 <div class="infos">
                     <p><i class="fas fa-money-check"></i> Net Profit</p>
@@ -113,7 +100,22 @@
                 </div>
             </a>
         </div> 
-        
+        <div class="cards" id="card0">
+            <a href="javascript:void(0)" class="page_navs" onclick="showPage('pay_debt.php')">
+                <div class="infos">
+                    <p><i class="fas fa-calendar"></i> Receivables</p>
+                    <p>
+                    <?php
+                        $receivables = new selects();
+                        $dues = $receivables->fetch_sum_double('debtors', 'amount', 'debt_status', 0, 'store', $store_id);
+                        foreach($dues as $due){
+                            echo "₦".number_format($due->total, 2);
+                        }
+                    ?>
+                    </p>
+                </div>
+            </a>
+        </div>
         
     </div>
     <?php

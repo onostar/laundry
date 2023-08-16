@@ -22,7 +22,7 @@
         </section>
     </div>
 <div class="displays allResults new_data" id="revenue_report">
-    <h2>Sales Report for today</h2>
+    <h2>Revenue Report for today</h2>
     <hr>
     <div class="search">
         <input type="search" id="searchCheckout" placeholder="Enter keyword" onkeyup="searchData(this.value)">

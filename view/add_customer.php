@@ -1,6 +1,6 @@
 <div id="add_bank" class="displays">
     <div class="info"></div>
-    <div class="add_user_form" style="width:50%">
+    <div class="add_user_form" style="width:70%">
         <h3>Add customers</h3>
         <!-- <form method="POST" id="addUserForm"> -->
         <form class="addUserForm">
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="inputs">
-                <button type="submit" id="add_customer" name="add_customer" onclick="addCustomer()">Add Customer <i class="fas fa-plus"></i></button>
+                <button type="submit" id="add_customer" name="add_customer" onclick="addCustomer()">Add Customer <i class="fas fa-user-plus"></i></button>
             </div>
         </form>    
     </div>

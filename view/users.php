@@ -144,7 +144,7 @@
                             <p style="color:red">
                             <?php
                                 $due = new selects();
-                                $dues = $due->fetch_count_curDateGreat('sales', 'collection_date');
+                                $dues = $due->fetch_count_curDateGreat('sales', 'collection_date', 'laundry_status', 'D');
                                 echo $dues;
                             ?>
                             </p>

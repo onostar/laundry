@@ -44,8 +44,9 @@
                 <td>
                     <select name="type" id="type" style="padding:10px;" onchange="updateJobType('<?php echo $detail->sales_id?>', '<?php echo $detail->item?>', this.value)">
                         <option value="<?php echo $detail->job_type?>" selected><?php echo $detail->job_type?></option>
-                        <option value="wash">Wash & Iron</option>
-                        <option value="iron">Iron only</option>
+                        <option value="Regular">Regular</option>
+                        <!-- <option value="iron">Iron only</option> -->
+                        <option value="Express">Express</option>
                     </select>
                 </td>
                 <td>
@@ -107,6 +108,7 @@
                         <option value="Transfer">TRANSFER</option>
                         <option value="Credit">CREDIT</option>
                         <option value="Multiple">MULTIPLE PAYMENT</option>
+                        <option value="Wallet">WALLET</option>
                     </select>
                 </div>
                 <div class="inputs" id="multiples">
@@ -138,7 +140,7 @@
                 <div class="inputs">
                     <div class="data" style="width:45%">
                         <label for="collection_date">Proposed Collection date</label>
-                        <input type="date" name="collection_date" id="collection_date" required>
+                        <input type="datetime-local" name="collection_date" id="collection_date" required>
                     </div>
                     <div class="data">
                         <button onclick="postWholesale()" style="background:green; padding:8px; border-radius:5px;font-size:.9rem;">Save and Print <i class="fas fa-print"></i></button>

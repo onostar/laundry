@@ -25,10 +25,10 @@
                     <td>item</td>
                     <!-- <td>pack size</td>
                     <td>Cost Price</td> -->
-                    <td>Wash & Iron</td>
+                    <td>Regular</td>
                     <!-- <td>Retail pack</td> -->
-                    <td>Ironing only</td>
-                    <!-- <td>Wholesale Pack</td> -->
+                    <!-- <td>Ironing only</td> -->
+                    <td>Express</td>
                     <td></td>
                 </tr>
             </thead>
@@ -64,7 +64,7 @@
                         <?php echo "₦ ". number_format($row->pack_price);?>
                     </td> -->
                     <td>
-                        <?php echo "₦". number_format($row->wholesale);?>
+                        <?php echo "₦". number_format($row->express);?>
                     </td>
                     <!-- <td>
                         <?php echo "₦ ". number_format($row->wholesale_pack);?>

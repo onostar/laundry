@@ -40,17 +40,17 @@
 
         //update item quantity in inventory
         //get item current quantity in inventory;
-        $get_qty = new selects();
+        /* $get_qty = new selects();
         $qtys = $get_qty->fetch_details_2cond('inventory', 'store', 'item', $store, $item);
         foreach($qtys as $qty){
             $inv_qty = $qty->quantity;
         }
         $new_inv_qty = $inv_qty + $quantity;
         $update_inventory = new Update_table();
-        $update_inventory->update2cond('inventory', 'quantity', 'store', 'item', $new_inv_qty, $store, $item);
+        $update_inventory->update2cond('inventory', 'quantity', 'store', 'item', $new_inv_qty, $store, $item); */
 
         //insert into audit trail
-        $inser_trail = new audit_trail($item, $trans_type, $inv_qty, $quantity, $user, $store);
+        $inser_trail = new audit_trail($item, $trans_type, $sales_qty, $quantity, $user, $store);
         $inser_trail->audit_trail();
         //update invoice amount in payment table
         //get total invoice amount from payment table

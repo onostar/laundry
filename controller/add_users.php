@@ -4,6 +4,9 @@
     $username = ucwords(htmlspecialchars(stripslashes($_POST['username'])));
     $role = ucwords(htmlspecialchars(stripslashes($_POST['user_role'])));
     $store = htmlspecialchars(stripslashes($_POST['store']));
+    $phone = htmlspecialchars(stripslashes($_POST['phone_number']));
+    $address = htmlspecialchars(stripslashes($_POST['home_address']));
+    $email = htmlspecialchars(stripslashes($_POST['email_address']));
     $password = 123;
 
     $data = array(
@@ -11,6 +14,9 @@
         'username' => $username,
         'user_role' => $role,
         'store' => $store,
+        'phone_number' => $phone,
+        'home_address' => $address,
+        'email_address' => $email,
         'user_password' => $password
     );
     // instantiate classes

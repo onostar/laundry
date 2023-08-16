@@ -45,11 +45,11 @@ session_start();
                 <td>S/N</td>
                 <td>Category</td>
                 <td>Item name</td>
-                <?php 
+                <!-- <?php 
                     if($role == "Admin"){
                 ?>
                 <td>Cost</td>
-                <?php }?>
+                <?php }?> -->
                 <td>Price</td>
                 <td>Bar code</td>
                 <td>Status</td>
@@ -77,11 +77,11 @@ session_start();
                 <?php
                     if($role == "Admin"){
                 ?>
-                <td>
+                <!-- <td>
                     <?php 
                         echo "₦".number_format($detail->cost_price, 2);
                     ?>
-                </td>
+                </td> -->
                 <?php } ?>
                 <td>
                     <?php 

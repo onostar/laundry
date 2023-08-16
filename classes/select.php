@@ -146,9 +146,10 @@
                 return "0";
             }
         }
-        //fetch details count with a date greater or equal to current date
-        public function fetch_count_curDateGreat($table, $column){
-            $get_user = $this->connectdb()->prepare("SELECT * FROM $table WHERE date($column) <= CURDATE()");
+        //fetch details count with a date greater or equal to current date and a negative condition
+        public function fetch_count_curDateGreat($table, $column, $condition, $value){
+            $get_user = $this->connectdb()->prepare("SELECT * FROM $table WHERE date($column) <= CURDATE() AND $condition != :$condition");
+            $get_user->bindValue("$condition", $value);
             $get_user->execute();
             if($get_user->rowCount() > 0){
                 return $get_user->rowCount();
@@ -471,6 +472,20 @@
                 return $rows;
             }
         }
+        //fetch with date greater or equal to current date and 1 condition and 1 negative condition grouped by condition
+        public function fetch_details_curdateGreat2con($table, $column, $condition, $value, $condition2, $value2, $group){
+            $get_user = $this->connectdb()->prepare("SELECT * FROM $table WHERE date($column) <= CURDATE() AND $condition = :$condition  AND $condition2 != :$condition2 GROUP BY $group");
+            $get_user->bindValue("$condition", $value);
+            $get_user->bindValue("$condition2", $value2);
+            $get_user->execute();
+            if($get_user->rowCount() > 0){
+                $rows = $get_user->fetchAll();
+                return $rows;
+            }else{
+                $rows = "No records found";
+                return $rows;
+            }
+        }
         //fetch with current date and 2 condition grouped by condition
         public function fetch_details_curdateGro2con($table, $column, $condition, $value, $condition2, $value2, $group){
             $get_user = $this->connectdb()->prepare("SELECT * FROM $table WHERE date($column) = CURDATE() AND $condition = :$condition AND $condition2 = :$condition2 GROUP BY $group");
@@ -685,6 +700,20 @@
         public function fetch_sum_single($table, $column1, $condition, $value){
             $get_user = $this->connectdb()->prepare("SELECT SUM($column1) AS total FROM $table WHERE $condition = :$condition");
             $get_user->bindValue("$condition", $value);
+            $get_user->execute();
+            if($get_user->rowCount() > 0){
+                $rows = $get_user->fetchAll();
+                return $rows;
+            }else{
+                $rows = "No records found";
+                return $rows;
+            }
+        }
+        //fetch sum with 2 condition
+        public function fetch_sum_double($table, $column1, $condition, $value, $condition2, $value2){
+            $get_user = $this->connectdb()->prepare("SELECT SUM($column1) AS total FROM $table WHERE $condition = :$condition AND $condition2 = :$condition2");
+            $get_user->bindValue("$condition", $value);
+            $get_user->bindValue("$condition2", $value2);
             $get_user->execute();
             if($get_user->rowCount() > 0){
                 $rows = $get_user->fetchAll();

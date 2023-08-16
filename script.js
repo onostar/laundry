@@ -126,6 +126,9 @@ function addUser(){
      let username = document.getElementById("username").value;
      let full_name = document.getElementById("full_name").value;
      let user_role = document.getElementById("user_role").value;
+     let phone_number = document.getElementById("phone_number").value;
+     let email_address = document.getElementById("email_address").value;
+     let home_address = document.getElementById("home_address").value;
      let store = document.getElementById("store").value;
      // alert(hotel_address);
      if(full_name.length == 0 || full_name.replace(/^\s+|\s+$/g, "").length == 0){
@@ -144,19 +147,30 @@ function addUser(){
           alert("Please select store!");
           $("#store").focus();
           return;
+     }else if(phone_number.length == 0 || phone_number.replace(/^\s+|\s+$/g, "").length == 0){
+          alert("Please enter phone number!");
+          $("#phone_number").focus();
+          return;
+     }else if(home_address.length == 0 || home_address.replace(/^\s+|\s+$/g, "").length == 0){
+          alert("Please enter home address!");
+          $("#home_address").focus();
+          return;
      }else{
           $.ajax({
                type : "POST",
                url : "../controller/add_users.php",
-               data : {username:username, full_name:full_name, user_role:user_role, store:store},
+               data : {username:username, full_name:full_name, user_role:user_role, store:store, phone_number:phone_number, home_address:home_address, email_address:email_address},
                success : function(response){
                $(".info").html(response);
                }
           })
      }
-     $("#usernane").val('');
+     $("#username").val('');
      $("#full_name").val('');
      $("#user_role").val('');
+     $("#phone_number").val('');
+     $("#home_address").val('');
+     $("#email_address").val('');
      $("#store").val('');
      $("#full_name").focus();
      return false;
@@ -1165,7 +1179,8 @@ function roomPriceForm(item_id){
      let sales_price = document.getElementById("sales_price").value;
     /*  let pack_price = document.getElementById("pack_price").value;
      let pack_size = document.getElementById("pack_size").value; */
-     let wholesale_price = document.getElementById("wholesale_price").value;
+     // let wholesale_price = document.getElementById("wholesale_price").value;
+     let express = document.getElementById("express").value;
      // let wholesale_pack = document.getElementById("wholesale_pack").value;
      /* if(cost_price >= sales_price){
           alert("Selling price can not be lesser than cost price!");
@@ -1183,9 +1198,9 @@ function roomPriceForm(item_id){
           alert("Please enter laundry price!");
           $("#sales_price").focus();
           return;
-     }else if(wholesale_price.length == 0 || wholesale_price.replace(/^\s+|\s+$/g, "").length == 0){
-          alert("Please enter Ironing price!");
-          $("#wholesale_price").focus();
+     }else if(express.length == 0 || express.replace(/^\s+|\s+$/g, "").length == 0){
+          alert("Please enter Express price!");
+          $("#express").focus();
           return;
      // if(sales_price.length == 0 || sales_price.replace(/^\s+|\s+$/g, "").length == 0){
      //      alert("Please enter washing fee!");
@@ -1203,7 +1218,7 @@ function roomPriceForm(item_id){
           $.ajax({
                type : "POST",
                url : "../controller/edit_price.php",
-               data: {item_id:item_id, sales_price:sales_price, wholesale_price:wholesale_price},
+               data: {item_id:item_id, sales_price:sales_price, express:express},
                success : function(response){
                     $("#edit_item_price").html(response);
                }
@@ -2307,7 +2322,7 @@ function postWholesale(){
           let today = new Date();
           let collection_date = document.getElementById("collection_date").value;
           let collect_date = new Date(collection_date);
-          // alert(collect_date);
+          // alert("collect date= "+collect_date+" & todays= "+today);
           let total_amount = document.getElementById("total_amount").value;
           let sales_invoice = document.getElementById("sales_invoice").value;
           let discount = document.getElementById("discount").value;
@@ -2338,8 +2353,8 @@ function postWholesale(){
                alert("Please enter proposed date of collection!");
                $("#collection_date").focus();
                return;
-          }else if(collect_date <= today){
-               alert("Collection date cannot be todays date or lesser!");
+          }else if(collect_date < today){
+               alert("Collection date cannot be lesser than todays date!");
                $("#collection_date").focus();
                return;
           }else{

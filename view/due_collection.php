@@ -31,7 +31,7 @@
             <?php
                 $n = 1;
                 $get_users = new selects();
-                $details = $get_users->fetch_details_curdateGreat('sales', 'date(collection_date)', 'store', $store, 'invoice');
+                $details = $get_users->fetch_details_curdateGreat2con('sales', 'date(collection_date)', 'store', $store, 'laundry_status', 'D', 'invoice');
                 if(gettype($details) === 'array'){
                 foreach($details as $detail):
             ?>

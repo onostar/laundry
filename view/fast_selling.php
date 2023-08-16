@@ -22,7 +22,7 @@
 </section>
     </div>
 <div class="displays allResults new_data" id="revenue_report" style="width:60%!important; margin:0 50px!important">
-    <h2>Today's Fast selling items (Quantity)</h2>
+    <h2>Today's Most washed items (Quantity)</h2>
     <hr>
     <div class="search">
         <input type="search" id="searchCheckout" placeholder="Enter keyword" onkeyup="searchData(this.value)">

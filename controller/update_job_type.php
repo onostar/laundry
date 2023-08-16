@@ -19,17 +19,21 @@
         $get_price = new selects();
         //washing & ironing price
         $cw = $get_price->fetch_details_group('items', 'sales_price', 'item_id', $item);
-        $wash_iron_price = $cw->sales_price;
+        $regular = $cw->sales_price;
         //ironing only price
-        $ironing = $get_price->fetch_details_group('items', 'wholesale', 'item_id', $item);
-        $iron_price = $ironing->wholesale;
+        $exp = $get_price->fetch_details_group('items', 'express', 'item_id', $item);
+        $express = $exp->express;
+       /*  $ironing = $get_price->fetch_details_group('items', 'wholesale', 'item_id', $item);
+        $iron_price = $ironing->wholesale; */
 
-        if($type == "wash"){
-            $price = $wash_iron_price;
+        if($type == "Regular"){
+            $price = $regular;
             $status = "C";
         }else{
-            $price = $iron_price;
-            $status = "W";
+            /* $price = $iron_price;
+            $status = "W"; */
+            $price = $express;
+            $status = "C";
         }
         //get invoice
         $get_invoice = new selects();

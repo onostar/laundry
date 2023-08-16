@@ -43,7 +43,7 @@ include "../classes/inserts.php";
             'quantity' => $quantity,
             'posted_by' => $user_id,
             'laundry_status' => 'C',
-            'job_type' => 'Wash & Iron',
+            'job_type' => 'Regular',
             'store' => $store,
             'sales_type' => $sales_type,
             'customer' => $customer

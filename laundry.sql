@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 30, 2023 at 05:34 PM
+-- Generation Time: Aug 16, 2023 at 07:28 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -37,6 +37,14 @@ CREATE TABLE `audit_trail` (
   `posted_by` int(11) NOT NULL,
   `post_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `audit_trail`
+--
+
+INSERT INTO `audit_trail` (`audit_id`, `store`, `item`, `transaction`, `previous_qty`, `quantity`, `posted_by`, `post_date`) VALUES
+(1, 1, 3, 'sales_return', 0, 0, 1, '2023-08-16 13:26:55'),
+(2, 1, 2, 'sales_return', 1, 1, 1, '2023-08-16 18:27:00');
 
 -- --------------------------------------------------------
 
@@ -125,7 +133,7 @@ CREATE TABLE `companies` (
 --
 
 INSERT INTO `companies` (`company_id`, `company`, `logo`, `date_created`) VALUES
-(1, 'Demo Laundry', 'chef pee.png', '2023-04-23 14:46:39');
+(1, 'Klinax Servicing Company', 'chef pee.png', '2023-04-23 14:46:39');
 
 -- --------------------------------------------------------
 
@@ -148,7 +156,10 @@ CREATE TABLE `customers` (
 
 INSERT INTO `customers` (`customer_id`, `customer`, `phone_numbers`, `customer_address`, `customer_email`, `reg_date`) VALUES
 (1, 'Kelly Ikpefua', '07068897068', '3 Ikponwosa Street, Okabere', 'onostarkels@gmail.com', '2023-07-22 11:57:07'),
-(2, 'Onyema Chima', '07057456881', '24 Sapele Road Benin', 'onyema@mail.com', '2023-07-23 10:12:24');
+(2, 'Onyema Chima', '07057456881', '24 Sapele Road Benin', 'onyema@mail.com', '2023-07-23 10:12:24'),
+(3, 'James Brown', '08076566555', '33 Kjk Jkaj J', 'knj', '2023-08-10 14:42:19'),
+(4, 'New Customer', '0805667888', 'Jlkhaeflkjh', 'nil', '2023-08-15 11:49:45'),
+(5, 'Klinax', '080123456678', 'Jklhjkl', 'jknkjl', '2023-08-15 12:00:00');
 
 -- --------------------------------------------------------
 
@@ -172,7 +183,8 @@ CREATE TABLE `customer_trail` (
 
 INSERT INTO `customer_trail` (`id`, `customer`, `description`, `amount`, `store`, `posted_by`, `post_date`) VALUES
 (1, 1, 'Credit sales', 500, 1, 1, '2023-07-23 09:36:53'),
-(2, 2, 'Credit sales', 2000, 1, 1, '2023-07-23 10:12:47');
+(2, 2, 'Credit sales', 2000, 1, 1, '2023-07-23 10:12:47'),
+(3, 5, 'Credit sales', 1800, 1, 1, '2023-08-15 12:00:38');
 
 -- --------------------------------------------------------
 
@@ -197,7 +209,8 @@ CREATE TABLE `debtors` (
 
 INSERT INTO `debtors` (`debtor_id`, `customer`, `invoice`, `amount`, `store`, `debt_status`, `posted_by`, `post_date`) VALUES
 (1, 1, 'WS230723101777991', 500, 1, 0, 1, '2023-07-23 09:36:53'),
-(2, 2, 'WS230723111873601', 2000, 1, 0, 1, '2023-07-23 10:12:47');
+(2, 2, 'WS230723111873601', 2000, 1, 0, 1, '2023-07-23 10:12:47'),
+(3, 5, 'LA150823011709521', 1800, 1, 0, 1, '2023-08-15 12:00:38');
 
 -- --------------------------------------------------------
 
@@ -234,6 +247,13 @@ CREATE TABLE `expenses` (
   `expense_date` datetime NOT NULL,
   `post_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `expenses`
+--
+
+INSERT INTO `expenses` (`expense_id`, `store`, `posted_by`, `expense_head`, `amount`, `details`, `expense_date`, `post_date`) VALUES
+(1, 1, 1, '1', 4000, 'Fuel For Diesel', '2023-08-15 00:00:00', '2023-08-15 12:06:29');
 
 -- --------------------------------------------------------
 
@@ -287,7 +307,7 @@ CREATE TABLE `items` (
   `cost_price` int(255) NOT NULL,
   `sales_price` int(255) NOT NULL,
   `pack_size` int(11) NOT NULL,
-  `pack_price` int(11) NOT NULL,
+  `express` int(11) NOT NULL,
   `wholesale` int(11) NOT NULL,
   `wholesale_pack` int(11) NOT NULL,
   `reorder_level` int(11) NOT NULL,
@@ -300,10 +320,10 @@ CREATE TABLE `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`item_id`, `department`, `category`, `item_name`, `cost_price`, `sales_price`, `pack_size`, `pack_price`, `wholesale`, `wholesale_pack`, `reorder_level`, `barcode`, `item_status`, `date_created`) VALUES
-(1, '1', 26, 'T-shirts', 0, 500, 0, 0, 0, 0, 10, '00', 0, '2023-07-22 11:14:43'),
-(2, '1', 26, 'Long Sleeve', 0, 600, 0, 0, 0, 0, 10, '000', 0, '2023-07-22 11:15:17'),
-(3, '1', 27, 'Gowns', 0, 1000, 0, 0, 0, 0, 10, '99', 0, '2023-07-22 11:16:43');
+INSERT INTO `items` (`item_id`, `department`, `category`, `item_name`, `cost_price`, `sales_price`, `pack_size`, `express`, `wholesale`, `wholesale_pack`, `reorder_level`, `barcode`, `item_status`, `date_created`) VALUES
+(1, '1', 26, 'T-shirts', 0, 600, 0, 1000, 400, 0, 10, '00', 0, '2023-07-22 11:14:43'),
+(2, '1', 26, 'Long Sleeve', 0, 600, 0, 1000, 300, 0, 10, '000', 0, '2023-07-22 11:15:17'),
+(3, '1', 27, 'Gowns', 0, 1000, 0, 1500, 0, 0, 10, '99', 0, '2023-07-22 11:16:43');
 
 -- --------------------------------------------------------
 
@@ -322,12 +342,11 @@ CREATE TABLE `menus` (
 
 INSERT INTO `menus` (`menu_id`, `menu`) VALUES
 (1, 'Admin menu'),
-(2, 'Sales management'),
+(2, 'Orders'),
 (3, 'Inventory'),
-(4, 'Financial management'),
+(4, 'Financial mgt'),
 (5, 'Reports'),
-(6, 'Financial reports'),
-(7, 'General Info');
+(6, 'Financial reports');
 
 -- --------------------------------------------------------
 
@@ -392,7 +411,15 @@ INSERT INTO `payments` (`payment_id`, `sales_type`, `customer`, `amount_due`, `s
 (1, 'Wholesale', 1, 2400, 1, 2400, 0, 'Cash', 0, '2023-07-23 09:32:28', 1, 'WS230723101222981'),
 (2, 'Wholesale', 1, 500, 1, 500, 0, 'Credit', 0, '2023-07-23 09:36:53', 1, 'WS230723101777991'),
 (3, 'Wholesale', 2, 2000, 1, 0, 0, 'Credit', 0, '2023-07-23 10:12:47', 1, 'WS230723111873601'),
-(4, 'Wholesale', 2, 2400, 1, 2400, 0, 'Cash', 0, '2023-07-24 08:52:27', 1, 'WS240723091528861');
+(4, 'Wholesale', 2, 2400, 1, 2400, 0, 'Cash', 0, '2023-07-24 08:52:27', 1, 'WS240723091528861'),
+(5, 'Wholesale', 2, 300, 1, 300, 0, 'Cash', 0, '2023-08-10 14:11:20', 1, 'WS100823031808981'),
+(6, 'Wholesale', 1, 1800, 1, 1800, 0, 'Cash', 0, '2023-08-10 14:32:43', 1, 'WS100823031664331'),
+(7, 'Wholesale', 3, 1500, 1, 1500, 0, 'Cash', 0, '2023-08-10 14:42:59', 1, 'WS100823031955131'),
+(8, 'Wholesale', 3, 400, 1, 400, 0, 'Cash', 0, '2023-08-11 10:06:26', 2, 'WS110823112458791'),
+(9, 'Wholesale', 1, 1000, 1, 1000, 0, 'Cash', 0, '2023-08-11 14:40:01', 1, 'LA110823031955031'),
+(10, 'Wholesale', 4, 3200, 1, 2500, 700, 'Cash', 0, '2023-08-15 11:54:06', 1, 'LA150823121408671'),
+(11, 'Wholesale', 5, 1800, 1, 0, 0, 'Credit', 0, '2023-08-15 12:00:38', 1, 'LA150823011709521'),
+(12, 'Wholesale', 5, 1500, 1, 1500, 0, 'Cash', 0, '2023-08-16 10:17:50', 1, 'KL160823111407731');
 
 -- --------------------------------------------------------
 
@@ -468,9 +495,11 @@ CREATE TABLE `rights` (
 --
 
 INSERT INTO `rights` (`right_id`, `menu`, `sub_menu`, `user`) VALUES
-(4, 1, 1, 2),
-(5, 1, 2, 2),
-(6, 4, 25, 2);
+(13, 1, 62, 3),
+(14, 2, 60, 3),
+(15, 2, 16, 3),
+(16, 1, 51, 4),
+(17, 6, 46, 4);
 
 -- --------------------------------------------------------
 
@@ -492,6 +521,7 @@ CREATE TABLE `sales` (
   `posted_by` int(11) NOT NULL,
   `sales_status` int(11) NOT NULL,
   `laundry_status` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `job_type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `post_date` datetime NOT NULL DEFAULT current_timestamp(),
   `collection_date` datetime NOT NULL,
   `issued_date` datetime NOT NULL,
@@ -502,12 +532,30 @@ CREATE TABLE `sales` (
 -- Dumping data for table `sales`
 --
 
-INSERT INTO `sales` (`sales_id`, `item`, `store`, `sales_type`, `customer`, `invoice`, `quantity`, `price`, `total_amount`, `cost`, `posted_by`, `sales_status`, `laundry_status`, `post_date`, `collection_date`, `issued_date`, `issued_by`) VALUES
-(11, 3, 1, 'Laundry', 1, 'WS230723101222981', 1, 1200, 1200, 0, 1, 2, 'D', '2023-07-23 09:30:42', '2023-07-25 00:00:00', '2023-07-23 18:49:20', 1),
-(12, 2, 1, 'Laundry', 1, 'WS230723101222981', 2, 600, 1200, 0, 1, 2, 'D', '2023-07-23 09:30:57', '2023-07-25 00:00:00', '2023-07-23 18:49:20', 1),
-(13, 1, 1, 'Laundry', 1, 'WS230723101777991', 1, 500, 500, 0, 1, 2, 'D', '2023-07-23 09:36:35', '2023-07-26 00:00:00', '2023-07-23 19:54:20', 1),
-(14, 3, 1, 'Laundry', 2, 'WS230723111873601', 2, 1000, 2000, 0, 1, 2, 'I', '2023-07-23 10:12:35', '2023-07-26 00:00:00', '2023-05-23 18:49:20', 0),
-(16, 3, 1, 'Laundry', 2, 'WS240723091528861', 2, 1200, 2400, 0, 1, 2, 'I', '2023-07-24 08:50:40', '2023-07-25 00:00:00', '0000-00-00 00:00:00', 0);
+INSERT INTO `sales` (`sales_id`, `item`, `store`, `sales_type`, `customer`, `invoice`, `quantity`, `price`, `total_amount`, `cost`, `posted_by`, `sales_status`, `laundry_status`, `job_type`, `post_date`, `collection_date`, `issued_date`, `issued_by`) VALUES
+(11, 3, 1, 'Laundry', 1, 'WS230723101222981', 1, 1200, 1200, 0, 1, 2, 'D', '', '2023-07-23 09:30:42', '2023-07-25 00:00:00', '2023-07-23 18:49:20', 1),
+(12, 2, 1, 'Laundry', 1, 'WS230723101222981', 2, 600, 1200, 0, 1, 2, 'D', '', '2023-07-23 09:30:57', '2023-07-25 00:00:00', '2023-07-23 18:49:20', 1),
+(13, 1, 1, 'Laundry', 1, 'WS230723101777991', 1, 500, 500, 0, 1, 2, 'D', '', '2023-07-23 09:36:35', '2023-07-26 00:00:00', '2023-07-23 19:54:20', 1),
+(14, 3, 1, 'Laundry', 2, 'WS230723111873601', 2, 1000, 2000, 0, 1, 2, 'D', '', '2023-07-23 10:12:35', '2023-07-26 00:00:00', '2023-08-10 23:21:38', 1),
+(16, 3, 1, 'Laundry', 2, 'WS240723091528861', 2, 1200, 2400, 0, 1, 2, 'W', '', '2023-07-24 08:50:40', '2023-07-25 00:00:00', '2023-08-10 23:21:47', 1),
+(17, 1, 1, 'Laundry', 1, 'WS080823071102731', 4, 700, 2800, 0, 1, 0, '', '', '2023-08-08 06:33:09', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
+(18, 1, 1, 'Laundry', 1, 'WS080823071835871', 1, 500, 500, 0, 1, 0, '', '', '2023-08-08 06:49:30', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
+(22, 2, 1, 'Laundry', 1, 'WS080823071398011', 1, 600, 600, 0, 1, 0, 'C', '', '2023-08-08 07:06:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
+(25, 1, 1, 'Laundry', 2, 'WS090823041127181', 1, 500, 500, 0, 1, 0, 'C', 'Wash & Iron', '2023-08-09 15:20:30', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
+(27, 1, 1, 'Laundry', 1, 'WS090823061238611', 1, 500, 500, 0, 1, 0, 'C', 'wash', '2023-08-09 17:50:33', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
+(29, 2, 1, 'Laundry', 2, 'WS100823031808981', 1, 300, 300, 0, 1, 2, 'W', 'iron', '2023-08-10 14:10:34', '2023-08-12 00:00:00', '0000-00-00 00:00:00', 0),
+(30, 1, 1, 'Laundry', 1, 'WS100823031664331', 2, 500, 1000, 0, 1, 2, 'D', 'Wash & Iron', '2023-08-10 14:29:49', '2023-08-12 00:00:00', '2023-08-15 06:30:22', 1),
+(31, 1, 1, 'Laundry', 1, 'WS100823031664331', 2, 400, 800, 0, 1, 2, 'I', 'iron', '2023-08-10 14:32:15', '2023-08-12 00:00:00', '0000-00-00 00:00:00', 0),
+(32, 2, 1, 'Laundry', 3, 'WS100823031955131', 2, 600, 1200, 0, 1, 2, 'D', 'Wash & Iron', '2023-08-10 14:42:34', '2023-08-12 00:00:00', '2023-08-10 23:47:09', 1),
+(33, 2, 1, 'Laundry', 3, 'WS100823031955131', 1, 300, 300, 0, 1, 2, 'D', 'iron', '2023-08-10 14:42:42', '2023-08-12 00:00:00', '2023-08-10 23:47:09', 1),
+(34, 1, 1, 'Laundry', 3, 'WS110823112458791', 1, 400, 400, 0, 2, 2, 'D', 'iron', '2023-08-11 10:05:45', '2023-08-13 00:00:00', '2023-08-14 17:32:51', 1),
+(38, 3, 1, 'Laundry', 1, 'LA110823031955031', 1, 1000, 1000, 0, 1, 2, 'D', 'Wash & Iron', '2023-08-11 14:39:41', '2023-08-13 00:00:00', '2023-08-14 17:24:35', 1),
+(40, 1, 1, 'Laundry', 1, 'LA110823031676031', 2, 500, 1000, 0, 1, 0, 'C', 'Wash & Iron', '2023-08-11 14:59:56', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
+(42, 1, 1, 'Laundry', 1, 'LA150823111737641', 1, 500, 500, 0, 1, 0, 'C', 'Wash & Iron', '2023-08-15 11:02:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
+(43, 1, 1, 'Laundry', 4, 'LA150823121408671', 2, 600, 1200, 0, 1, 2, 'C', 'Wash & Iron', '2023-08-15 11:50:07', '2023-08-17 00:00:00', '0000-00-00 00:00:00', 0),
+(44, 3, 1, 'Laundry', 4, 'LA150823121408671', 1, 1400, 1400, 0, 1, 2, 'C', 'Wash & Iron', '2023-08-15 11:50:38', '2023-08-17 00:00:00', '0000-00-00 00:00:00', 0),
+(45, 2, 1, 'Laundry', 5, 'LA150823011709521', 3, 600, 1800, 0, 1, 2, 'W', 'Wash & Iron', '2023-08-15 12:00:12', '2023-08-16 00:00:00', '0000-00-00 00:00:00', 0),
+(55, 3, 1, 'Laundry', 5, 'KL160823111407731', 0, 1500, 0, 0, 1, 2, 'C', 'Express', '2023-08-16 10:17:19', '2023-08-16 16:00:00', '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -526,6 +574,14 @@ CREATE TABLE `sales_returns` (
   `returned_by` int(11) NOT NULL,
   `return_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sales_returns`
+--
+
+INSERT INTO `sales_returns` (`return_id`, `invoice`, `store`, `item`, `quantity`, `amount`, `reason`, `returned_by`, `return_date`) VALUES
+(1, 'KL160823111407731', 1, 3, 0, 0, '0', 1, '2023-08-16 13:26:55'),
+(2, 'KL160823071524671', 1, 2, 1, 600, 'Wrong Input', 1, '2023-08-16 18:27:00');
 
 -- --------------------------------------------------------
 
@@ -585,7 +641,7 @@ CREATE TABLE `stores` (
 --
 
 INSERT INTO `stores` (`store_id`, `company`, `store`, `store_address`, `phone_number`, `date_created`) VALUES
-(1, 1, 'PZ office', '42 Pz road, off sapele road, Benin city', '07068897068, 07057456881', '2023-04-23 15:36:25');
+(1, 1, 'Upper Adesuwa', '42 Pz road, off sapele road, Benin city', '07068897068, 07057456881', '2023-04-23 15:36:25');
 
 -- --------------------------------------------------------
 
@@ -616,72 +672,46 @@ INSERT INTO `sub_menus` (`sub_menu_id`, `menu`, `sub_menu`, `url`) VALUES
 (9, 1, 'Add Bank', 'add_bank'),
 (10, 1, 'Manage Item Prices', 'item_price'),
 (11, 1, 'Add Remove Reasons', 'add_remove_reasons'),
-(12, 2, 'Direct sales', ''),
-(13, 2, 'Sales order', ''),
-(14, 2, 'Post sales order', ''),
 (15, 2, 'Sales Return', 'sales_return'),
 (16, 2, 'Reprint Receipt', 'print_receipt'),
-(17, 3, 'set reorder level', ''),
-(18, 3, 'stock balance', ''),
-(19, 3, 'stockin purchases', ''),
-(20, 3, 'Add supplier', ''),
-(21, 3, 'Adjust quantity', ''),
-(22, 3, 'Remove item', ''),
-(23, 3, 'Adjust expiration', ''),
 (24, 4, 'Add Expense Head', 'add_exp_head'),
 (25, 4, 'Post expense', 'post_expense'),
 (26, 5, 'Item List', 'item_list'),
-(27, 5, 'Bank list', ''),
-(28, 5, 'List of suppliers', ''),
-(29, 5, 'Sales return report', ''),
-(30, 5, 'Stock Adjustment report', ''),
-(31, 5, 'Item removed report', ''),
-(33, 5, 'Purchase reports', ''),
-(34, 5, 'Out of stock', ''),
-(35, 5, 'Soon to expire', ''),
-(36, 5, 'Expired items', ''),
-(37, 5, 'Reached reorder level', ''),
+(27, 5, 'Bank List', 'bank_list'),
+(29, 5, 'Sales Return Report', 'sales_return_report'),
 (38, 5, 'Item history', ''),
-(39, 5, 'Purchase by item', ''),
-(40, 5, 'Purchase per vendor', ''),
-(41, 6, 'Sales Report', 'revenue_report'),
-(42, 6, 'Cash sales list', ''),
-(43, 6, 'POS sales list', ''),
-(44, 6, 'Transfer Sales list', ''),
-(45, 6, 'Cashier Report', ''),
-(46, 6, 'Revenue by category', ''),
-(47, 6, 'Profit and Loss statement', ''),
-(48, 6, 'Expense report', ''),
-(49, 5, 'highest selling items', ''),
-(50, 5, 'fast selling items', ''),
+(41, 6, 'Revenue Report', 'revenue_report'),
+(42, 6, 'Cash Sales List', 'cash_list'),
+(43, 6, 'POS Sales List', 'pos_list'),
+(44, 6, 'Transfer Sales List', 'transfer_list'),
+(45, 6, 'Cashier Report', 'cashier_report'),
+(46, 6, 'Revenue By Category', 'revenue_by_category'),
+(47, 6, 'Profit And Loss Statement', 'profit_and_loss'),
+(48, 6, 'Expense Report', 'expense_report'),
+(49, 5, 'Revenue By Items', 'highest_selling'),
+(50, 5, 'Most Washed Items', 'fast_selling'),
 (51, 1, 'Change Category', 'change_category'),
-(52, 1, 'Update item Barcode', ''),
-(53, 3, 'Transfer items', ''),
-(54, 3, 'Pending transfer', ''),
-(55, 3, 'Accept items', ''),
-(56, 3, 'Returned transfer', ''),
-(57, 5, 'Transferred items Report', ''),
-(58, 5, 'Accept items report', ''),
-(59, 3, 'All store balance', ''),
-(60, 2, 'Collect Items', 'wholesale'),
-(61, 2, 'wholesale order', ''),
+(60, 2, 'New Order', 'wholesale'),
 (62, 1, 'Add Customer', 'add_customer'),
 (63, 5, 'Customer List', 'customer_list'),
-(64, 6, 'Retail sales', ''),
-(65, 6, 'Wholesale Report', ''),
-(66, 6, 'Customer statement', ''),
-(67, 6, 'credit sales list', ''),
-(68, 6, 'Debtors report', ''),
-(69, 4, 'Pay debt', ''),
-(70, 6, 'Debt payment report', ''),
+(66, 6, 'Customer Statement', 'customer_statement'),
+(67, 6, 'Credit Sales List', 'credit_sales_list'),
+(68, 6, 'Debtors Report', 'debtors_list'),
+(69, 4, 'Pay Debt', 'pay_debt'),
+(70, 6, 'Debt Payment Report', 'debt_payment_report'),
 (71, 3, 'Wash Clothes', 'wash_clothes'),
 (72, 3, 'Iron Clothes', 'iron_clothes'),
 (73, 1, 'Add menu', 'add_menu'),
 (74, 1, 'Add sub-menu', 'add_sub_menu'),
-(75, 7, 'Check Info', 'check_info'),
 (76, 1, 'Edit Sub-menu', 'edit_sub_menu'),
-(77, 3, 'Completed Job', 'completed_job'),
-(78, 3, 'Due For Collection', 'due_collection');
+(77, 3, 'Issue Items', 'completed_job'),
+(78, 3, 'Due For Collection', 'due_collection'),
+(79, 5, 'Items Issued Report', 'delivery_report'),
+(80, 1, 'Add Store', 'add_store'),
+(81, 1, 'Update Store Details', 'update_store'),
+(82, 1, 'Add User Rights', 'add_rights'),
+(83, 4, 'Fund Wallet', 'fund_wallet'),
+(84, 5, 'List Of Users', 'user_list');
 
 -- --------------------------------------------------------
 
@@ -716,6 +746,9 @@ CREATE TABLE `users` (
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_password` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone_number` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_address` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `home_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` int(11) NOT NULL,
   `store` int(11) NOT NULL,
   `reg_date` datetime NOT NULL DEFAULT current_timestamp()
@@ -725,9 +758,12 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `full_name`, `username`, `user_role`, `user_password`, `status`, `store`, `reg_date`) VALUES
-(1, 'Administrator', 'Admin', 'Admin', '$2y$10$BU4JP2GURjls1XHh/0aNQejcNvLVFcPuis6yVM3CnXMC0U175eE92', 1, 1, '2022-09-27 13:47:21'),
-(2, 'Kelly', 'Onostar', 'Sales Rep', '$2y$10$/guc2yjTsVg5qYFtRfF/GOQ6eOVHa.191HDFyKHz..U2TzYDIutN2', 0, 1, '2023-07-24 09:27:07');
+INSERT INTO `users` (`user_id`, `full_name`, `username`, `user_role`, `user_password`, `phone_number`, `email_address`, `home_address`, `status`, `store`, `reg_date`) VALUES
+(1, 'Administrator', 'Sysadmin', 'Admin', '$2y$10$BU4JP2GURjls1XHh/0aNQejcNvLVFcPuis6yVM3CnXMC0U175eE92', '', '', '', 1, 1, '2022-09-27 13:47:21'),
+(2, 'Kelly', 'Onostar', 'Sales Rep', '$2y$10$/guc2yjTsVg5qYFtRfF/GOQ6eOVHa.191HDFyKHz..U2TzYDIutN2', '', '', '', 0, 1, '2023-07-24 09:27:07'),
+(3, 'Admin', 'Admin', 'Admin', '$2y$10$z2nYDcMovL9PHQoqjZ4ZHuOYbuVHyoW4vFJeGErCSUsFXIiYDXBye', '', '', '', 0, 1, '2023-08-12 15:22:43'),
+(4, 'User', 'User', 'Sales Rep', '$2y$10$2IwUOiN78WlEkYhwJGkw8eL9RL1xj3ivuj76gktB2BFDOUySfQM42', '', '', '', 0, 1, '2023-08-15 11:35:48'),
+(5, 'John Smith', 'Smith', 'Sales Rep', '123', '08100653703', 'test@mail.com', '23 pz road', 0, 1, '2023-08-16 10:52:04');
 
 -- --------------------------------------------------------
 
@@ -754,6 +790,21 @@ INSERT INTO `vendors` (`vendor_id`, `vendor`, `contact_person`, `phone`, `email_
 (3, 'Anambra Supermarket', 'Anambra', '09000', 'ma@mail.com', '2023-01-09 21:24:12'),
 (4, 'Initial Stock', 'Nil', '090909', 'nil', '2023-05-31 12:39:18'),
 (5, 'K And K Enterprise', 'Kk Dwon', '090989878878', 'kmail@gmail.com', '2023-06-25 21:56:51');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wallet`
+--
+
+CREATE TABLE `wallet` (
+  `wallet_id` int(11) NOT NULL,
+  `customer` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `payment_mode` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `posted_by` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Indexes for dumped tables
@@ -940,6 +991,12 @@ ALTER TABLE `vendors`
   ADD PRIMARY KEY (`vendor_id`);
 
 --
+-- Indexes for table `wallet`
+--
+ALTER TABLE `wallet`
+  ADD PRIMARY KEY (`wallet_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -947,7 +1004,7 @@ ALTER TABLE `vendors`
 -- AUTO_INCREMENT for table `audit_trail`
 --
 ALTER TABLE `audit_trail`
-  MODIFY `audit_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `audit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `banks`
@@ -977,19 +1034,19 @@ ALTER TABLE `companies`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `customer_trail`
 --
 ALTER TABLE `customer_trail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `debtors`
 --
 ALTER TABLE `debtors`
-  MODIFY `debtor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `debtor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `departments`
@@ -1001,7 +1058,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `expense_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `expense_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `expense_heads`
@@ -1043,7 +1100,7 @@ ALTER TABLE `other_payments`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `purchases`
@@ -1067,19 +1124,19 @@ ALTER TABLE `remove_reasons`
 -- AUTO_INCREMENT for table `rights`
 --
 ALTER TABLE `rights`
-  MODIFY `right_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `right_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `sales_returns`
 --
 ALTER TABLE `sales_returns`
-  MODIFY `return_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `return_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `staffs`
@@ -1103,7 +1160,7 @@ ALTER TABLE `stores`
 -- AUTO_INCREMENT for table `sub_menus`
 --
 ALTER TABLE `sub_menus`
-  MODIFY `sub_menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `sub_menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `transfers`
@@ -1115,13 +1172,19 @@ ALTER TABLE `transfers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `vendors`
 --
 ALTER TABLE `vendors`
   MODIFY `vendor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `wallet`
+--
+ALTER TABLE `wallet`
+  MODIFY `wallet_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -38,16 +38,7 @@
             $audit->bindValue("store", $store);
             $audit->execute();
         }
-        //Insert into debtors list
-        protected function add_debtor($customer, $invoice, $amount, $posted, $store){
-            $audit = $this->connectdb()->prepare("INSERT INTO debtors (customer, invoice, amount, posted_by, store) VALUES (:customer, :invoice, :amount, :posted_by, :store)");
-            $audit->bindValue("customer", $customer);
-            $audit->bindValue("invoice", $invoice);
-            $audit->bindValue("amount", $amount);
-            $audit->bindValue("posted_by", $posted);
-            $audit->bindValue("store", $store);
-            $audit->execute();   
-        }
+        
         
         //insert multiple payment
         protected function multiple_pay($posted, $invoice, $cash, $pos, $transfer, $bank, $store){
@@ -63,9 +54,9 @@
             
         }
         //post payment
-        protected function post_payment($posted, $mode, $bank, $amount_due, $amount_paid, $discount, $invoice, $store, $type, $customer){
+        protected function post_payment($posted, $mode, $bank, $amount_due, $amount_paid, $discount, $invoice, $store, $type, $customer, $status){
             
-            $payment = $this->connectdb()->prepare("INSERT INTO payments (amount_due, amount_paid, discount, bank, payment_mode, posted_by, invoice, store, sales_type, customer) VALUES (:amount_due, :amount_paid, :discount, :bank, :payment_mode, :posted_by, :invoice, :store, :sales_type, :customer)");
+            $payment = $this->connectdb()->prepare("INSERT INTO payments (amount_due, amount_paid, discount, bank, payment_mode, posted_by, invoice, store, sales_type, customer, invoice_status) VALUES (:amount_due, :amount_paid, :discount, :bank, :payment_mode, :posted_by, :invoice, :store, :sales_type, :customer, :invoice_status)");
             $payment->bindValue("amount_due", $amount_due);
             $payment->bindValue("amount_paid", $amount_paid);
             $payment->bindValue("discount", $discount);
@@ -76,6 +67,7 @@
             $payment->bindValue("store", $store);
             $payment->bindValue("sales_type", $type);
             $payment->bindValue("customer", $customer);
+            $payment->bindValue("invoice_status", $status);
             $payment->execute();
             
         }
@@ -187,8 +179,9 @@
         private $store;
         private $type;
         private $customer;
+        private $status;
 
-        public function __construct($posted, $mode, $bank, $amount_due, $amount_paid, $discount, $invoice, $store, $type, $customer)
+        public function __construct($posted, $mode, $bank, $amount_due, $amount_paid, $discount, $invoice, $store, $type, $customer, $status)
         {
             $this->posted = $posted;
             $this->mode = $mode;
@@ -200,10 +193,11 @@
             $this->store = $store;
             $this->type = $type;
             $this->customer = $customer;
+            $this->status = $status;
         }
 
         public function payment(){
-            $this->post_payment($this->posted, $this->mode, $this->bank, $this->amount_due, $this->amount_paid, $this->discount, $this->invoice, $this->store, $this->type, $this->customer);
+            $this->post_payment($this->posted, $this->mode, $this->bank, $this->amount_due, $this->amount_paid, $this->discount, $this->invoice, $this->store, $this->type, $this->customer, $this->status);
         }
     }
     //controller for payments
@@ -248,26 +242,7 @@
             $this->customer_trail($this->customer, $this->detail, $this->amount, $this->posted, $this->store);
         }
     }
-    // controller for adding debtor
-    class add_debtor extends inserts{
-        private $customer;
-        private $store;
-        private $invoice;
-        private $amount;
-        private $posted;
-
-        public function __construct($customer, $store, $invoice, $amount, $posted)
-        {
-            $this->customer = $customer;
-            $this->store = $store;
-            $this->invoice = $invoice;
-            $this->amount = $amount;
-            $this->posted = $posted;
-        }
-        public function add_debt(){
-            $this->add_debtor($this->customer, $this->invoice, $this->amount, $this->posted, $this->store);
-        }
-    }
+    
 
 
     // controller for sales return

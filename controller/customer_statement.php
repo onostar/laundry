@@ -127,7 +127,7 @@
                     <?php
                         //get transaction history
                         $get_transactions = new selects();
-                        $details = $get_transactions->fetch_details_cond('customer_trail', 'customer', $customer);
+                        $details = $get_transactions->fetch_details_date2Con('customer_trail', 'date(post_date)', $from, $to, 'customer', $customer);
                         $n = 1;
                         if(gettype($details) === 'array'){
                         foreach($details as $detail){

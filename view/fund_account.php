@@ -16,13 +16,7 @@
         $rows = $get_details->fetch_details_cond('customers', 'customer_id', $customer_id);
         foreach($rows as $row){
             $customer = $row->customer;
-
-        }
-        //get wallet balance
-        $get_wallet = new selects();
-        $details = $get_wallet->fetch_sum_single('deposits', 'amount', 'customer', $customer_id);
-        foreach($details as $detail){
-            $balance = $detail->total;
+            $balance = $row->wallet_balance;
 
         }
         //generate deposit receipt

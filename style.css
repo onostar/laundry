@@ -3044,6 +3044,20 @@ x
     font-size:1rem;
 
 }
+.top_view{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background:var(--otherColor); */
+}
+.top-view #back{
+    margin:0!important;
+    left:0;
+
+}
+#debt_payment{
+    margin:0 20px!important
+}
 @media screen and (max-width: 800px){
     #topHeader{
         justify-content: space-between;

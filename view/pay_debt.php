@@ -8,7 +8,7 @@
 ?>
 <div id="pay_debt" class="displays management">
     
-<div class="displays allResults new_data" id="revenue_report" style="width:60%!important; margin:0 20px!important;">
+<div class="displays allResults new_data" id="revenue_report" style="width:80%!important; margin:0 20px!important;">
     <h2>Debtors List</h2>
     <hr>
     <div class="search">
@@ -21,6 +21,7 @@
                 <td>S/N</td>
                 <td>Customer</td>
                 <td>Amount Due</td>
+                <td>Wallet Balance</td>
                 <td></td>
                 
             </tr>
@@ -44,9 +45,24 @@
                     ?>
                 </td>
                 <td style="color:red">
-                    <?php echo "₦".number_format($detail->amount, 2);?>
+                    <?php 
+                        $get_sum = new selects();
+                        $sums = $get_sum->fetch_sum_double('debtors', 'amount', 'customer', $detail->customer, 'debt_status', 0);
+                        foreach($sums as $sum){
+                            echo "₦".number_format($sum->total, 2);
+                        }
+                    ?>
                 </td>
             
+                <td style="color:green;">
+                    <?php
+                        //get wallet balance
+                        $get_wallet = new selects();
+                        $bals = $get_wallet->fetch_details_group('customers', 'wallet_balance', 'customer_id', $detail->customer);
+                            echo "₦".number_format($bals->wallet_balance, 2);
+
+                    ?>
+                </td>
                 <td>
                     <a style="color:#fff;background:var(--primaryColor); padding:5px; border-radius:5px" href="javascript:void(0)" title="View invoice details" onclick="showPage('debt_payment.php?customer=<?php echo $detail->customer?>')">View <i class="fas fa-eye"></i></a>
                 </td>

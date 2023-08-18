@@ -2954,7 +2954,6 @@ function addCustomer(){
 }
 
 //post other payments
-//post other Transfer payments for guest
 function postOtherPayment(){
      let mode = document.getElementById("mode").value;
      let posted = document.getElementById("posted").value;
@@ -3097,3 +3096,49 @@ function printDepositReceipt(invoice){
      return false;
  
  }
+
+ //pay debt
+function payDebt(invoice, customer, balance, amount_owed){
+     if(parseFloat(amount_owed) > parseFloat(balance)){
+          alert("Insufficient balance! Kindly fund customer wallet to continue");
+          return;
+     }else{
+          let confirm_pay = confirm("Are you sure to complete this transaction?", "");
+          if(confirm_pay){
+               $.ajax({
+                    type : "GET",
+                    url : "../controller/pay_debt.php?receipt="+invoice+"&customer="+customer+"&amount_owed="+amount_owed,
+                    success : function(response){
+                         $("#pay_debts").html(response);
+                    }
+               })
+               setTimeout(() => {
+                    $("#pay_debts").load("debt_payment.php?customer="+customer + "#pay_debts");
+               }, 1500);
+               return false;
+          }else{
+               return;
+          }
+     }
+}
+
+//reverse deposits
+function reverseDeposit(deposit, customer){
+     let confirm_reverse = confirm("Are you sure you want to reverse this transaction?", "");
+     if(confirm_reverse){
+          $.ajax({
+               type : "GET",
+               url : "../controller/reverse_deposit.php?deposit_id="+deposit+"&customer="+customer,
+               success : function(response){
+                    $("#reverse_dep").html(response);
+               }
+          })
+          setTimeout(() => {
+               $("#reverse_dep").load("reverse_deposit.php #reverse_dep");
+          }, 1500);
+          return false;
+          
+     }else{
+          return;
+     }
+}

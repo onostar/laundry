@@ -20,6 +20,7 @@ include "../classes/inserts.php";
             $type = "Wholesale";
             $customer = htmlspecialchars(stripslashes($_POST['customer_id']));
             $collection_date = htmlspecialchars(stripslashes($_POST['collection_date']));
+            
             //insert into audit trail
             //get items and quantity sold in the invoice
             /* $get_item = new selects();
@@ -56,29 +57,31 @@ include "../classes/inserts.php";
                 //get amount paid
                 if($payment_type == "Credit"){
                     $amount_paid = 0;
+                    $invoice_status = 0;
                 }else{
                     $amount_paid = $inv_amount - $discount;
+                    $invoice_status = 1;
                 }
                 //insert payments
                 if($payment_type == "Multiple"){
                     //insert into payments
                     if($cash !== '0'){
-                        $insert_payment = new payments($user, 'Cash', $bank, $inv_amount, $cash, $discount, $invoice, $store, $type, $customer);
+                        $insert_payment = new payments($user, 'Cash', $bank, $inv_amount, $cash, $discount, $invoice, $store, $type, $customer, $invoice_status);
                         $insert_payment->payment();
                     }
                     if($pos !== '0'){
-                        $insert_payment = new payments($user, 'POS', $bank, $inv_amount, $pos, $discount, $invoice, $store, $type, $customer);
+                        $insert_payment = new payments($user, 'POS', $bank, $inv_amount, $pos, $discount, $invoice, $store, $type, $customer, $invoice_status);
                         $insert_payment->payment();
                     }
                     if($transfer !== '0'){
-                        $insert_payment = new payments($user, 'Transfer', $bank, $inv_amount, $transfer, $discount, $invoice, $store, $type, $customer);
+                        $insert_payment = new payments($user, 'Transfer', $bank, $inv_amount, $transfer, $discount, $invoice, $store, $type, $customer, $invoice_status);
                         $insert_payment->payment();
                     }
                     //
                     $insert_multi = new multiple_payment($user, $invoice, $cash, $pos, $transfer, $bank, $store);
                     $insert_multi->multi_pay();
                 }else{
-                    $insert_payment = new payments($user, $payment_type, $bank, $inv_amount, $amount_paid, $discount, $invoice, $store, $type, $customer);
+                    $insert_payment = new payments($user, $payment_type, $bank, $inv_amount, $amount_paid, $discount, $invoice, $store, $type, $customer, $invoice_status);
                     $insert_payment->payment();
                 }
                 
@@ -101,8 +104,15 @@ include "../classes/inserts.php";
                     $insert_credit = new customer_trail($customer, $store, 'Credit sales', $inv_amount, $user);
                     $insert_credit->add_trail();
                     //insert to debtors list
-                    $add_debt = new add_debtor($customer, $store, $invoice, $inv_amount, $user);
-                    $add_debt->add_debt();
+                    $debt_data = array(
+                        'customer' => $customer,
+                        'invoice' => $invoice,
+                        'amount' => $inv_amount,
+                        'posted_by' => $user,
+                        'store' => $store
+                    );
+                    $add_debt = new add_data('debtors', $debt_data);
+                    $add_debt->create_data();
                 }
                 
 ?>

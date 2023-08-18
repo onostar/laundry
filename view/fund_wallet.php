@@ -36,14 +36,8 @@
                 <td><?php echo $detail->phone_numbers?></td>
                 <td style="color:green">
                     <?php
-                        //get wallet balance
-                        $get_wallet = new selects();
-                        $rows = $get_wallet->fetch_sum_single('deposits', 'amount', 'customer', $detail->customer_id);
-                        foreach($rows as $row){
-                            echo "₦".number_format($row->total, 2);
-                        }
                         
-                    
+                            echo "₦".number_format($detail->wallet_balance, 2);
                     ?>
                 </td>
                 <td><a style="padding:5px 8px;border-radius:5px;background:var(--otherColor); color:#fff;" href="javascript:void(0)" title="fund account" onclick="showPage('fund_account.php?customer=<?php echo $detail->customer_id?>')"><i class="fas fa-pen"></i></a></td>

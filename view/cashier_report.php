@@ -36,6 +36,7 @@
                 <td>Cash</td>
                 <td>POS</td>
                 <td>Transfer</td>
+                <td>Credit</td>
                 <td>Total</td>
             </tr>
         </thead>
@@ -84,6 +85,15 @@
                         }
                     ?>
                 </td>
+                <td>
+                    <?php
+                        $get_tf = new selects();
+                        $trfs = $get_tf->fetch_sum_curdate2Con('payments', 'amount_due', 'date(post_date)', 'payment_mode', 'Credit', 'posted_by', $detail->posted_by);
+                        foreach($trfs as $trf){
+                            echo "₦".number_format($trf->total, 2);
+                        }
+                    ?>
+                </td>
                 <td style="color:red;">
                     <?php
                         $get_total = new selects();
@@ -125,6 +135,15 @@
                     <?php
                         $get_total = new selects();
                         $totals = $get_cash->fetch_sum_curdate2Con('payments', 'amount_paid', 'post_date', 'payment_mode', 'Transfer', 'store', $store);
+                        foreach($totals as $total){
+                            echo "₦".number_format($total->total, 2);
+                        }
+                    ?>
+                </td>
+                <td style="color:green; font-size:1rem;">
+                    <?php
+                        $get_total = new selects();
+                        $totals = $get_cash->fetch_sum_curdate2Con('payments', 'amount_due', 'post_date', 'payment_mode', 'Credit', 'store', $store);
                         foreach($totals as $total){
                             echo "₦".number_format($total->total, 2);
                         }

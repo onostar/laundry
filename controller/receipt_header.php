@@ -11,6 +11,10 @@
             echo "<p style='border:1px solid #000'><strong>Customer:</strong>$clients->customer</p>";
         // }
     ?>
+        <p>Date: <?php echo date("d-m-Y", strtotime($paid_date))?>, <?php echo date("h:m:i", strtotime($paid_date))?></p>
+
     <div class="receipt_head">
         <p><?php echo $invoice?></p>
+        <!-- printed date -->
+
         

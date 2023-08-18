@@ -52,25 +52,32 @@
                 <td><a style="color:green" href="javascript:void(0)" title="View invoice details" onclick="showPage('invoice_details.php?payment_id=<?php echo $detail->payment_id?>')"><?php echo $detail->invoice?></a></td>
                 <td>
                     <?php 
-                        //get sum of invoice
-                        $get_sum = new selects();
-                        $sums = $get_sum->fetch_sum_single('payments', 'amount_paid', 'invoice', $detail->invoice);
-                        foreach($sums as $sum){
-                            echo "₦".number_format($sum->total, 2);
+                        if($detail->payment_mode == "Credit"){
+                            //get sum of invoice
+                            $get_sum = new selects();
+                            $sums = $get_sum->fetch_sum_single('payments', 'amount_due', 'invoice', $detail->invoice);
+                            foreach($sums as $sum){
+                                echo "₦".number_format($sum->total, 2);
 
+                            }
+                        }else{
+                            //get sum of invoice
+                            $get_sum = new selects();
+                            $sums = $get_sum->fetch_sum_single('payments', 'amount_paid', 'invoice', $detail->invoice);
+                            foreach($sums as $sum){
+                                echo "₦".number_format($sum->total, 2);
+
+                            }
                         }
+                        
                     ?>
                 </td>
                 <td>
                     <?php 
                         //get payment mode
-                        $get_mode = new selects();
-                        $rows = $get_mode->fetch_count_cond('payments', 'invoice', $detail->invoice);
-                        if($rows >= 2){
-                            echo "Multiple payment";
-                        }else{
+                        
                         echo $detail->payment_mode;
-                        }
+                        
                      ?>
                 </td>
                 <td style="color:var(--moreColor)"><?php echo date("H:i:sa", strtotime($detail->post_date));?></td>

@@ -35,7 +35,7 @@
                 $get_cust = new selects();
                 $client = $get_cust->fetch_details_group('customers', 'customer', 'customer_id', $customer);
         ?>
-        <h4>Items sold to <?php echo strtoupper($client->customer)?> </h4>
+        <h4>Items dry cleaned for <?php echo strtoupper($client->customer)?> </h4>
         <?php }else{?>
         <h4>Items on Invoice => <?php echo $invoice?> </h4>
         <?php } ?>

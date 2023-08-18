@@ -58,7 +58,7 @@
                     ?>
                 </td>
                 <td>
-                    <a style="color:#fff;background:var(--secondaryColor); padding:5px; border-radius:5px" href="javascript:void(0)" title="Reverse customer deposit" onclick="reverseDeposit('<?php echo $detail->deposit_id?>, <?php echo $detail->customer?>')"><i class="fas fa-arrow-left-rotate"></i></a>
+                    <a style="color:#fff;background:var(--secondaryColor); padding:5px; border-radius:5px" href="javaScript:void(0)" title="Reverse customer deposit" onclick="reverseDeposit('<?php echo $detail->deposit_id?>', '<?php echo $detail->customer?>')"><i class="fas fa-arrow-left-rotate"></i></a>
                     
                 </td>
             </tr>

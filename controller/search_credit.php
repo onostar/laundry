@@ -48,7 +48,7 @@
                     ?>
                 </td>
                 <td><a style="color:green" href="javascript:void(0)" title="View payment details" onclick="showPage('invoice_details.php?payment_id=<?php echo $detail->payment_id?>')"><?php echo $detail->invoice?></a></td> 
-                <td><?php echo "₦".number_format($detail->amount_paid, 2)?></td>
+                <td><?php echo "₦".number_format($detail->amount_due, 2)?></td>
                 <td style="color:var(--moreColor)"><?php echo date("d-m-y", strtotime($detail->post_date));?></td>
                 <td style="color:var(--moreColor)"><?php echo date("H:i:sa", strtotime($detail->post_date));?></td>
                 <td>
@@ -70,7 +70,7 @@
     }
     // get sum
     $get_total = new selects();
-    $amounts = $get_total->fetch_sum_2date2Cond('payments', 'amount_paid', 'date(post_date)', 'store', 'payment_mode', $from, $to, $store, 'Credit');
+    $amounts = $get_total->fetch_sum_2date2Cond('payments', 'amount_due', 'date(post_date)', 'store', 'payment_mode', $from, $to, $store, 'Credit');
     foreach($amounts as $amount){
         echo "<p class='total_amount' style='color:green'>Total: ₦".number_format($amount->total, 2)."</p>";
     }

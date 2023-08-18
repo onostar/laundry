@@ -28,6 +28,7 @@ include "../classes/select.php";
             $pay_mode = $payment->payment_mode;
             $customer = $payment->customer;
             $type = $payment->sales_type;
+            $paid_date = $payment->post_date;
         }
                 
 ?>
@@ -134,7 +135,10 @@ include "../classes/select.php";
         $row = $get_seller->fetch_details_group('users', 'full_name', 'user_id', $user);
         echo ucwords("<p class='sold_by'>Printed by: <strong>$row->full_name</strong></p>");
     ?>
-    
+        <!-- other notes -->
+        <!-- <h4>Condition</h4> -->
+        <p style="font-size:.9rem;margin-top:20px;"><strong>NB:</strong>This organization is liable to payment of five (5) times the amount of laundry in case of theft or damage.</p>
+        <p style="margin-top:20px;text-align:center"><strong>Thanks for your patronage!</strong></p>
 </div> 
    
 <?php

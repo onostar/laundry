@@ -92,7 +92,7 @@
     <?php
         if(gettype($details) == "array"){
     ?>
-    <div class="close_stockin add_user_form" style="width:50%; margin:0;">
+    <div class="close_stockin add_user_form" style="width:50%; margin:0;" id="payment_form">
         <section class="addUserForm">
             <div class="inputs" style="display:flex;flex-wrap:wrap">
                 <input type="hidden" name="total_amount" id="total_amount" value="<?php echo $total_amount?>">
@@ -136,6 +136,18 @@
                         <option value="<?php echo $row->bank_id?>"><?php echo $row->bank?>(<?php echo $row->account_number?>)</option>
                         <?php endforeach?>
                     </select>
+                </div>
+                <div class="data" id="account_balance">
+                    <?php
+                        //get wallet balance
+                        $get_bal = new selects();
+                        $bal = $get_bal->fetch_details_group('customers', 'wallet_balance', 'customer_id', $customer);
+                        $wallet = $bal->wallet_balance;
+                    ?>
+                    <label for="wallet">Wallet balance</label>
+                    <input type="hidden" name="wallet" id="wallet" value="<?php echo $wallet?>">
+                    <input type="text" value="<?php echo "₦".number_format($wallet, 2)?>">
+
                 </div>
                 <div class="inputs">
                     <div class="data" style="width:45%">

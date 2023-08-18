@@ -27,6 +27,7 @@
                 <td>Cash</td>
                 <td>POS</td>
                 <td>Transfer</td>
+                <td>Wallet</td>
                 <td>Credit</td>
                 <td>Total</td>
                 
@@ -70,6 +71,15 @@
                     <?php
                         $get_cash = new selects();
                         $cashs = $get_cash->fetch_sum_2dateCondGr('payments', 'amount_paid', 'payment_mode', 'date(post_date)', 'posted_by', $from, $to, 'Transfer', $detail->posted_by);
+                        foreach($cashs as $cash){
+                            echo "₦".number_format($cash->total, 2);
+                        }
+                    ?>
+                </td>
+                <td>
+                    <?php
+                        $get_cash = new selects();
+                        $cashs = $get_cash->fetch_sum_2dateCondGr('payments', 'amount_paid', 'payment_mode', 'date(post_date)', 'posted_by', $from, $to, 'Wallet', $detail->posted_by);
                         foreach($cashs as $cash){
                             echo "₦".number_format($cash->total, 2);
                         }
@@ -122,6 +132,15 @@
                     <?php
                         $get_total = new selects();
                         $totals = $get_total->fetch_sum_2date2Cond('payments', 'amount_paid', 'date(post_date)', 'payment_mode', 'store', $from, $to, 'Transfer', $store);
+                        foreach($totals as $total){
+                            echo "₦".number_format($total->total, 2);
+                        }
+                    ?>
+                </td>
+                <td style="color:green; font-size:1rem">
+                    <?php
+                        $get_total = new selects();
+                        $totals = $get_total->fetch_sum_2date2Cond('payments', 'amount_paid', 'date(post_date)', 'payment_mode', 'store', $from, $to, 'Wallet', $store);
                         foreach($totals as $total){
                             echo "₦".number_format($total->total, 2);
                         }

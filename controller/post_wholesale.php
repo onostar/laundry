@@ -15,6 +15,7 @@ include "../classes/inserts.php";
             $cash = htmlspecialchars(stripslashes($_POST['multi_cash']));
             $pos = htmlspecialchars(stripslashes($_POST['multi_pos']));
             $transfer = htmlspecialchars(stripslashes($_POST['multi_transfer']));
+            $wallet = htmlspecialchars(stripslashes($_POST['wallet']));
             $discount = htmlspecialchars(stripslashes($_POST['discount']));
             $store = htmlspecialchars(stripslashes($_POST['store']));
             $type = "Wholesale";
@@ -84,7 +85,13 @@ include "../classes/inserts.php";
                     $insert_payment = new payments($user, $payment_type, $bank, $inv_amount, $amount_paid, $discount, $invoice, $store, $type, $customer, $invoice_status);
                     $insert_payment->payment();
                 }
-                
+
+                if($payment_type == "Wallet"){
+                    //update wallet balance
+                    $new_balance = $wallet - $amount_paid;
+                    $update_wallet = new Update_table();
+                    $update_wallet->update('customers', 'wallet_balance', 'customer_id', $new_balance, $customer);
+                }
                 if($insert_payment){
                 
                 //update quantity of the items in inventory

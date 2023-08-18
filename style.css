@@ -1205,8 +1205,13 @@ table tr:nth-child(even){
     font-weight: bold; 
     margin:10px 0;
 }
-#selectBank, #multiples{
+
+#selectBank, #multiples, #account_balance{
     display:none;
+}
+#account_balance input{
+    font-size:1.1rem;
+    color:green;
 }
 .payment_mode h3{
     text-transform: capitalize;
@@ -3057,6 +3062,9 @@ x
 }
 #debt_payment{
     margin:0 20px!important
+}
+#payment_form label{
+    text-align:left!important;
 }
 @media screen and (max-width: 800px){
     #topHeader{

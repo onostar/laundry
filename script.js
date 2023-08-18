@@ -2182,15 +2182,24 @@ function checkMode(mode){
      let pay_mode = mode;
      let bank_input = document.getElementById("selectBank");
      let multiples = document.getElementById("multiples");
+     let wallet = document.getElementById("account_balance");
      if(pay_mode == "POS" || pay_mode == "Transfer"){
           bank_input.style.display = "block";
           multiples.style.display = "none";
+          wallet.style.display = "none";
      }else if(pay_mode == "Multiple"){
           multiples.style.display = "block";
           bank_input.style.display = "block";
+          wallet.style.display = "none";
+     }else if(pay_mode == "Wallet"){
+          wallet.style.display = "block";
+          multiples.style.display = "none";
+          bank_input.style.display = "none";
      }else{
           bank_input.style.display = "none";
           multiples.style.display = "none";
+          wallet.style.display = "none";
+
      }
 }
 //post direct sales payment
@@ -2333,11 +2342,19 @@ function postWholesale(){
           let multi_cash = document.getElementById("multi_cash").value;
           let multi_pos = document.getElementById("multi_pos").value;
           let multi_transfer = document.getElementById("multi_transfer").value;
+          let wallet = document.getElementById("wallet").value;
           let sum_amount = parseInt(multi_cash) + parseInt(multi_pos) + parseInt(multi_transfer);
           if(document.getElementById("multiples").style.display == "block"){
                if(sum_amount != (total_amount - discount)){
                     alert("Amount entered is not equal to total amount");
                     $("#multi_cash").focus();
+                    return;
+               }
+          }
+          if(document.getElementById("account_balance").style.display == "block"){
+               if(parseInt(total_amount - discount) > parseInt(wallet)){
+                    alert("Insufficient balance! Kindly fund wallet");
+                    $("#payment_type").focus();
                     return;
                }
           }
@@ -2361,7 +2378,7 @@ function postWholesale(){
                $.ajax({
                     type : "POST",
                     url : "../controller/post_wholesale.php",
-                    data : {sales_invoice:sales_invoice, payment_type:payment_type, bank:bank, multi_cash:multi_cash, multi_pos:multi_pos, multi_transfer:multi_transfer, discount:discount, store:store, customer_id:customer_id, collection_date:collection_date},
+                    data : {sales_invoice:sales_invoice, payment_type:payment_type, bank:bank, multi_cash:multi_cash, multi_pos:multi_pos, multi_transfer:multi_transfer, wallet:wallet, discount:discount, store:store, customer_id:customer_id, collection_date:collection_date},
                     success : function(response){
                          $("#direct_sales").html(response);
                     }

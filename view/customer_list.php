@@ -20,6 +20,7 @@
                 <td>Phone number</td>
                 <td>Address</td>
                 <td>Email</td>
+                <td>Balance</td>
                 <td>Date reg</td>
             </tr>
         </thead>
@@ -37,7 +38,9 @@
                 <td><?php echo $detail->phone_numbers?></td>
                 <td><?php echo $detail->customer_address?></td>
                 <td><?php echo $detail->customer_email?></td>
-                <td><?php echo date("jS M, Y", strtotime($detail->reg_date))?></td>
+                <td style="color:green"><?php echo "₦".number_format($detail->wallet_balance, 2);?>
+                </td>
+                <td><?php echo date("d-m-Y", strtotime($detail->reg_date))?></td>
                 
                 
             </tr>

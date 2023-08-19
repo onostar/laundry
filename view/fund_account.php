@@ -33,7 +33,7 @@
     <div class="add_user_form" style="width:70%; margin:5px 0;">
         <h3 style="background:var(--otherColor); text-align:left">Fund customer wallet</h3>
         <!-- <form method="POST" id="addUserForm"> -->
-        <div class="details_forms" style="align-items:flex-start">
+        <div class="details_forms" style="align-items:flex-start;">
             <section class="addUserForm">
                 <div class="inputs" style="flex-wrap:wrap">
                     <input type="hidden" name="invoice" id="invoice" value="<?php echo $receipt_id?>">
@@ -63,20 +63,21 @@
                     </div>
                 </div>
             </section>
-            <section class="customer_details">
+            <section class="customer_details" style="height:100%;">
                 <div class="inputs">
                     <div class="data">
                         <label for="customer_id">Customer ID:</label>
-                        <input type="text" value="<?php echo "00000".$customer_id?>">
+                        <input type="text" value="<?php echo "1001000".$customer_id?>">
                     </div>
                     <div class="data">
-                        <label for="customer_name">Customer ID:</label>
+                        <label for="customer_name">Customer Name:</label>
                         <input type="text" value="<?php echo $customer?>">
                     </div>
                     <div class="data">
                         <label for="balance">Available balance:</label>
                         <input type="text" value="<?php echo "₦".number_format($balance, 2)?>" style="color:green;">
                     </div>
+                    
                 </div>
             </section> 
         </div>

@@ -43,7 +43,7 @@
                     <?php
                         $n = 1;
                         $get_items = new selects();
-                        $details = $get_items->fetch_details_2cond('sales', 'store', 'invoice', $store, $invoice);
+                        $details = $get_items->fetch_details_3cond1neg('sales', 'store', 'invoice', 'laundry_status', $store, $invoice, 'D');
                         if(gettype($details) === 'array'){
                         foreach($details as $detail):
                             $get_ind = new selects();
@@ -80,11 +80,11 @@
                             ?>
                                 <a style="color:#fff; background:green; padding:5px; border-radius:5px; font-size:.9rem" href="javascript:void(0) "title="Iron item" onclick="changeStatus('<?php echo $detail->sales_id?>', '<?php echo $invoice?>', 'iron_item.php', 'due_items.php')">Iron <i class="fas fa-check-double"></i></a>
                             <?php 
-                                }elseif($detail->laundry_status == "I"){
+                                }if($detail->laundry_status == "I"){
                                     echo "<p style='color:green'>Ironed</p>";
                             ?>
                                 <a style="color:#fff; background:green; padding:5px; border-radius:5px; font-size:.9rem" href="javascript:void(0) "title="Issue to customer" onclick="changeStatus('<?php echo $detail->sales_id?>', '<?php echo $invoice?>', 'issue_item.php', 'due_items.php')">Issue <i class="fas fa-check-double"></i></a>
-                            <?php }else{
+                            <?php }if($detail->laundry_status == "C"){
                                 echo "<p style='color:red'>Not washed</p>";
                             ?>
                                 <a style="color:#fff; background:var(--otherColor); padding:5px; border-radius:5px; font-size:.9rem" href="javascript:void(0) "title="Wash item" onclick="changeStatus('<?php echo $detail->sales_id?>', '<?php echo $invoice?>', 'wash_item.php', 'due_items.php')">Wash <i class="fas fa-check-double"></i></a>

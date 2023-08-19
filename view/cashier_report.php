@@ -106,10 +106,28 @@
                 </td>
                 <td style="color:red;">
                     <?php
+                        // get sum
                         $get_total = new selects();
-                        $totals = $get_cash->fetch_sum_curdateCon('payments', 'amount_paid', 'post_date', 'posted_by', $detail->posted_by);
-                        foreach($totals as $total){
-                            echo "₦".number_format($total->total, 2);
+                        $amounts = $get_total->fetch_sum_curdateCon('payments', 'amount_paid', 'post_date', 'posted_by', $detail->posted_by);
+                        foreach($amounts as $amount){
+                            $paid_amount = $amount->total;
+                            
+                        }
+                        //if credit was sold
+                        $get_credit = new selects();
+                        $credits = $get_credit->fetch_sum_curdate2Con('payments', 'amount_due', 'post_date', 'payment_mode', 'Credit', 'posted_by', $detail->posted_by);
+                        if(gettype($credits) === "array"){
+                            foreach($credits as $credit){
+                                $owed_amount = $credit->total;
+                            }
+                            $total_revenue = $owed_amount + $paid_amount;
+                            echo "₦".number_format($total_revenue, 2);
+
+                        }
+                        //if no credit sales
+                        if(gettype($credits) == "string"){
+                            echo "₦".number_format($paid_amount, 2);
+                            
                         }
                     ?>
                 </td>
@@ -168,13 +186,30 @@
                         }
                     ?>
                 </td>
-                <td style="color:green; font-size:1rem;">
+                <td style="color:red; font-size:1rem;">
                     <?php
                         // get sum
                         $get_total = new selects();
-                        $amounts = $get_total->fetch_sum_curdateCon('payments', 'amount_paid', 'date(post_date)', 'store', $store);
+                        $amounts = $get_total->fetch_sum_curdateCon('payments', 'amount_paid', 'post_date', 'store', $store);
                         foreach($amounts as $amount){
-                            echo "₦".number_format($amount->total, 2);;
+                            $paid_amount = $amount->total;
+                            
+                        }
+                        //if credit was sold
+                        $get_credit = new selects();
+                        $credits = $get_credit->fetch_sum_curdate2Con('payments', 'amount_due', 'post_date', 'payment_mode', 'Credit', 'store', $store);
+                        if(gettype($credits) === "array"){
+                            foreach($credits as $credit){
+                                $owed_amount = $credit->total;
+                            }
+                            $total_revenue = $owed_amount + $paid_amount;
+                            echo "₦".number_format($total_revenue, 2);
+
+                        }
+                        //if no credit sales
+                        if(gettype($credits) == "string"){
+                            echo "₦".number_format($paid_amount, 2);
+                            
                         }
                     ?>
                 </td>

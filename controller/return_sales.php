@@ -59,6 +59,8 @@
         foreach($amounts as $amount){
             $invoice_amount = $amount->amount_paid;
             $invoice_due = $amount->amount_due;
+            $payment_type = $amount->payment_mode;
+            $customer = $amount->customer;
         }
        
         $new_inv_amount = $invoice_amount - $removed_amount;
@@ -70,6 +72,20 @@
             $sales_return = new sales_return($item, $quantity, $removed_amount, $reason, $user, $invoice, $store);
             $sales_return->return_sales();
             if($sales_return){
+
+                //check if payment mode is wallet and add money back to wallet balance
+                if($payment_type == "Wallet"){
+                    //get wallet balance
+                    $get_balance = new selects();
+                    $balance = $get_balance->fetch_details_group('customers', 'wallet_balance', 'customer_id', $customer);
+                    $wallet = $balance->wallet_balance;
+
+                    //add returned money to wallet balance
+                    $new_balance = $removed_amount + $wallet;
+                    //update wallet balance
+                    $update_wallet = new Update_table();
+                    $update_wallet->update('customers', 'wallet_balance', 'customer_id', $new_balance, $customer);
+                }
             //remove invoice from payments and sales if amount is = 0
             //get new payment amount for the invoice
             $get_new_amount = new selects();

@@ -1719,7 +1719,7 @@ function addWholeSales(item_id){
      let customer = document.getElementById("customer").value;
      $.ajax({
           type : "GET",
-          url : "../controller/add_Wholesale.php?sales_item="+item+"&customer="+customer,
+          url : "../controller/add_wholesale.php?sales_item="+item+"&customer="+customer,
           success : function(response){
                $(".sales_order").html(response);
           }

@@ -148,8 +148,20 @@
         }
         //fetch details count with a date greater or equal to current date and a negative condition
         public function fetch_count_curDateGreat($table, $column, $condition, $value){
-            $get_user = $this->connectdb()->prepare("SELECT * FROM $table WHERE date($column) <= CURDATE() AND $condition != :$condition");
+            $get_user = $this->connectdb()->prepare("SELECT * FROM $table WHERE date($column) <= date(CURDATE()) AND $condition != :$condition");
             $get_user->bindValue("$condition", $value);
+            $get_user->execute();
+            if($get_user->rowCount() > 0){
+                return $get_user->rowCount();
+            }else{
+                return "0";
+            }
+        }
+        //fetch details count with a date greater or equal to current date and a negative condition
+        public function fetch_count_curDateGreatNeg($table, $column, $condition, $value, $con2, $value2){
+            $get_user = $this->connectdb()->prepare("SELECT * FROM $table WHERE date($column) <= date(CURDATE()) AND $condition != :$condition AND $con2 = :$con2");
+            $get_user->bindValue("$condition", $value);
+            $get_user->bindValue("$con2", $value2);
             $get_user->execute();
             if($get_user->rowCount() > 0){
                 return $get_user->rowCount();
@@ -1229,7 +1241,7 @@
         
         // fetch daily checkins
         public function fetch_daily_sales($store){
-            $get_daily = $this->connectdb()->prepare("SELECT COUNT(distinct invoice) AS customers, SUM(amount_paid) AS revenue, post_date FROM payments WHERE store = :store GROUP BY date(post_date) ORDER BY date(post_date) DESC");
+            $get_daily = $this->connectdb()->prepare("SELECT COUNT(distinct invoice) AS customers, SUM(amount_due) AS revenue, post_date FROM payments WHERE store = :store GROUP BY date(post_date) ORDER BY date(post_date) DESC");
             $get_daily->bindValue('store', $store);
             $get_daily->execute();
             if($get_daily->rowCount() > 0){
@@ -1243,7 +1255,7 @@
         }
         //fetch monthly check ins
         public function fetch_monthly_sales($store){
-            $get_monthly = $this->connectdb()->prepare("SELECT COUNT(distinct invoice) AS customers, SUM(amount_paid) AS revenue, post_date, COUNT(post_date) AS arrivals, COUNT(DISTINCT post_date) AS daily_average FROM payments WHERE store = :store GROUP BY MONTH(post_date) ORDER BY post_date DESC");
+            $get_monthly = $this->connectdb()->prepare("SELECT COUNT(distinct invoice) AS customers, SUM(amount_due) AS revenue, post_date, COUNT(post_date) AS arrivals, COUNT(DISTINCT post_date) AS daily_average FROM payments WHERE store = :store GROUP BY MONTH(post_date) ORDER BY post_date DESC");
             $get_monthly->bindValue('store', $store);
             $get_monthly->execute();
             if($get_monthly->rowCount() > 0){

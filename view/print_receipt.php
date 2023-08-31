@@ -31,6 +31,7 @@
         <thead>
             <tr style="background:var(--primaryColor)">
                 <td>S/N</td>
+                <td>Customer</td>
                 <td>Invoice</td>
                 <td>Amount</td>
                 <td>Payment Mode</td>
@@ -49,6 +50,13 @@
             ?>
             <tr>
                 <td style="text-align:center; color:red;"><?php echo $n?></td>
+                <td>
+                    <?php
+                        $get_customer = new selects();
+                        $custs = $get_customer->fetch_details_group('customers', 'customer', 'customer_id', $detail->customer);
+                        echo $custs->customer;
+                    ?>
+                </td>
                 <td><a style="color:green" href="javascript:void(0)" title="View invoice details" onclick="showPage('invoice_details.php?payment_id=<?php echo $detail->payment_id?>')"><?php echo $detail->invoice?></a></td>
                 <td>
                     <?php 

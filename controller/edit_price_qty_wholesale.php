@@ -51,11 +51,10 @@
                 </div>
                 <div class="data" style="width:20%">
                     <label for="price">Unit price (NGN)</label>
-                    <!-- <?php if($role == "Admin"){?> -->
+                    
                     <input type="text" name="price" id="price" value="<?php echo $row->price?>">
-                    <!-- <?php }else{?> -->
                     <!-- <input type="text" name="price" id="price" value="<?php echo $row->price?>" readonly> -->
-                    <!-- <?php }?> -->
+                    
                 </div>
                 <div class="data" style="width:20%">
                     <label for="total_amount">Total Amount (NGN)</label>

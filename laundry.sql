@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 19, 2023 at 02:39 PM
+-- Generation Time: Aug 28, 2023 at 09:22 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -38,14 +38,6 @@ CREATE TABLE `audit_trail` (
   `post_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `audit_trail`
---
-
-INSERT INTO `audit_trail` (`audit_id`, `store`, `item`, `transaction`, `previous_qty`, `quantity`, `posted_by`, `post_date`) VALUES
-(1, 1, 3, 'sales_return', 0, 0, 1, '2023-08-16 13:26:55'),
-(2, 1, 2, 'sales_return', 1, 1, 1, '2023-08-16 18:27:00');
-
 -- --------------------------------------------------------
 
 --
@@ -57,14 +49,6 @@ CREATE TABLE `banks` (
   `bank` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `account_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `banks`
---
-
-INSERT INTO `banks` (`bank_id`, `bank`, `account_number`) VALUES
-(1, 'Access Bank', '0030596252'),
-(3, 'Opay', '7068897068');
 
 -- --------------------------------------------------------
 
@@ -78,14 +62,6 @@ CREATE TABLE `categories` (
   `category` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `categories`
---
-
-INSERT INTO `categories` (`category_id`, `department`, `category`, `price`) VALUES
-(26, '1', 'Shirts', 0),
-(27, '1', 'Gowns', 0);
 
 -- --------------------------------------------------------
 
@@ -105,7 +81,7 @@ CREATE TABLE `companies` (
 --
 
 INSERT INTO `companies` (`company_id`, `company`, `logo`, `date_created`) VALUES
-(1, 'Klinax Servicing Company', 'chef pee.png', '2023-04-23 14:46:39');
+(1, 'Klinax Servicing Company', 'chef pee.png', '2023-08-28 08:15:39');
 
 -- --------------------------------------------------------
 
@@ -123,17 +99,6 @@ CREATE TABLE `customers` (
   `reg_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `customers`
---
-
-INSERT INTO `customers` (`customer_id`, `customer`, `phone_numbers`, `customer_address`, `customer_email`, `wallet_balance`, `reg_date`) VALUES
-(1, 'Kelly Ikpefua', '07068897068', '3 Ikponwosa Street, Okabere', 'onostarkels@gmail.com', 32700, '2023-07-22 11:57:07'),
-(2, 'Onyema Chima', '07057456881', '24 Sapele Road Benin', 'onyema@mail.com', 14800, '2023-07-23 10:12:24'),
-(3, 'James Brown', '08076566555', '33 Kjk Jkaj J', 'knj', 5000, '2023-08-10 14:42:19'),
-(4, 'New Customer', '0805667888', 'Jlkhaeflkjh', 'nil', 2000, '2023-08-15 11:49:45'),
-(5, 'Klinax', '080123456678', 'Jklhjkl', 'jknkjl', 0, '2023-08-15 12:00:00');
-
 -- --------------------------------------------------------
 
 --
@@ -149,31 +114,6 @@ CREATE TABLE `customer_trail` (
   `posted_by` int(11) NOT NULL,
   `post_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `customer_trail`
---
-
-INSERT INTO `customer_trail` (`id`, `customer`, `description`, `amount`, `store`, `posted_by`, `post_date`) VALUES
-(1, 1, 'Credit sales', 500, 1, 1, '2023-07-23 09:36:53'),
-(2, 2, 'Credit sales', 2000, 1, 1, '2023-07-23 10:12:47'),
-(3, 5, 'Credit sales', 1800, 1, 1, '2023-08-15 12:00:38'),
-(4, 1, 'Deposit', 5000, 1, 1, '2023-08-17 00:19:18'),
-(5, 1, 'Debt payment', 500, 1, 1, '2023-08-17 22:55:52'),
-(6, 5, 'Debt payment', 0, 1, 1, '2023-08-17 23:17:20'),
-(7, 2, 'Credit sales', 2000, 1, 1, '2023-08-17 23:20:29'),
-(8, 2, 'Debt payment', 2000, 1, 1, '2023-08-17 23:23:25'),
-(9, 2, 'Credit sales', 1200, 1, 1, '2023-08-18 00:38:38'),
-(10, 5, 'Credit sales', 1000, 1, 1, '2023-08-18 00:47:40'),
-(11, 2, 'Debt payment', 2000, 1, 1, '2023-08-18 00:48:18'),
-(12, 2, 'Debt payment', 1200, 1, 1, '2023-08-18 00:49:11'),
-(13, 5, 'Deposit', 3000, 1, 1, '2023-08-18 00:57:05'),
-(14, 5, 'Deposit', 3000, 1, 1, '2023-08-18 00:58:33'),
-(15, 5, 'Debt payment', 1000, 1, 1, '2023-08-18 08:04:39'),
-(16, 3, 'Deposit', 5000, 1, 1, '2023-08-18 20:08:06'),
-(17, 3, 'Deposit', 3000, 1, 1, '2023-08-18 20:27:23'),
-(18, 1, 'Credit sales', 600, 1, 1, '2023-08-19 00:11:33'),
-(19, 1, 'Debt payment', 600, 1, 1, '2023-08-19 00:18:05');
 
 -- --------------------------------------------------------
 
@@ -192,19 +132,6 @@ CREATE TABLE `debtors` (
   `post_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `debtors`
---
-
-INSERT INTO `debtors` (`debtor_id`, `customer`, `invoice`, `amount`, `store`, `debt_status`, `posted_by`, `post_date`) VALUES
-(1, 1, 'WS230723101777991', 500, 1, 1, 1, '2023-07-23 09:36:53'),
-(2, 2, 'WS230723111873601', 2000, 1, 1, 1, '2023-07-23 10:12:47'),
-(3, 5, 'LA150823011709521', 1800, 1, 1, 1, '2023-08-15 12:00:38'),
-(4, 2, 'KL180823121885931', 2000, 1, 1, 1, '2023-08-17 23:20:29'),
-(5, 2, 'KL180823011829931', 1200, 1, 1, 1, '2023-08-18 00:38:39'),
-(6, 5, 'KL180823011292551', 1000, 1, 1, 1, '2023-08-18 00:47:41'),
-(7, 1, 'KL190823011394621', 600, 1, 1, 1, '2023-08-19 00:11:34');
-
 -- --------------------------------------------------------
 
 --
@@ -215,14 +142,6 @@ CREATE TABLE `departments` (
   `department_id` int(11) NOT NULL,
   `department` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `departments`
---
-
-INSERT INTO `departments` (`department_id`, `department`) VALUES
-(1, 'Male Clothes'),
-(2, 'Female Clothings');
 
 -- --------------------------------------------------------
 
@@ -242,20 +161,6 @@ CREATE TABLE `deposits` (
   `posted_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `deposits`
---
-
-INSERT INTO `deposits` (`deposit_id`, `store`, `customer`, `amount`, `payment_mode`, `invoice`, `details`, `post_date`, `posted_by`) VALUES
-(1, 1, 1, 10000, 'Cash', 'DEP17082312122251', 'Being Deposit For Future Use', '2023-08-16 23:37:46', 1),
-(2, 1, 2, 20000, 'POS', 'DEP17082312119551', 'Being Deposit For Clothes', '2023-08-16 23:46:41', 1),
-(3, 1, 3, 5000, 'Transfer', 'DEP17082312194691', 'Deposit For Clothes', '2023-08-16 23:49:21', 1),
-(4, 1, 4, 2000, 'Cash', 'DEP17082312110941', 'Account Funding', '2023-08-16 23:49:51', 1),
-(5, 1, 1, 20000, 'Cash', 'DEP17082301197321', 'Deposit For Wash', '2023-08-17 00:18:44', 1),
-(6, 1, 1, 5000, 'Cash', 'DEP17082301181531', 'Deposits', '2023-08-17 00:19:17', 1),
-(7, 1, 5, 3000, 'Cash', 'DEP18082301186851', 'Deposit For Payment', '2023-08-18 00:57:05', 1),
-(8, 1, 5, 3000, 'Cash', 'DEP18082301166151', 'Deposit For Payment', '2023-08-18 00:58:33', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -272,13 +177,6 @@ CREATE TABLE `expenses` (
   `expense_date` datetime NOT NULL,
   `post_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `expenses`
---
-
-INSERT INTO `expenses` (`expense_id`, `store`, `posted_by`, `expense_head`, `amount`, `details`, `expense_date`, `post_date`) VALUES
-(1, 1, 1, '1', 4000, 'Fuel For Diesel', '2023-08-15 00:00:00', '2023-08-15 12:06:29');
 
 -- --------------------------------------------------------
 
@@ -341,15 +239,6 @@ CREATE TABLE `items` (
   `date_created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `items`
---
-
-INSERT INTO `items` (`item_id`, `department`, `category`, `item_name`, `cost_price`, `sales_price`, `pack_size`, `express`, `wholesale`, `wholesale_pack`, `reorder_level`, `barcode`, `item_status`, `date_created`) VALUES
-(1, '1', 26, 'T-shirts', 0, 600, 0, 1000, 400, 0, 10, '00', 0, '2023-07-22 11:14:43'),
-(2, '1', 26, 'Long Sleeve', 0, 600, 0, 1000, 300, 0, 10, '000', 0, '2023-07-22 11:15:17'),
-(3, '1', 27, 'Gowns', 0, 1000, 0, 1500, 0, 0, 10, '99', 0, '2023-07-22 11:16:43');
-
 -- --------------------------------------------------------
 
 --
@@ -408,19 +297,6 @@ CREATE TABLE `other_payments` (
   `post_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `other_payments`
---
-
-INSERT INTO `other_payments` (`payment_id`, `store`, `customer`, `invoice`, `amount`, `payment_mode`, `posted_by`, `post_date`) VALUES
-(1, 1, 1, 'WS230723101777991', 500, 'Wallet', 1, '2023-08-17 22:55:52'),
-(2, 1, 5, 'LA150823011709521', 0, 'Wallet', 1, '2023-08-17 23:17:20'),
-(3, 1, 2, 'WS230723111873601', 2000, 'Wallet', 1, '2023-08-17 23:23:24'),
-(4, 1, 2, 'KL180823121885931', 2000, 'Wallet', 1, '2023-08-18 00:48:17'),
-(5, 1, 2, 'KL180823011829931', 1200, 'Wallet', 1, '2023-08-18 00:49:11'),
-(6, 1, 5, 'KL180823011292551', 1000, 'Wallet', 1, '2023-08-18 08:04:38'),
-(7, 1, 1, 'KL190823011394621', 600, 'Wallet', 1, '2023-08-19 00:18:04');
-
 -- --------------------------------------------------------
 
 --
@@ -442,33 +318,6 @@ CREATE TABLE `payments` (
   `invoice` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `invoice_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `payments`
---
-
-INSERT INTO `payments` (`payment_id`, `sales_type`, `customer`, `amount_due`, `store`, `amount_paid`, `discount`, `payment_mode`, `bank`, `post_date`, `posted_by`, `invoice`, `invoice_status`) VALUES
-(1, 'Wholesale', 1, 2400, 1, 2400, 0, 'Cash', 0, '2023-07-23 09:32:28', 1, 'WS230723101222981', 0),
-(2, 'Wholesale', 1, 500, 1, 500, 0, 'Credit', 0, '2023-07-23 09:36:53', 1, 'WS230723101777991', 0),
-(3, 'Wholesale', 2, 2000, 1, 0, 0, 'Credit', 0, '2023-07-23 10:12:47', 1, 'WS230723111873601', 0),
-(4, 'Wholesale', 2, 2400, 1, 2400, 0, 'Cash', 0, '2023-07-24 08:52:27', 1, 'WS240723091528861', 0),
-(5, 'Wholesale', 2, 300, 1, 300, 0, 'Cash', 0, '2023-08-10 14:11:20', 1, 'WS100823031808981', 0),
-(6, 'Wholesale', 1, 1800, 1, 1800, 0, 'Cash', 0, '2023-08-10 14:32:43', 1, 'WS100823031664331', 0),
-(7, 'Wholesale', 3, 1500, 1, 1500, 0, 'Cash', 0, '2023-08-10 14:42:59', 1, 'WS100823031955131', 0),
-(8, 'Wholesale', 3, 400, 1, 400, 0, 'Cash', 0, '2023-08-11 10:06:26', 2, 'WS110823112458791', 0),
-(9, 'Wholesale', 1, 1000, 1, 1000, 0, 'Cash', 0, '2023-08-11 14:40:01', 1, 'LA110823031955031', 0),
-(10, 'Wholesale', 4, 3200, 1, 2500, 700, 'Cash', 0, '2023-08-15 11:54:06', 1, 'LA150823121408671', 0),
-(11, 'Wholesale', 5, 1800, 1, 0, 0, 'Credit', 0, '2023-08-15 12:00:38', 1, 'LA150823011709521', 0),
-(12, 'Wholesale', 5, 1500, 1, 1500, 0, 'Cash', 0, '2023-08-16 10:17:50', 1, 'KL160823111407731', 0),
-(14, 'Wholesale', 2, 2000, 1, 0, 0, 'Credit', 0, '2023-08-17 23:20:29', 1, 'KL180823121885931', 0),
-(15, 'Wholesale', 5, 1000, 1, 1000, 0, 'Cash', 0, '2023-08-17 23:32:24', 1, 'KL180823121495101', 0),
-(16, 'Wholesale', 2, 1200, 1, 0, 0, 'Credit', 0, '2023-08-18 00:38:38', 1, 'KL180823011829931', 0),
-(17, 'Wholesale', 5, 1000, 1, 0, 0, 'Credit', 0, '2023-08-18 00:47:40', 1, 'KL180823011292551', 0),
-(18, 'Wholesale', 1, 1200, 1, 1200, 0, 'Wallet', 0, '2023-08-18 22:04:00', 1, 'KL180823111981191', 1),
-(19, 'Wholesale', 5, 2000, 1, 2000, 0, 'Wallet', 0, '2023-08-18 22:27:10', 1, 'KL180823111797901', 1),
-(20, 'Wholesale', 1, 600, 1, 0, 0, 'Credit', 0, '2023-08-19 00:11:33', 1, 'KL190823011394621', 0),
-(21, 'Wholesale', 5, 1200, 1, 1200, 0, 'POS', 3, '2023-08-19 13:13:57', 1, 'KL190823021892951', 1),
-(22, 'Wholesale', 1, 1500, 1, 1500, 0, 'Transfer', 1, '2023-08-19 13:21:59', 2, 'KL190823022505091', 1);
 
 -- --------------------------------------------------------
 
@@ -539,17 +388,6 @@ CREATE TABLE `rights` (
   `user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `rights`
---
-
-INSERT INTO `rights` (`right_id`, `menu`, `sub_menu`, `user`) VALUES
-(13, 1, 62, 3),
-(14, 2, 60, 3),
-(15, 2, 16, 3),
-(16, 1, 51, 4),
-(17, 6, 46, 4);
-
 -- --------------------------------------------------------
 
 --
@@ -577,44 +415,6 @@ CREATE TABLE `sales` (
   `issued_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `sales`
---
-
-INSERT INTO `sales` (`sales_id`, `item`, `store`, `sales_type`, `customer`, `invoice`, `quantity`, `price`, `total_amount`, `cost`, `posted_by`, `sales_status`, `laundry_status`, `job_type`, `post_date`, `collection_date`, `issued_date`, `issued_by`) VALUES
-(11, 3, 1, 'Laundry', 1, 'WS230723101222981', 1, 1200, 1200, 0, 1, 2, 'D', '', '2023-07-23 09:30:42', '2023-07-25 00:00:00', '2023-07-23 18:49:20', 1),
-(12, 2, 1, 'Laundry', 1, 'WS230723101222981', 2, 600, 1200, 0, 1, 2, 'D', '', '2023-07-23 09:30:57', '2023-07-25 00:00:00', '2023-07-23 18:49:20', 1),
-(13, 1, 1, 'Laundry', 1, 'WS230723101777991', 1, 500, 500, 0, 1, 2, 'D', '', '2023-07-23 09:36:35', '2023-07-26 00:00:00', '2023-07-23 19:54:20', 1),
-(14, 3, 1, 'Laundry', 2, 'WS230723111873601', 2, 1000, 2000, 0, 1, 2, 'D', '', '2023-07-23 10:12:35', '2023-07-26 00:00:00', '2023-08-10 23:21:38', 1),
-(16, 3, 1, 'Laundry', 2, 'WS240723091528861', 2, 1200, 2400, 0, 1, 2, 'W', '', '2023-07-24 08:50:40', '2023-07-25 00:00:00', '2023-08-10 23:21:47', 1),
-(17, 1, 1, 'Laundry', 1, 'WS080823071102731', 4, 700, 2800, 0, 1, 0, '', '', '2023-08-08 06:33:09', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
-(18, 1, 1, 'Laundry', 1, 'WS080823071835871', 1, 500, 500, 0, 1, 0, '', '', '2023-08-08 06:49:30', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
-(22, 2, 1, 'Laundry', 1, 'WS080823071398011', 1, 600, 600, 0, 1, 0, 'C', '', '2023-08-08 07:06:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
-(25, 1, 1, 'Laundry', 2, 'WS090823041127181', 1, 500, 500, 0, 1, 0, 'C', 'Wash & Iron', '2023-08-09 15:20:30', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
-(27, 1, 1, 'Laundry', 1, 'WS090823061238611', 1, 500, 500, 0, 1, 0, 'C', 'wash', '2023-08-09 17:50:33', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
-(29, 2, 1, 'Laundry', 2, 'WS100823031808981', 1, 300, 300, 0, 1, 2, 'W', 'iron', '2023-08-10 14:10:34', '2023-08-12 00:00:00', '0000-00-00 00:00:00', 0),
-(30, 1, 1, 'Laundry', 1, 'WS100823031664331', 2, 500, 1000, 0, 1, 2, 'D', 'Wash & Iron', '2023-08-10 14:29:49', '2023-08-12 00:00:00', '2023-08-15 06:30:22', 1),
-(31, 1, 1, 'Laundry', 1, 'WS100823031664331', 2, 400, 800, 0, 1, 2, 'I', 'iron', '2023-08-10 14:32:15', '2023-08-12 00:00:00', '0000-00-00 00:00:00', 0),
-(32, 2, 1, 'Laundry', 3, 'WS100823031955131', 2, 600, 1200, 0, 1, 2, 'D', 'Wash & Iron', '2023-08-10 14:42:34', '2023-08-12 00:00:00', '2023-08-10 23:47:09', 1),
-(33, 2, 1, 'Laundry', 3, 'WS100823031955131', 1, 300, 300, 0, 1, 2, 'D', 'iron', '2023-08-10 14:42:42', '2023-08-12 00:00:00', '2023-08-10 23:47:09', 1),
-(34, 1, 1, 'Laundry', 3, 'WS110823112458791', 1, 400, 400, 0, 2, 2, 'D', 'iron', '2023-08-11 10:05:45', '2023-08-13 00:00:00', '2023-08-14 17:32:51', 1),
-(38, 3, 1, 'Laundry', 1, 'LA110823031955031', 1, 1000, 1000, 0, 1, 2, 'D', 'Wash & Iron', '2023-08-11 14:39:41', '2023-08-13 00:00:00', '2023-08-14 17:24:35', 1),
-(40, 1, 1, 'Laundry', 1, 'LA110823031676031', 2, 500, 1000, 0, 1, 0, 'C', 'Wash & Iron', '2023-08-11 14:59:56', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
-(42, 1, 1, 'Laundry', 1, 'LA150823111737641', 1, 500, 500, 0, 1, 0, 'C', 'Wash & Iron', '2023-08-15 11:02:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
-(43, 1, 1, 'Laundry', 4, 'LA150823121408671', 2, 600, 1200, 0, 1, 2, 'C', 'Wash & Iron', '2023-08-15 11:50:07', '2023-08-17 00:00:00', '0000-00-00 00:00:00', 0),
-(44, 3, 1, 'Laundry', 4, 'LA150823121408671', 1, 1400, 1400, 0, 1, 2, 'C', 'Wash & Iron', '2023-08-15 11:50:38', '2023-08-17 00:00:00', '0000-00-00 00:00:00', 0),
-(45, 2, 1, 'Laundry', 5, 'LA150823011709521', 3, 600, 1800, 0, 1, 2, 'W', 'Wash & Iron', '2023-08-15 12:00:12', '2023-08-16 00:00:00', '0000-00-00 00:00:00', 0),
-(55, 3, 1, 'Laundry', 5, 'KL160823111407731', 0, 1500, 0, 0, 1, 2, 'D', 'Express', '2023-08-16 10:17:19', '2023-08-16 16:00:00', '2023-08-19 13:55:17', 1),
-(57, 2, 1, 'Laundry', 2, 'KL180823121885931', 2, 1000, 2000, 0, 1, 2, 'C', 'Express', '2023-08-17 23:18:51', '2023-08-18 09:00:00', '0000-00-00 00:00:00', 0),
-(58, 3, 1, 'Laundry', 5, 'KL180823121495101', 1, 1000, 1000, 0, 1, 2, 'C', 'Regular', '2023-08-17 23:31:55', '2023-08-19 12:33:00', '0000-00-00 00:00:00', 0),
-(59, 2, 1, 'Laundry', 2, 'KL180823011829931', 2, 600, 1200, 0, 1, 2, 'C', 'Regular', '2023-08-18 00:38:04', '2023-08-18 12:00:00', '0000-00-00 00:00:00', 0),
-(60, 1, 1, 'Laundry', 5, 'KL180823011292551', 1, 1000, 1000, 0, 1, 2, 'D', 'Express', '2023-08-18 00:47:16', '2023-08-18 12:54:00', '2023-08-19 13:47:36', 1),
-(65, 2, 1, 'Laundry', 1, 'KL180823111981191', 2, 600, 1200, 0, 1, 2, 'C', 'Regular', '2023-08-18 22:03:21', '2023-08-19 11:04:00', '0000-00-00 00:00:00', 0),
-(66, 3, 1, 'Laundry', 5, 'KL180823111797901', 2, 1000, 2000, 0, 1, 2, 'C', 'Regular', '2023-08-18 22:25:37', '2023-08-19 11:28:00', '0000-00-00 00:00:00', 0),
-(67, 2, 1, 'Laundry', 1, 'KL190823011394621', 1, 600, 600, 0, 1, 2, 'C', 'Regular', '2023-08-19 00:10:55', '2023-08-20 13:12:00', '0000-00-00 00:00:00', 0),
-(68, 2, 1, 'Laundry', 5, 'KL190823021892951', 2, 600, 1200, 0, 1, 2, 'C', 'Regular', '2023-08-19 13:13:33', '2023-08-20 14:14:00', '0000-00-00 00:00:00', 0),
-(69, 3, 1, 'Laundry', 1, 'KL190823022505091', 1, 1500, 1500, 0, 2, 2, 'D', 'Express', '2023-08-19 13:21:20', '2023-08-19 20:22:00', '2023-08-19 14:22:56', 2);
-
 -- --------------------------------------------------------
 
 --
@@ -632,14 +432,6 @@ CREATE TABLE `sales_returns` (
   `returned_by` int(11) NOT NULL,
   `return_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `sales_returns`
---
-
-INSERT INTO `sales_returns` (`return_id`, `invoice`, `store`, `item`, `quantity`, `amount`, `reason`, `returned_by`, `return_date`) VALUES
-(1, 'KL160823111407731', 1, 3, 0, 0, '0', 1, '2023-08-16 13:26:55'),
-(2, 'KL160823071524671', 1, 2, 1, 600, 'Wrong Input', 1, '2023-08-16 18:27:00');
 
 -- --------------------------------------------------------
 
@@ -677,7 +469,7 @@ CREATE TABLE `stores` (
 --
 
 INSERT INTO `stores` (`store_id`, `company`, `store`, `store_address`, `phone_number`, `date_created`) VALUES
-(1, 1, 'Upper Adesuwa', '18A Upper Adesuwa Road, G.R.A, Benin City, Edo state', '08134032280', '2023-04-23 15:36:25');
+(1, 1, 'Upper Adesuwa', '18A Upper Adesuwa Road, G.R.A, Benin City, Edo state', '08134032280', '2023-08-28 08:21:25');
 
 -- --------------------------------------------------------
 
@@ -797,11 +589,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `full_name`, `username`, `user_role`, `user_password`, `phone_number`, `email_address`, `home_address`, `status`, `store`, `reg_date`) VALUES
-(1, 'Administrator', 'Sysadmin', 'Admin', '$2y$10$BU4JP2GURjls1XHh/0aNQejcNvLVFcPuis6yVM3CnXMC0U175eE92', '', '', '', 1, 1, '2022-09-27 13:47:21'),
-(2, 'Kelly', 'Onostar', 'Sales Rep', '$2y$10$/guc2yjTsVg5qYFtRfF/GOQ6eOVHa.191HDFyKHz..U2TzYDIutN2', '', '', '', 0, 1, '2023-07-24 09:27:07'),
-(3, 'Admin', 'Admin', 'Admin', '$2y$10$z2nYDcMovL9PHQoqjZ4ZHuOYbuVHyoW4vFJeGErCSUsFXIiYDXBye', '', '', '', 0, 1, '2023-08-12 15:22:43'),
-(4, 'User', 'User', 'Sales Rep', '$2y$10$2IwUOiN78WlEkYhwJGkw8eL9RL1xj3ivuj76gktB2BFDOUySfQM42', '', '', '', 0, 1, '2023-08-15 11:35:48'),
-(5, 'John Smith', 'Smith', 'Sales Rep', '123', '08100653703', 'test@mail.com', '23 pz road', 0, 1, '2023-08-16 10:52:04');
+(1, 'Administrator', 'Sysadmin', 'Admin', '$2y$10$BU4JP2GURjls1XHh/0aNQejcNvLVFcPuis6yVM3CnXMC0U175eE92', '', '', '', 1, 1, '2022-09-27 13:47:21');
 
 -- --------------------------------------------------------
 
@@ -817,17 +605,6 @@ CREATE TABLE `vendors` (
   `email_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `vendors`
---
-
-INSERT INTO `vendors` (`vendor_id`, `vendor`, `contact_person`, `phone`, `email_address`, `created_date`) VALUES
-(1, 'Oswin Supermarket', 'Mr Oswin', '07057456881', 'oswin@mail.com', '2022-12-10 11:20:54'),
-(2, 'Druccicare Pharmacy', 'Pharm Chris Oisakede', '08076765445', 'druci@mail.com', '2022-12-10 11:26:07'),
-(3, 'Anambra Supermarket', 'Anambra', '09000', 'ma@mail.com', '2023-01-09 21:24:12'),
-(4, 'Initial Stock', 'Nil', '090909', 'nil', '2023-05-31 12:39:18'),
-(5, 'K And K Enterprise', 'Kk Dwon', '090989878878', 'kmail@gmail.com', '2023-06-25 21:56:51');
 
 --
 -- Indexes for dumped tables
@@ -1015,19 +792,19 @@ ALTER TABLE `vendors`
 -- AUTO_INCREMENT for table `audit_trail`
 --
 ALTER TABLE `audit_trail`
-  MODIFY `audit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `audit_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `banks`
 --
 ALTER TABLE `banks`
-  MODIFY `bank_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `bank_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `companies`
@@ -1039,37 +816,37 @@ ALTER TABLE `companies`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `customer_trail`
 --
 ALTER TABLE `customer_trail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `debtors`
 --
 ALTER TABLE `debtors`
-  MODIFY `debtor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `debtor_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `deposits`
 --
 ALTER TABLE `deposits`
-  MODIFY `deposit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `deposit_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `expense_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `expense_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `expense_heads`
@@ -1087,7 +864,7 @@ ALTER TABLE `inventory`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `menus`
@@ -1105,13 +882,13 @@ ALTER TABLE `multiple_payments`
 -- AUTO_INCREMENT for table `other_payments`
 --
 ALTER TABLE `other_payments`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `purchases`
@@ -1135,19 +912,19 @@ ALTER TABLE `remove_reasons`
 -- AUTO_INCREMENT for table `rights`
 --
 ALTER TABLE `rights`
-  MODIFY `right_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `right_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sales_returns`
 --
 ALTER TABLE `sales_returns`
-  MODIFY `return_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `return_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `stock_adjustments`
@@ -1177,13 +954,13 @@ ALTER TABLE `transfers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `vendors`
 --
 ALTER TABLE `vendors`
-  MODIFY `vendor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `vendor_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

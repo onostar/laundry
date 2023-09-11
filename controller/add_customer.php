@@ -26,6 +26,6 @@
        $add_data = new add_data('customers', $data);
        $add_data->create_data();
        if($add_data){
-           echo "<p><span>$customer</span> ceated successfully!</p>";
+           echo "<p><span>$customer</span> created successfully!</p>";
        }
    }

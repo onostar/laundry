@@ -654,10 +654,10 @@ main hr{
 
 .login_page{
     position:absolute;
-    top:0;
+    top:5vh;
     left:34vw;
     width:32%;
-    height:auto;
+    height:80vh;
     background:#fff;
     padding:10px;
     margin: 50px auto;
@@ -1133,7 +1133,7 @@ main hr{
     border:1px solid #c4c4c4;
 }
 table tr:nth-child(even){
-    background:#f7ead1!important;
+    background:#f5f1eb!important;
 }
 .allResults table thead{
     background:var(--primaryColor);
@@ -1291,7 +1291,7 @@ table tr:nth-child(even){
 }
 /* aside */
 .admin_main aside{
-    width:18vw;
+    width:16vw;
     background:#fff;
     height:100vh;
     position:fixed;
@@ -1463,8 +1463,8 @@ table tr:nth-child(even){
     text-align: right;
 }
 #contents{
-    margin-left:18vw;
-    width:85vw;
+    margin-left:16vw;
+    width:84vw;
     margin-top:0;
 }
 /* quick links */
@@ -1572,7 +1572,7 @@ table tr:nth-child(even){
     margin:auto;
 }
 #dashboard .cards{
-    min-width:220px;
+    min-width:23%;
     height:80px;
     margin: 0;
     box-shadow:2px 2px 2px 2px #c4c4c4;

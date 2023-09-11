@@ -2,9 +2,12 @@
     .sales_receipt{
     padding:10px;
 }
+.sales_receipt h2{
+    font-size:.9rem;
+}
 .sales_receipt h2, .sales_receipt p{
     text-align:center;
-    font-size:.9rem;
+    font-size:.8rem;
     padding:0;
     margin:0;
 }
@@ -19,13 +22,13 @@
 }
 .sales_receipt .total_amount{
     text-align: right;
-    font-size:.9rem;
+    font-size:.8rem;
     margin:5px 0;
 }
 
 .sales_receipt .sold_by{
     text-align: left;
-    font-size:.9rem;
+    font-size:.8rem;
 
 }
 .sales_receipt table{
@@ -36,7 +39,7 @@
     border-collapse: collapse;
 }
 .sales_receipt table thead tr td{
-    font-size:.9rem;
+    font-size:.8rem;
     padding:2px;
 
 }

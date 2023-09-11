@@ -79,7 +79,7 @@
                     <div class="data">
                         <div class="pass">
                             <label for="password">Password</label>
-                            <a href="views/forgot_password.php" title="Recover your password">Forgot password?</a>
+                            <!-- <a href="views/forgot_password.php" title="Recover your password">Forgot password?</a> -->
                         </div>
                         <input type="password" name="password" id="password" class="password" placeholder="*******" required><br>
                         <div class="show_password">

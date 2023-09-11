@@ -11,7 +11,7 @@
         
     ?>
 
-    <option onclick="showPage('wholesale_order.php?customer=<?php echo $row->customer_id?>')">
+    <option onclick="showPage('edit_customer.php?customer=<?php echo $row->customer_id?>')">
         <?php echo $row->customer?>
     </option>
     

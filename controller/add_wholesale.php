@@ -13,12 +13,12 @@ include "../classes/inserts.php";
         }
         if(isset($_GET['sales_item'])){
             $item = $_GET['sales_item'];
-            $customer_name = $_GET['customer'];
+            $customer = $_GET['customer'];
 
-            //get customer id
+            /* //get customer name
             $get_customer = new selects();
-            $client = $get_customer->fetch_details_group('customers', 'customer_id', 'customer', $customer_name);
-            $customer = $client->customer_id;
+            $client = $get_customer->fetch_details_group('customers', 'customer', 'customer', $customer);
+            $customer_name = $client->customer; */
             
         }
     $_SESSION['customer'] = $customer;

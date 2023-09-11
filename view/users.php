@@ -39,8 +39,7 @@
         $_SESSION['store'] = $store;
         $_SESSION['address'] = $store_address;
         $_SESSION['phone'] = $phone;
-        // }
-    // echo $menus;
+        
         
 ?>
 <!DOCTYPE html>
@@ -69,9 +68,7 @@
                 </a>
             </h1>
             <h2 style="margin-left:50px!important"><?php echo $company?></h2>
-            <!-- <div class="other_menu">
-                <a href="#" title="Our Gallery"><?php echo ucwords($role);?></a>
-            </div> -->
+            
             <a href="#" title="my role" class="other_menu"><?php echo ucwords($store);?></a>
 
             <div class="login">

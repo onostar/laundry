@@ -1485,13 +1485,13 @@ function getItemsOrder(item_name){
 //get item for wholesale direct sales
 function getWholesaleItems(item_name){
      let item = item_name;
-     let customer = document.getElementById("customer").value;
+     // let customer = document.getElementById("customer").value;
      if(item.length = 1){
-          if(customer == 0 || customer.replace(/^\s+|\s+$/g, "").length == 0){
+          /* if(customer == 0 || customer.replace(/^\s+|\s+$/g, "").length == 0){
                alert("Please select a customer");
                $("#customer").focus();
                return;
-          }else{
+          }else{ */
                if(item.length >= 3){
                     if(item){
                          $.ajax({
@@ -1507,7 +1507,7 @@ function getWholesaleItems(item_name){
                          $("#sales_item").html("<p>Please enter atleast 3 letters</p>");
                     }
                }
-          }
+          // }
      }
      
      
@@ -2969,6 +2969,42 @@ function addCustomer(){
      $("#customer").focus();
      return false;    
 }
+// update customer details
+function updateCustomer(){
+     let customer_id = document.getElementById("customer_id").value;
+     let customer = document.getElementById("customer").value;
+     let phone_number = document.getElementById("phone_number").value;
+     let address = document.getElementById("address").value;
+     let email = document.getElementById("email").value;
+     if(customer.length == 0 || customer.replace(/^\s+|\s+$/g, "").length == 0){
+          alert("Please enter customer name!");
+          $("#customer").focus();
+          return;
+     }else if(phone_number.length == 0 || phone_number.replace(/^\s+|\s+$/g, "").length == 0){
+          alert("Please enter customer phone number").focus();
+          $("#phone_number").focus();
+          return;
+     }else if(address.length == 0 || address.replace(/^\s+|\s+$/g, "").length == 0){
+          alert("Please input customer address");
+          $("#address").focus();
+          return;
+     }else if(email.length == 0 || email.replace(/^\s+|\s+$/g, "").length == 0){
+          alert("Please enter customer email address");
+          $("#email").focus();
+          return;
+     }else{
+          $.ajax({
+               type : "POST",
+               url : "../controller/update_customer.php",
+               data : {customer_id:customer_id, customer:customer, phone_number:phone_number, email:email, address:address},
+               success : function(response){
+               $("#update_customer").html(response);
+               }
+          })
+     }
+     $("#customer").focus();
+     return false;    
+}
 
 //post other payments
 function postOtherPayment(){
@@ -3053,14 +3089,28 @@ function getCustomers(input){
      }
      
 }
+//get customer on key press for editing
+function getCustomerEdit(input){
+     $("#search_results").show();
+     if(input.length >= 3){
+          $.ajax({
+               type : "POST",
+               url : "../controller/get_customer_edit.php?input="+input,
+               success : function(response){
+                    $("#search_results").html(response);
+               }
+          })
+     }
+     
+}
 
 //change customer input field base on customer selected
-function selectCustomer(customer){
+/* function selectCustomer(customer){
      let customer_field = document.getElementById("customer");
      customer_field.value = customer;
      customer_field.setAttribute("readonly", "readonly");
      $("#search_results").hide();
-}
+} */
 
 // Fund customer wallet via deposit 
 function deposit(){

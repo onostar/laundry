@@ -3427,17 +3427,24 @@ x
         align-items:center;
     }
     #dashboard .cards{
-        min-width:140px;
-        /* margin:10px; */
-        margin:0;
-        min-height:auto;
+        min-width:90%;
+        height:60px;
+        margin: 0;
+        box-shadow:2px 2px 2px 2px #c4c4c4;
+        border-radius:4px;
+        padding:10px;
+        cursor:pointer;
+        transition: .2s all ease-in-out;
+    }
+    #dashboard .cards .infos{
+        justify-content:space-between!important;
+        gap:.5rem;
+        text-align: left!important;
+        font-size:1.4rem;
+
     }
     #dashboard .cards p{
         font-size:.9rem;
-    }
-    #dashboard .cards .infos{
-        font-size:1.4rem;
-        gap:.5rem;
     }
     #reg_success, .reg_success{   
         width:90%;
@@ -3721,42 +3728,7 @@ x
         width:100%;
     }
 }
-/* @media screen and (max-width:650px){
-    #login_reg{
-        width:90%;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column-reverse;
-    }
-    .reg{
-        width:100%;
-    }
-    .reg_form .inputs .data{
-        width:47%
-    }
-    #dashboard .cards{
-        min-width:90%;
-        height:60px;
-        margin: 0;
-        box-shadow:2px 2px 2px 2px #c4c4c4;
-        border-radius:4px;
-        padding:10px;
-        cursor:pointer;
-        transition: .2s all ease-in-out;
-    }
-    #dashboard .cards .infos{
-        justify-content:space-between!important;
-        gap:.5rem;
-        text-align: left!important;
-    }
-    .for_mobile{
-        display:block!important;
-    }
-    .for_desktop{
-        display:none;
-    }
-    
-} */
+
 
 @media print{
     body *{

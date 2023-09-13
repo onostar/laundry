@@ -48,7 +48,6 @@
 <meta charset="UTF-8">
 <meta name="keywords" content="laundry software, laundry application, laundry management, software">
     <meta name="description" content="A laundry management system developed for managing clients, and clothes brought in and out, as well as revenue">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laundry management</title>
     <link rel="icon" type="image/png" size="32x32" href="../images/icon.png">
     <link rel="stylesheet" href="../fontawesome-free-6.0.0-web/css/all.css">

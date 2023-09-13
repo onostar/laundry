@@ -5,7 +5,6 @@ function displayMenu(){
      if(window.innerWidth <= "800"){
           $("#menu_icon").click(function(){
                if(main_menu.style.display == "block"){
-                 
                     $(".main_menu").hide();
                     $("#menu_icon").html("<a href='javascript:void(0)'><i class='fas fa-bars'></i></a>");
                }else{
@@ -16,6 +15,18 @@ function displayMenu(){
                
           
      }
+     // else{
+          /* $("#menu_icon").click(function(){
+               if(main_menu.style.display == "block"){
+               alert (window.innerWidth);
+
+                    main_menu.style.display == "none"
+                    $("#menu_icon").html("<a href='javascript:void(0)'><i class='fas fa-close'></i></a>");
+                    document.getElementById("contents").style.width = "100vw";
+                    document.getElementById("contents").style.marginLeft = "0";
+               }
+          })
+     } */
 }
 displayMenu();
 //checck the screen width 
@@ -54,7 +65,6 @@ $(document).ready(function(){
           $(".login_option").toggle();
      })
 })
-
 //toggle menu with more options
 $(document).ready(function(){
      $(".addMenu").click(function(){

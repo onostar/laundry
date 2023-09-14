@@ -736,6 +736,20 @@
                 return $rows;
             }
         }
+        //fetch with one condition positive and another negative between two dates
+        public function fetch_details_2condNeg2Date($table, $condition1, $condition2, $value1, $value2, $column, $from, $to){
+            $get_user = $this->connectdb()->prepare("SELECT * FROM $table WHERE $condition1 = :$condition1 AND $condition2 != :$condition2 AND $column BETWEEN '$from' AND '$to'");
+            $get_user->bindValue("$condition1", $value1);
+            $get_user->bindValue("$condition2", $value2);
+            $get_user->execute();
+            if($get_user->rowCount() > 0){
+                $rows = $get_user->fetchAll();
+                return $rows;
+            }else{
+                $rows = "No records found";
+                return $rows;
+            }
+        }
         //fetch sum with 2 condition
         public function fetch_sum_double($table, $column1, $condition, $value, $condition2, $value2){
             $get_user = $this->connectdb()->prepare("SELECT SUM($column1) AS total FROM $table WHERE $condition = :$condition AND $condition2 = :$condition2");

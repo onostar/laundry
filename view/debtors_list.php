@@ -44,7 +44,13 @@
                     ?>
                 </td>
                 <td>
-                    <?php echo "₦".number_format($detail->amount, 2);?>
+                    <?php 
+                        $get_sum = new selects();
+                        $sums = $get_sum->fetch_sum_double('debtors', 'amount', 'customer', $detail->customer, 'debt_status', 0);
+                        foreach($sums as $sum){
+                            echo "₦".number_format($sum->total, 2);
+                        }
+                    ?>
                 </td>
             
                 <td>

@@ -159,7 +159,7 @@
                     <?php
                         //get transaction history
                         $get_transactions = new selects();
-                        $details = $get_transactions->fetch_details_date2Con('customer_trail', 'date(post_date)', $from, $to, 'customer', $customer);
+                        $details = $get_transactions->fetch_details_2condNeg2Date('customer_trail', 'customer', 'description', $customer, 'Credit sales', 'date(post_date)', $from, $to);
                         $n = 1;
                         if(gettype($details) === 'array'){
                         foreach($details as $detail){
@@ -185,7 +185,7 @@
                 }
                 // get sum of credit
                 $get_credits = new selects();
-                $credits = $get_credits->fetch_sum_2date2Cond('debtors', 'amount', 'date(post_date)', 'customer', 'debt_status', $from, $to, $customer, 0);
+                $credits = $get_credits->fetch_sum_double('debtors', 'amount', 'customer', $customer, 'debt_status', 0);
                 foreach($credits as $credit){
                     $debt = $credit->total;
                 }
@@ -197,9 +197,9 @@
                 } */
                 $total_due = $debt;
                     if($total_due > 0){
-                        echo "<p class='total_amount' style='color:red;font-size:1rem;'>Customer balance: ₦-".number_format($total_due, 2)."</p>";    
+                        echo "<p class='total_amount' style='color:red;font-size:1rem;'>Receivables: ₦-".number_format($total_due, 2)."</p>";    
                     }else{
-                        echo "<p class='total_amount' style='color:green;font-size:1rem;'>Customer balance: ₦".number_format($total_due, 2)."</p>";
+                        echo "<p class='total_amount' style='color:green;font-size:1rem;'>Receivables: ₦".number_format($total_due, 2)."</p>";
 
                     }
                 

@@ -35,7 +35,7 @@
                     <?php
                         //get transaction history
                         $get_transactions = new selects();
-                        $details = $get_transactions->fetch_details_cond('debtors', 'customer', $customer);
+                            $details = $get_transactions->fetch_details_2cond('debtors', 'customer', 'debt_status', $customer, 0);
                         $n = 1;
                         if(gettype($details) === 'array'){
                         foreach($details as $detail){
@@ -56,11 +56,9 @@
                             <?php 
                                 //get sum of invoice
                                 $get_sum = new selects();
-                                $sums = $get_sum->fetch_sum_single('payments', 'amount_paid', 'invoice', $detail->invoice);
-                                foreach($sums as $sum){
-                                    echo "₦".number_format($sum->total, 2);
-
-                                }
+                                $sums = $get_sum->fetch_details_group('debtors', 'amount', 'invoice', $detail->invoice);
+                                    $invoice_total = $sums->amount;
+                                    echo "₦".number_format($invoice_total, 2);
                             ?>
                         </td>
                         <td style="color:var(--moreColor)"><?php echo date("d-m-Y", strtotime($detail->post_date));?></td>
@@ -75,9 +73,9 @@
                 }
                 // get sum
                 $get_total = new selects();
-                $amounts = $get_total->fetch_sum_single('debtors', 'amount', 'customer', $customer);
+                $amounts = $get_total->fetch_sum_double('debtors', 'amount', 'customer', $customer, 'debt_status', 0);
                 foreach($amounts as $amount){
-                    echo "<p class='total_amount' style='color:red; font-size:1rem;'>Total: ₦".number_format($amount->total, 2)."</p>";
+                    echo "<p class='total_amount' style='color:red; font-size:1rem;'>Total Due: ₦".number_format($amount->total, 2)."</p>";
                 }
             ?>
             </div>

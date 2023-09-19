@@ -16,6 +16,7 @@ include "../classes/inserts.php";
             $pos = htmlspecialchars(stripslashes($_POST['multi_pos']));
             $transfer = htmlspecialchars(stripslashes($_POST['multi_transfer']));
             $wallet = htmlspecialchars(stripslashes($_POST['wallet']));
+            $deposit = htmlspecialchars(stripslashes($_POST['deposit']));
             $discount = htmlspecialchars(stripslashes($_POST['discount']));
             $store = htmlspecialchars(stripslashes($_POST['store']));
             $type = "Wholesale";
@@ -58,6 +59,9 @@ include "../classes/inserts.php";
                 //get amount paid
                 if($payment_type == "Credit"){
                     $amount_paid = 0;
+                    $invoice_status = 0;
+                }elseif($payment_type == "Deposit"){
+                    $amount_paid = $deposit;
                     $invoice_status = 0;
                 }else{
                     $amount_paid = $inv_amount - $discount;
@@ -115,6 +119,23 @@ include "../classes/inserts.php";
                         'customer' => $customer,
                         'invoice' => $invoice,
                         'amount' => $inv_amount,
+                        'posted_by' => $user,
+                        'store' => $store
+                    );
+                    $add_debt = new add_data('debtors', $debt_data);
+                    $add_debt->create_data();
+                }
+                //check if payment is deposit and insert into customer trail and debtors list
+                if($payment_type == "Deposit"){
+                    //insert to customer_trail
+                    $insert_credit = new customer_trail($customer, $store, 'Credit sales', $inv_amount, $user);
+                    $insert_credit->add_trail();
+                    //insert to debtors list
+                    $balance_payment = $inv_amount - $deposit;
+                    $debt_data = array(
+                        'customer' => $customer,
+                        'invoice' => $invoice,
+                        'amount' => $balance_payment,
                         'posted_by' => $user,
                         'store' => $store
                     );

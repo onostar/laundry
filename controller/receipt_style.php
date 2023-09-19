@@ -21,7 +21,7 @@
     margin:2px 0;
 }
 .sales_receipt .total_amount{
-    text-align: right;
+    text-align: left;
     font-size:.8rem;
     margin:5px 0;
 }

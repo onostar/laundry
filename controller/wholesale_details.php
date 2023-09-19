@@ -107,6 +107,7 @@
                         <option value="POS">POS</option>
                         <option value="Transfer">TRANSFER</option>
                         <option value="Credit">CREDIT</option>
+                        <option value="Deposit">DEPOSIT</option>
                         <option value="Multiple">MULTIPLE PAYMENT</option>
                         <option value="Wallet">WALLET</option>
                     </select>
@@ -148,6 +149,10 @@
                     <input type="hidden" name="wallet" id="wallet" value="<?php echo $wallet?>">
                     <input type="text" value="<?php echo "₦".number_format($wallet, 2)?>">
 
+                </div>
+                <div class="data" id="deposited">
+                    <label for="wallet">Deposit amount</label>
+                    <input type="text" name="deposit" id="deposit" value="0">
                 </div>
                 <div class="inputs">
                     <div class="data" style="width:45%">

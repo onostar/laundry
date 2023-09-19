@@ -21,6 +21,7 @@
                 <td>Customer</td>
                 <td>Invoice</td>
                 <td>Total items</td>
+                <td>AMount due</td>
                 <td>Post Date</td>
                 <td>Due Date</td>
                 <td>Posted by</td>
@@ -52,6 +53,17 @@
                         $get_sum = new selects();
                         $sums = $get_sum->fetch_count_cond('sales', 'invoice', $detail->invoice);
                         echo $sums;
+                    ?>
+                </td>
+                <td style="color:red">
+                    <?php
+                        //get amount due
+                        $get_amount_due = new selects();
+                        $rows = $get_amount_due->fetch_details_cond('payments', 'invoice', $detail->invoice);
+                        foreach($rows as $row){
+                            $due = $row->amount_due - $row->amount_paid;
+                        }
+                        echo "₦".number_format($due, 2);
                     ?>
                 </td>
                 <td style="color:var(--moreColor)"><?php echo date("d-m-Y", strtotime($detail->post_date));?></td>

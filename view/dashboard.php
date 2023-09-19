@@ -42,12 +42,12 @@
                     <p>
                     <?php
                         $get_sales = new selects();
-                        $rows = $get_sales->fetch_sum_curdatecon('payments', 'amount_paid', 'post_date', 'store', $store_id);
+                        $rows = $get_sales->fetch_sum_curdatecon('payments', 'amount_due', 'post_date', 'store', $store_id);
                         foreach($rows as $row){
                             $amount = $row->total;
                         }
                         //if credit was sold
-                        $get_credit = new selects();
+                        /* $get_credit = new selects();
                         $credits = $get_credit->fetch_sum_curdate2Con('payments', 'amount_due', 'post_date', 'payment_mode', 'Credit', 'store', $store_id);
                         if(gettype($credits) === "array"){
                             foreach($credits as $credit){
@@ -56,12 +56,12 @@
                             $total_revenue = $owed_amount + $amount;
                             echo "₦".number_format($total_revenue, 2);
 
-                        }
+                        } */
                         //if no credit sales
-                        if(gettype($credits) == "string"){
+                        // if(gettype($credits) == "string"){
                             echo "₦".number_format($amount, 2);
                             
-                        }
+                        // }
                     ?>
                     </p>
                 </div>

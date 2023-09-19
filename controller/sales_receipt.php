@@ -105,11 +105,20 @@ include "../classes/select.php";
         }
         $rows = $get_paid->fetch_details_cond('payments', 'invoice', $invoice);
         foreach($rows as $row){
-            // $amount_paid = $row->amount_paid;
+            $amount_paid = $row->amount_paid;
             $amount_due = $row->amount_due;
             $discount = $row->discount;
+            $balance = $amount_due - $amount_paid - $discount;
+            //amount due
+            echo "<p class='total_amount' style='color:green'>Amount due: ₦".number_format($total_amount, 2)."</p>";
+            //amount paid
+            echo "<p class='total_amount' style='color:green'>Amount Paid: ₦".number_format($amount_paid, 2)."</p>";
+            //discount
+            echo "<p class='total_amount' style='color:green'>Discount: ₦".number_format($discount, 2)."</p>";
+            //balance
+            echo "<p class='total_amount' style='color:green'>Balance: ₦".number_format($balance, 2)."</p>";
         }
-        if($pay_mode == "Credit"){
+        /* if($pay_mode == "Credit"){
             echo "<p class='total_amount' style='color:green'>Amount due: ₦".number_format($total_amount, 2)."</p>";
         }else{
             //amount due
@@ -125,7 +134,7 @@ include "../classes/select.php";
                 echo "<p class='total_amount' style='color:green'>Discount: ₦".number_format($discount, 2)."</p>";
 
             }
-        }
+        } */
         //collection date
         if(gettype($details) == "array"){
             echo "<div><p style='text-align:right'>Collection date:". date('d-m-Y', strtotime($detail->collection_date))."</p></div>";

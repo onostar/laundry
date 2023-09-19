@@ -1206,7 +1206,7 @@ table tr:nth-child(even){
     margin:10px 0;
 }
 
-#selectBank, #multiples, #account_balance{
+#selectBank, #multiples, #account_balance, #deposited{
     display:none;
 }
 #account_balance input{

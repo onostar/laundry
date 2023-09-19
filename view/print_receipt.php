@@ -60,7 +60,7 @@
                 <td><a style="color:green" href="javascript:void(0)" title="View invoice details" onclick="showPage('invoice_details.php?payment_id=<?php echo $detail->payment_id?>')"><?php echo $detail->invoice?></a></td>
                 <td>
                     <?php 
-                        if($detail->payment_mode == "Credit"){
+                        // if($detail->payment_mode == "Credit"){
                             //get sum of invoice
                             $get_sum = new selects();
                             $sums = $get_sum->fetch_sum_single('payments', 'amount_due', 'invoice', $detail->invoice);
@@ -68,7 +68,7 @@
                                 echo "₦".number_format($sum->total, 2);
 
                             }
-                        }else{
+                        /* }else{
                             //get sum of invoice
                             $get_sum = new selects();
                             $sums = $get_sum->fetch_sum_single('payments', 'amount_paid', 'invoice', $detail->invoice);
@@ -76,7 +76,7 @@
                                 echo "₦".number_format($sum->total, 2);
 
                             }
-                        }
+                        } */
                         
                     ?>
                 </td>

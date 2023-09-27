@@ -9,7 +9,7 @@
     include "../classes/select.php";
 
     $get_revenue = new selects();
-    $details = $get_revenue->fetch_details_date2Cond('other_payments', 'date(post_date)', $from, $to, 'store', $store);
+    $details = $get_revenue->fetch_details_date2Con('other_payments', 'date(post_date)', $from, $to, 'store', $store);
     $n = 1;
 ?>
 <h2>Debtors payment between '<?php echo date("jS M, Y", strtotime($from)) . "' and '" . date("jS M, Y", strtotime($to))?>'</h2>

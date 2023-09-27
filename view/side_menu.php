@@ -65,7 +65,7 @@
                 <ul class="subMenu" id="<?php echo $menu_name->menu?>">
                     <?php
                         $get_sub = new selects();
-                        $subs = $get_sub->fetch_details_cond('rights', 'menu', $men->menu);
+                        $subs = $get_sub->fetch_details_2cond('rights', 'menu', 'user', $men->menu, $user_id);
                         if(gettype($subs) == "array"){
                             foreach($subs as $sub){
                                 //get each submenu details

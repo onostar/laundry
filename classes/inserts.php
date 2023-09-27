@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set("Africa/Lagos");
     class inserts extends Dbh{
 
         //new class to insert any number of data

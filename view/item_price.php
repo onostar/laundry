@@ -11,7 +11,7 @@
 ?>
 
     <div class="info" style="width:80%!important; margin:0!important"></div>
-    <div class="displays allResults" style="width:80%!important; margin:10px 50px!important;">
+    <div class="displays allResults" style="width:90%!important; margin:10px 50px!important;">
         <h2>Manage item prices</h2>
         <hr>
         <div class="search">

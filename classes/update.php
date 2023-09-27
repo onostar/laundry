@@ -1,5 +1,5 @@
 <?php 
-
+date_default_timezone_set("Africa/Lagos");
     class Update_table extends Dbh{
 
         /* public function update_data($table, $data){

@@ -118,6 +118,7 @@ include "../classes/select.php";
             //balance
             echo "<p class='total_amount' style='color:green'>Balance: ₦".number_format($balance, 2)."</p>";
         }
+        
         /* if($pay_mode == "Credit"){
             echo "<p class='total_amount' style='color:green'>Amount due: ₦".number_format($total_amount, 2)."</p>";
         }else{

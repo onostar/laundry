@@ -8,9 +8,9 @@
             $get_pwd->execute();
 
             if($get_pwd->rowCount() > 0){
-                $_SESSION['user'] = $username;
                 $user_password = $get_pwd->fetch();
                 if($user_password->user_password == "123"){
+                    $_SESSION['user'] = $username;
                     header("Location: ../view/change_password.php");
                 }else{
                     $hashedPwd = $user_password->user_password;
@@ -20,16 +20,25 @@
                         $_SESSION['error'] = "Error! Wrong Password";
                         header("Location: ../index.php");
                     }else{
-                        $get_user = $this->connectdb()->prepare("SELECT * FROM users WHERE username = :username AND user_password = :user_password");
+                        $get_user = $this->connectdb()->prepare("SELECT * FROM users WHERE username = :username AND user_password = :user_password AND status = 0");
                         $get_user->bindValue("username", $username);
                         $get_user->bindValue("user_password", $hashedPwd);
                         $get_user->execute();
 
                         if($get_user->rowCount() > 0){
+                            $rows = $get_user->fetchAll();
+                            foreach($rows as $row){
+                                $user = $row->user_id;
+                            }
+                            include "update.php";
+                            //update online status
+                            $update_online = new Update_table();
+                            $update_online->update('users', 'online','user_id', 1, $user);
                             $_SESSION['user'] = $username;
                             header("Location: ../view/users.php");
+
                         }else{
-                            $_SESSION['error'] = "Error! Invalid username or password";
+                            $_SESSION['error'] = "User deactvated";
                             header("Location: ../index.php");
                         }
                     }
